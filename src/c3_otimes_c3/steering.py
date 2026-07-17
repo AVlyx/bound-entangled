@@ -1,9 +1,28 @@
+"""https://arxiv.org/abs/1405.0262
+
+T. Moroder, O. Gittsovich, M. Huber, O. Gühne, "Steering Bound Entangled
+States: A Counterexample to the Stronger Peres Conjecture", Phys. Rev. Lett.
+113, 050404 (2014).
+"""
+
 import numpy as np
 from math import sqrt
 from utils import ketbra
 
 
 def steering_state(m1: float, m2: float) -> np.ndarray:
+    """A 3x3 bound entangled state that is steerable, parametrized by m1, m2.
+
+    Counterexample to the (stronger) Peres conjecture that bound entangled
+    states cannot be used to demonstrate EPR steering.
+
+    Args:
+        m1: first free real parameter.
+        m2: second free real parameter (with m1**2 + m2**2 <= 1).
+
+    Returns:
+        np.ndarray: the steerable bound entangled state.
+    """
     m3 = sqrt((1 - m1**2 - m2**2) / 2)
 
     psi_1 = np.zeros(9, dtype=np.float64)

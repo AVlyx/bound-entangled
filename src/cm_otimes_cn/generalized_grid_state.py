@@ -1,4 +1,9 @@
-"""https://arxiv.org/abs/2402.12966"""
+"""https://arxiv.org/abs/2402.12966
+
+R. Krebs, M. Gachechiladze, "High Schmidt number concentration in quantum
+bound entangled states". Generalizes quantum grid states (see
+`cm_otimes_cn.grid_state`) to hyperedges spanning more than two vertices.
+"""
 
 import numpy as np
 from utils import ketbra
@@ -15,6 +20,15 @@ def grid_component(m_n: tuple[int, int], *ij: tuple[int, int]) -> np.ndarray:
 
 
 def generalized_grid_state(m_n: tuple[int, int], *hyperedges: list[tuple[int, int]]):
+    """A generalized grid state
+
+    Args:
+        m_n: grid dimensions (m, n).
+        *hyperedges: each hyperedge is a list of vertices (i, j) it spans.
+
+    Returns:
+        np.ndarray: the generalized grid state on C^m (x) C^n.
+    """
     m, n = m_n
     rho = np.zeros((m * n, m * n))
     for edge in hyperedges:
