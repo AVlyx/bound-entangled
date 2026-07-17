@@ -15,7 +15,7 @@ def grid_component(m_n: tuple[int, int], *ij: tuple[int, int]) -> np.ndarray:
     for i, j in ij:
         if i >= m or j >= n:
             raise IndexError(f"Vertex ({i},{j}) does not  belong to the graph, m={m}, n={n}")
-        e[i * m + j] = 1
+        e[i * n + j] += 1
     return e
 
 

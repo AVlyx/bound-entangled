@@ -20,5 +20,17 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/AVlyx/bound-entangled"
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# src: import the library the same flat way the source does (`from utils import ...`)
+#      even without the editable install. tests: makes the shared `qi` helper
+#      module importable from every test file.
+pythonpath = ["src", "tests"]
+# importlib mode lets the two identically named `test_upb.py` modules coexist.
+addopts = "--import-mode=importlib"

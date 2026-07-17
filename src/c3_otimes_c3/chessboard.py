@@ -16,8 +16,6 @@ def chessboard(
 ) -> np.ndarray:
     """A chessboard state.
 
-    The state is guaranteed PPT if s and t are set to None.
-
     Args:
         a: free real parameter.
         b: free real parameter.
@@ -25,8 +23,8 @@ def chessboard(
         d: free real parameter.
         m: free real parameter.
         n: free real parameter.
-        s: defaults to c/n if None (this default is required for the state to be PPT).
-        t: defaults to a*d/m if None (this default is required for the state to be PPT).
+        s: defaults to c/n if None.
+        t: defaults to a*d/m if None.
 
     Returns:
         np.ndarray: a chessboard quantum state.
@@ -54,4 +52,6 @@ def chessboard_extremal_PPT() -> np.ndarray:
         # c = -d = 6/5
         c=6 / 5,
         d=-6 / 5,
+        s=(3 / 5) * (6 / 5) / (-3 / 5),
+        t=(3 / 5) * (-6 / 5) / (-3 / 5),
     )
