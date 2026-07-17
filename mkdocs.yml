@@ -1,0 +1,50 @@
+site_name: bound-entangled
+site_description: Families of bound entangled states for Quantum Information
+repo_url: https://github.com/AVlyx/bound-entangled
+repo_name: AVlyx/bound-entangled
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.expand
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - API reference:
+      - c3_otimes_c3: api/c3_otimes_c3.md
+      - c4_otimes_c4: api/c4_otimes_c4.md
+      - c5_otimes_c5: api/c5_otimes_c5.md
+      - cd_otimes_cd: api/cd_otimes_cd.md
+      - cm_otimes_cn: api/cm_otimes_cn.md
+      - utils: api/utils.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: google
+            show_source: false
+            show_root_heading: true
+            merge_init_into_class: true
+
+markdown_extensions:
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - admonition
+  - tables

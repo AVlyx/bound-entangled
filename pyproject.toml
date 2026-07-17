@@ -22,6 +22,7 @@ Homepage = "https://github.com/AVlyx/bound-entangled"
 
 [project.optional-dependencies]
 test = ["pytest"]
+docs = ["mkdocs", "mkdocs-material", "mkdocstrings[python]"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
