@@ -21,7 +21,7 @@ def upb(basis: list[np.ndarray]) -> np.ndarray:
         np.ndarray: the corresponding bound entangled density matrix.
     """
     d_total: int = basis[0].shape[0]
-    rho = np.identity(d_total)
+    rho = np.identity(d_total, dtype=np.complex128)
     for i in range(len(basis)):
         rho -= ketbra(basis[i], basis[i])
     return rho / (d_total - len(basis))

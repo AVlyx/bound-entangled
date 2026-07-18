@@ -5,3 +5,5 @@
 ::: c3_otimes_c3.steering
 ::: c3_otimes_c3.upb.tiles_UPB
 ::: c3_otimes_c3.upb.pyramid_UPB
+::: c3_otimes_c3.upb.parametrized_UPB
+::: c3_otimes_c3.horodecki
