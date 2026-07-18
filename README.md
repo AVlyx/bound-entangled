@@ -1,5 +1,7 @@
 # bound-entangled
 
+[![Documentation](https://img.shields.io/badge/Documentation-blue?style=for-the-badge)](https://avlyx.github.io/bound-entangled/)
+
 Reference implementations of several families of **bound entangled states** from
 the quantum information literature, as plain NumPy density matrices.
 
@@ -80,12 +82,7 @@ rho = yu_oh(d=3, x=0.5, y=0.5)    # Yu-Oh nonlocal bound entangled state
 
 Full API docs (built with [MkDocs](https://www.mkdocs.org/) +
 [mkdocstrings](https://mkdocstrings.github.io/)) are published to GitHub Pages
-on every push to `main`. To preview locally:
-
-```bash
-pip install -e ".[docs]"
-mkdocs serve
-```
+on every push to `main`. 
 
 ## License
 
