@@ -1,6 +1,6 @@
 import pytest
 
-from c5_otimes_c5.sn3_grid_state import sn3_grid_state
+from bound_entangled.c5_otimes_c5.sn3_grid_state import sn3_grid_state
 
 from qi import assert_bound_entangled
 

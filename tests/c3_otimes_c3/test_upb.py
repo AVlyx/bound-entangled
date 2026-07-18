@@ -1,8 +1,8 @@
 import numpy as np
 
-from c3_otimes_c3.upb.pyramid_UPB import pyramid_basis, pyramid_upb
-from c3_otimes_c3.upb.tiles_UPB import tiles_upb
-from c3_otimes_c3.upb.parametrized_UPB import parametrized_basis, parametrized_upb
+from bound_entangled.c3_otimes_c3.upb.pyramid_UPB import pyramid_basis, pyramid_upb
+from bound_entangled.c3_otimes_c3.upb.tiles_UPB import tiles_upb
+from bound_entangled.c3_otimes_c3.upb.parametrized_UPB import parametrized_basis, parametrized_upb
 
 from qi import assert_bound_entangled
 

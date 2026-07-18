@@ -1,4 +1,4 @@
-from c3_otimes_c3.cross_hatch import cross_hatch
+from bound_entangled.c3_otimes_c3.cross_hatch import cross_hatch
 
 from qi import assert_bound_entangled
 

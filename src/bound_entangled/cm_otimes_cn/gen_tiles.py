@@ -8,7 +8,7 @@ arbitrary m (x) n dimension.
 """
 
 import numpy as np
-from utils import upb
+from bound_entangled.utils import upb
 
 
 def gen_tiles2_basis(m_n: tuple[int, int]) -> list[np.ndarray]:

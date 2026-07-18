@@ -1,1 +1,0 @@
-from c5_otimes_c5.sn3_grid_state import sn3_grid_state

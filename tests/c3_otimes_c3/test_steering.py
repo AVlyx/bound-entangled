@@ -1,4 +1,4 @@
-from c3_otimes_c3.steering import steering_state
+from bound_entangled.c3_otimes_c3.steering import steering_state
 
 from qi import assert_bound_entangled
 

@@ -1,5 +1,5 @@
 import numpy as np
-from utils import ketbra
+from bound_entangled.utils import ketbra
 
 
 def upb(basis: list[np.ndarray]) -> np.ndarray:

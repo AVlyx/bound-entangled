@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from toqito.state_props import is_ppt
 
-from cm_otimes_cn.random_not_bound_entangled import (
+from bound_entangled.cm_otimes_cn.random_not_bound_entangled import (
     random_NPT,
     random_PPT,
     random_PPT_close_to_the_PPT_edge,

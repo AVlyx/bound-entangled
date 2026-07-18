@@ -5,7 +5,7 @@ bound entangled states", Result 1 / Appendix B: the smallest known Schmidt
 number 3 (hence "SN3") PPT bound entangled state, in local dimension 5x5.
 """
 
-from cm_otimes_cn.generalized_grid_state import generalized_grid_state
+from bound_entangled.cm_otimes_cn.generalized_grid_state import generalized_grid_state
 
 
 def sn3_grid_state():

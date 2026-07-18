@@ -6,7 +6,7 @@ bound entangled states". Generalizes quantum grid states (see
 """
 
 import numpy as np
-from utils import ketbra
+from bound_entangled.utils import ketbra
 
 
 def grid_component(m_n: tuple[int, int], *ij: tuple[int, int]) -> np.ndarray:

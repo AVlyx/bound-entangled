@@ -1,4 +1,4 @@
-from c3_otimes_c3.horodecki import horodecki
+from bound_entangled.c3_otimes_c3.horodecki import horodecki
 
 from qi import assert_bound_entangled
 

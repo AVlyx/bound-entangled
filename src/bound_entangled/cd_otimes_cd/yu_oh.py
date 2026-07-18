@@ -7,7 +7,7 @@ S. Yu, C. H. Oh, "A family of nonlocal bound entangled states", Phys. Rev. A
 from toqito.states import max_entangled
 import numpy as np
 from math import sqrt
-from utils import ketbra
+from bound_entangled.utils import ketbra
 
 
 def psi_ij(d: int, i: int, j: int):

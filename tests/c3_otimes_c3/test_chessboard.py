@@ -1,6 +1,6 @@
 import pytest
 
-from c3_otimes_c3.chessboard import chessboard, chessboard_extremal_PPT
+from bound_entangled.c3_otimes_c3.chessboard import chessboard, chessboard_extremal_PPT
 
 from qi import assert_bound_entangled
 

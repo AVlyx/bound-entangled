@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from cd_otimes_cd.yu_oh import yu_oh, psi_ij, is_valid_yu_oh_input
+from bound_entangled.cd_otimes_cd.yu_oh import yu_oh, psi_ij, is_valid_yu_oh_input
 
 from qi import assert_bound_entangled
 

@@ -6,7 +6,7 @@ Terhal, "Unextendible Product Bases and Bound Entanglement", Phys. Rev. Lett.
 """
 
 import numpy as np
-from utils import upb
+from bound_entangled.utils import upb
 
 
 def pyramid_basis() -> list[np.ndarray]:

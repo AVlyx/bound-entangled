@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils import ketbra
+from bound_entangled.utils import ketbra
 
 
 def test_ketbra_matches_outer_product():

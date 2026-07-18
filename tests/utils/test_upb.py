@@ -1,7 +1,7 @@
 import numpy as np
 
-from utils import upb
-from c3_otimes_c3.upb.pyramid_UPB import pyramid_basis
+from bound_entangled.utils import upb
+from bound_entangled.c3_otimes_c3.upb.pyramid_UPB import pyramid_basis
 
 from qi import assert_bound_entangled
 

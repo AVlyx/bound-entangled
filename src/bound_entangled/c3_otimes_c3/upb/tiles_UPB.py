@@ -7,7 +7,7 @@ Terhal, "Unextendible Product Bases and Bound Entanglement", Phys. Rev. Lett.
 
 import numpy as np
 from toqito.states import tile
-from utils import upb
+from bound_entangled.utils import upb
 
 
 def tiles_upb() -> np.ndarray:

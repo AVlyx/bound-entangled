@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from cm_otimes_cn.gen_tiles import gen_tiles2_basis, gen_tiles2
+from bound_entangled.cm_otimes_cn.gen_tiles import gen_tiles2_basis, gen_tiles2
 
 from qi import assert_bound_entangled
 

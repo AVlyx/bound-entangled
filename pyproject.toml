@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bound-entangled"
-version = "0.1.0"
+version = "0.1.1"
 description = "Families of bound entangled states for Quantum Information"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -29,7 +29,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-# src: import the library the same flat way the source does (`from utils import ...`)
+# src: import the library the same way the source does (`from bound_entangled.utils import ...`)
 #      even without the editable install. tests: makes the shared `qi` helper
 #      module importable from every test file.
 pythonpath = ["src", "tests"]

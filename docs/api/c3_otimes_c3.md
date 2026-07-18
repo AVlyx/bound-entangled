@@ -1,9 +1,9 @@
 # `c3_otimes_c3`
 
-::: c3_otimes_c3.chessboard
-::: c3_otimes_c3.cross_hatch
-::: c3_otimes_c3.steering
-::: c3_otimes_c3.upb.tiles_UPB
-::: c3_otimes_c3.upb.pyramid_UPB
-::: c3_otimes_c3.upb.parametrized_UPB
-::: c3_otimes_c3.horodecki
+::: bound_entangled.c3_otimes_c3.chessboard
+::: bound_entangled.c3_otimes_c3.cross_hatch
+::: bound_entangled.c3_otimes_c3.steering
+::: bound_entangled.c3_otimes_c3.upb.tiles_UPB
+::: bound_entangled.c3_otimes_c3.upb.pyramid_UPB
+::: bound_entangled.c3_otimes_c3.upb.parametrized_UPB
+::: bound_entangled.c3_otimes_c3.horodecki

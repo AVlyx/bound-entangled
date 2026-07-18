@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from cm_otimes_cn.grid_state import ket, grid_component, grid_state
+from bound_entangled.cm_otimes_cn.grid_state import ket, grid_component, grid_state
 
 from qi import assert_bound_entangled
 

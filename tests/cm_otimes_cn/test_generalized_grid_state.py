@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from cm_otimes_cn.generalized_grid_state import grid_component, generalized_grid_state
-from cm_otimes_cn.grid_state import ket
+from bound_entangled.cm_otimes_cn.generalized_grid_state import grid_component, generalized_grid_state
+from bound_entangled.cm_otimes_cn.grid_state import ket
 
 from qi import assert_density_matrix
 

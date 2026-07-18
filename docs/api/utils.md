@@ -1,4 +1,4 @@
 # `utils`
 
-::: utils.ketbra
-::: utils.upb
+::: bound_entangled.utils.ketbra
+::: bound_entangled.utils.upb

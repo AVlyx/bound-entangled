@@ -8,7 +8,7 @@ arbitrary even dimension.
 """
 
 import numpy as np
-from utils import upb
+from bound_entangled.utils import upb
 
 
 def gen_tiles1_basis(d: int) -> list[np.ndarray]:

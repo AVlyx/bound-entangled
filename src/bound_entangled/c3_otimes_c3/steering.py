@@ -7,7 +7,7 @@ States: A Counterexample to the Stronger Peres Conjecture", Phys. Rev. Lett.
 
 import numpy as np
 from math import sqrt
-from utils import ketbra
+from bound_entangled.utils import ketbra
 
 
 def steering_state(m1: float, m2: float) -> np.ndarray:

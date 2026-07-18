@@ -11,7 +11,7 @@ from toqito.matrices import pauli
 from toqito.states import max_entangled
 from toqito.perms import permute_systems
 import numpy as np
-from utils import ketbra
+from bound_entangled.utils import ketbra
 
 
 def P_ij(i: int, j: int):

@@ -11,7 +11,7 @@ cases.
 from math import cos, sin, sqrt
 
 import numpy as np
-from utils import upb
+from bound_entangled.utils import upb
 
 
 def parametrized_basis(

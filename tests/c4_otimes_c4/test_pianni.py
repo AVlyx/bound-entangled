@@ -1,6 +1,6 @@
 import numpy as np
 
-from c4_otimes_c4.pianni import P_ij, pianni
+from bound_entangled.c4_otimes_c4.pianni import P_ij, pianni
 
 from qi import assert_bound_entangled
 

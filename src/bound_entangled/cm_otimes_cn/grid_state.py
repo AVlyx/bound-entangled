@@ -6,7 +6,7 @@ states", Phys. Rev. A 97, 062340 (2018).
 
 import numpy as np
 from math import sqrt
-from utils import ketbra
+from bound_entangled.utils import ketbra
 
 
 def ket(m_n: tuple[int, int], ij: tuple[int, int]):

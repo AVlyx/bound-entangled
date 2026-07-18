@@ -4,7 +4,7 @@ J. Lockhart, O. Gühne, S. Severini, "Entanglement properties of quantum grid
 states", Phys. Rev. A 97, 062340 (2018).
 """
 
-from cm_otimes_cn.grid_state import grid_state
+from bound_entangled.cm_otimes_cn.grid_state import grid_state
 
 
 def cross_hatch():

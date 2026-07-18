@@ -1,3 +1,3 @@
 # `c4_otimes_c4`
 
-::: c4_otimes_c4.pianni
+::: bound_entangled.c4_otimes_c4.pianni
