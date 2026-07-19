@@ -53,6 +53,8 @@ rho = yu_oh(d=3, x=0.5, y=0.5)    # Yu-Oh nonlocal bound entangled state
 
 | Factory | State | Reference |
 |---|---|---|
+| `breuer` | Breuer bound-entangled state (PPT, detected by anti-linear map) | [quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036) |
+| `smolin` | Smolin four-party unlockable bound entangled state | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
 | `pianni` | 4×4 Benatti–Floreanini–Piani state | [quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095) |
 
 ### `c5_otimes_c5` — C⁵ ⊗ C⁵
@@ -77,6 +79,12 @@ rho = yu_oh(d=3, x=0.5, y=0.5)    # Yu-Oh nonlocal bound entangled state
 | `random_NPT`, `random_PPT`, `random_PPT_close_to_the_PPT_edge` | Random density matrices by PPT class (rejection sampling) | — |
 | `gen_tiles2` | GenTiles2 UPB generalizing Tiles to m⊗n, n>3, m≥3, n≥m | [quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070) |
 
+
+### `multipartite` — multipartite systems
+
+| Factory | State | Reference |
+|---|---|---|
+| `generalized_smolin` | Generalized Smolin state on 2n qubits (bound entangled for all even n ≥ 2) | [quant-ph/0411142](https://arxiv.org/abs/quant-ph/0411142) |
 
 ## Documentation
 

@@ -28,6 +28,7 @@ nav:
       - c5_otimes_c5: api/c5_otimes_c5.md
       - cd_otimes_cd: api/cd_otimes_cd.md
       - cm_otimes_cn: api/cm_otimes_cn.md
+      - multipartite: api/multipartite.md
       - utils: api/utils.md
 
 plugins:

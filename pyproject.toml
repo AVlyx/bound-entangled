@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bound-entangled"
-version = "0.1.2"
+version = "0.1.4"
 description = "Families of bound entangled states for Quantum Information"
 readme = "README.md"
 requires-python = ">=3.9"

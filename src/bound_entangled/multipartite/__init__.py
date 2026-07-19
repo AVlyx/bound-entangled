@@ -1,0 +1,1 @@
+from bound_entangled.multipartite.smolin import generalized_smolin
