@@ -5,3 +5,4 @@ from bound_entangled.c3_otimes_c3.upb.tiles_UPB import tiles_upb
 from bound_entangled.c3_otimes_c3.upb.pyramid_UPB import pyramid_upb
 from bound_entangled.c3_otimes_c3.upb.parametrized_UPB import parametrized_upb
 from bound_entangled.c3_otimes_c3.horodecki import horodecki
+from bound_entangled.c3_otimes_c3.ncomms6297 import ncomms6297

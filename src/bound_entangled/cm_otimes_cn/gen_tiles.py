@@ -9,6 +9,7 @@ arbitrary m (x) n dimension.
 
 import numpy as np
 from bound_entangled.utils import upb
+from toqito.states import basis
 
 
 def gen_tiles2_basis(m_n: tuple[int, int]) -> list[np.ndarray]:
@@ -31,7 +32,7 @@ def gen_tiles2_basis(m_n: tuple[int, int]) -> list[np.ndarray]:
     if not (n > 3 and m >= 3 and n >= m):
         raise ValueError("requires n > 3, m >= 3, and n >= m")
 
-    basis = []
+    basis_upb = []
 
     for j in range(m):
         # |S_j> = 1/sqrt(2) (|j> - |j+1 mod m>) (x) |j>
@@ -41,7 +42,7 @@ def gen_tiles2_basis(m_n: tuple[int, int]) -> list[np.ndarray]:
         ket_a /= np.linalg.norm(ket_a)
         ket_b = np.zeros(n, dtype=np.complex128)
         ket_b[j] = 1
-        basis.append(np.kron(ket_a, ket_b).reshape(-1, 1))
+        basis_upb.append(np.kron(ket_a, ket_b).reshape(-1, 1))
 
     omega = np.exp(1j * 2 * np.pi / (n - 2))
     for j in range(m):
@@ -56,13 +57,13 @@ def gen_tiles2_basis(m_n: tuple[int, int]) -> list[np.ndarray]:
             for i in range(m - 2, n - 2):
                 ket_b[i + 2] += omega ** (i * k)
             ket_b /= np.linalg.norm(ket_b)
-            basis.append(np.kron(ket_a, ket_b).reshape(-1, 1))
+            basis_upb.append(np.kron(ket_a, ket_b).reshape(-1, 1))
 
     # |F> = 1/sqrt(nm) sum_i sum_j |i> (x) |j>
     stopper = np.ones(m * n, dtype=np.complex128) / np.sqrt(m * n)
-    basis.append(stopper.reshape(-1, 1))
+    basis_upb.append(stopper.reshape(-1, 1))
 
-    return basis
+    return basis_upb
 
 
 def gen_tiles2(m_n: tuple[int, int]) -> np.ndarray:
