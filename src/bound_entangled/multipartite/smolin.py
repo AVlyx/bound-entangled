@@ -1,45 +1,27 @@
-"""https://arxiv.org/abs/quant-ph/0411142
+"""https://arxiv.org/abs/quant-ph/0001001
 
-A. Kay, "Degree of quantum bound entanglement for a family of mixed states",
-Phys. Rev. A 71, 032309 (2005). (See also Smolin: arXiv:quant-ph/0001001.)
-Generalization of the Smolin state to 2n qubits: bound entangled for all
-even n >= 2, constructed from tensor products of Pauli operators.
+J. A. Smolin, "Four-party unlockable bound entangled state",
+Phys. Rev. A 63, 032306 (2001).
+Bound entangled state on C^4 ⊗ C^4 (four qubits) that can be unlocked
+by classical communication between any two of the four parties.
 """
 
-from toqito.matrices import pauli
 import numpy as np
+from bound_entangled.multipartite.generalized_smolin import generalized_smolin
 
 
-def generalized_smolin(systems: int) -> np.ndarray:
-    """Construct the generalized Smolin (GSS) bound-entangled state (arXiv:quant-ph/0411142).
+def smolin() -> np.ndarray:
+    """Construct the Smolin bound-entangled state on C^4 ⊗ C^4 (arXiv:quant-ph/0001001).
 
-    For an even number of qubits ``systems = 2n``, the state is::
+    The Smolin state is the equal mixture of the four two-qubit Bell states
+    tensored with themselves::
 
-        rho = (I + (-1)^n * sum_{i in {X,Y,Z}} sigma_i^{⊗2n}) / 2^{2n}
+        rho = (1/4) sum_{i=0}^{3} |phi_i><phi_i| ⊗ |phi_i><phi_i|
 
-    The ``systems=4`` case (n=1 pairs ⊗ 2 copies) reproduces the original
-    Smolin state on C^4 ⊗ C^4.  For all even ``systems >= 4`` the state is
-    bound entangled.
-
-    Parameters
-    ----------
-    systems:
-        Total number of qubits.  Must be a positive even integer.
-
+    It lives on a four-qubit system A⊗B⊗C⊗D.
     Returns
     -------
     np.ndarray
-        ``2^systems × 2^systems`` density matrix of the GSS state.
-
-    Raises
-    ------
-    AssertionError
-        If ``systems`` is odd.
+        16×16 density matrix representing the Smolin state
     """
-    assert systems % 2 == 0
-    n = systems // 2
-    result = np.identity(2**systems, dtype=np.complex128)
-    sign = (-1) ** n
-    for i in range(1, 4):
-        result += sign * pauli([i] * systems)
-    return result / 2**systems
+    return generalized_smolin(4)

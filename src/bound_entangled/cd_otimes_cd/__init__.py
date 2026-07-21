@@ -1,2 +1,4 @@
 from bound_entangled.cd_otimes_cd.yu_oh import yu_oh, is_valid_yu_oh_input
 from bound_entangled.cd_otimes_cd.gen_tiles import gen_tiles1
+from bound_entangled.cd_otimes_cd.orthogonal_singlet import orthogonal_singlet
+from bound_entangled.cd_otimes_cd.badziag_private_singlet import badziag_private_singlet

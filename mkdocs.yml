@@ -23,6 +23,7 @@ theme:
 nav:
   - Home: index.md
   - API reference:
+      - c2_otimes_c4: api/c2_otimes_c4.md
       - c3_otimes_c3: api/c3_otimes_c3.md
       - c4_otimes_c4: api/c4_otimes_c4.md
       - c5_otimes_c5: api/c5_otimes_c5.md

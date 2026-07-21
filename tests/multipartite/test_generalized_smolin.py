@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from bound_entangled.multipartite.smolin import generalized_smolin
-from bound_entangled.c4_otimes_c4.smolin import smolin
+from bound_entangled.multipartite.generalized_smolin import generalized_smolin
+from bound_entangled.multipartite.smolin import smolin
 
 from qi import assert_bound_entangled, assert_density_matrix
 

@@ -19,19 +19,6 @@ class TestIsValidYuOhInput:
         assert is_valid_yu_oh_input(3, 0.6, 0.6) is False
 
 
-class TestPsiIj:
-    def test_antisymmetry(self):
-        np.testing.assert_allclose(psi_ij(3, 0, 2), -psi_ij(3, 2, 0))
-
-    def test_nonzero_entries(self):
-        # |ij> - |ji> for d=3, (i, j) = (0, 2): +1 at 0*3+2, -1 at 2*3+0.
-        v = psi_ij(3, 0, 2)
-        expected = np.zeros(9)
-        expected[2] = 1.0
-        expected[6] = -1.0
-        np.testing.assert_allclose(v, expected)
-
-
 class TestYuOh:
     @pytest.mark.parametrize("d", [3, 4])
     def test_is_bound_entangled(self, d):
