@@ -39,4 +39,4 @@ def steering_state(m1: float, m2: float) -> np.ndarray:
     lambda3 = 1 / (4 - 2 * m1**2 + m1 * m2 - 2 * m2**2)
     lambda2 = 1 - lambda1 - 2 * lambda3
 
-    return lambda1 * ketbra(psi_1, psi_1) + lambda2 * ketbra(psi_2, psi_2) + lambda3 * (ketbra(psi_3, psi_3) + ketbra(psi_t_3, psi_t_3))
+    return lambda1 * ketbra(psi_1) + lambda2 * ketbra(psi_2) + lambda3 * (ketbra(psi_3) + ketbra(psi_t_3))

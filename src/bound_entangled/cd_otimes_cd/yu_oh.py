@@ -87,7 +87,7 @@ def psi_k(d: int, k: int, x: float, y: float, z: float):
     return ret
 
 
-def yu_oh(d: int, x: float, y: float):
+def yu_oh(*, full_dim: int, x: float, y: float):
     """The Yu-Oh nonlocal bound entangled state, for local dimension d >= 3.
 
     A family of PPT entangled states in C^d (x) C^d, parametrized by (x, y),
@@ -95,41 +95,41 @@ def yu_oh(d: int, x: float, y: float):
     entangled). See `is_valid_yu_oh_input` for the validity domain of (x, y).
 
     Args:
-        d: local dimension, d >= 3.
+        full_dim: local dimension, d >= 3.
         x: first free parameter.
         y: second free parameter.
 
     Returns:
         np.ndarray: the Yu-Oh bound entangled state.
     """
-    assert is_valid_yu_oh_input(d, x, y)
+    assert is_valid_yu_oh_input(full_dim, x, y)
     z = sqrt(1 - x**2 - y**2)
-    delta = z**2 / (d - 2) - x * y
-    R = d * x * y + (d - 1) * (d - 2) * delta + d - 1
+    delta = z**2 / (full_dim - 2) - x * y
+    R = full_dim * x * y + (full_dim - 1) * (full_dim - 2) * delta + full_dim - 1
 
-    max_ent_ket: np.ndarray = max_entangled(d) * sqrt(d)  # type: ignore
-    ret = x * y / R * ketbra(max_ent_ket, max_ent_ket)
+    max_ent_ket: np.ndarray = max_entangled(full_dim) * sqrt(full_dim)  # type: ignore
+    ret = x * y / R * ketbra(max_ent_ket)
 
-    psi_ij_sum = np.zeros((d**2, d**2))
-    for j in range(1, d - 1):
-        for i in range(j + 1, d):
-            psi_ij_val = psi_ij(d, i, j)
-            psi_ij_sum += ketbra(psi_ij_val, psi_ij_val)
+    psi_ij_sum = np.zeros((full_dim**2, full_dim**2))
+    for j in range(1, full_dim - 1):
+        for i in range(j + 1, full_dim):
+            psi_ij_val = psi_ij(full_dim, i, j)
+            psi_ij_sum += ketbra(psi_ij_val)
     ret += delta / R * psi_ij_sum
 
-    psi_k_sum = np.zeros((d**2, d**2))
-    for k in range(1, d):
-        psi_k_val = psi_k(d, k, x, y, z)
-        psi_k_sum += ketbra(psi_k_val, psi_k_val)
+    psi_k_sum = np.zeros((full_dim**2, full_dim**2))
+    for k in range(1, full_dim):
+        psi_k_val = psi_k(full_dim, k, x, y, z)
+        psi_k_sum += ketbra(psi_k_val)
     ret += psi_k_sum / R
     return ret
 
 
-def is_valid_yu_oh_input(d: int, x: float, y: float) -> bool:
+def is_valid_yu_oh_input(full_dim: int, x: float, y: float) -> bool:
     """Whether (x, y) lie in the valid parameter domain for `yu_oh`.
 
     Args:
-        d: local dimension.
+        full_dim: local dimension.
         x: first free parameter.
         y: second free parameter.
 
@@ -139,7 +139,7 @@ def is_valid_yu_oh_input(d: int, x: float, y: float) -> bool:
     if x**2 + y**2 > 1:
         return False
     z = sqrt(1 - x**2 - y**2)
-    delta = z**2 / (d - 2) - x * y
+    delta = z**2 / (full_dim - 2) - x * y
     if delta <= 0:
         return False
     return True

@@ -33,6 +33,6 @@ def generalized_grid_state(m_n: tuple[int, int], *hyperedges: list[tuple[int, in
     rho = np.zeros((m * n, m * n))
     for edge in hyperedges:
         gc = grid_component(m_n, *edge)
-        rho += ketbra(gc, gc)
+        rho += ketbra(gc)
     rho /= np.trace(rho)
     return rho

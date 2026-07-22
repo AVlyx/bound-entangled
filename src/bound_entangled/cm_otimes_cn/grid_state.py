@@ -37,6 +37,6 @@ def grid_state(m_n: tuple[int, int], *edges: tuple[tuple[int, int], tuple[int, i
     ret = np.zeros((m * n, m * n))
     for ij, kl in edges:
         gc = grid_component(m_n, ij, kl)
-        ret += ketbra(gc, gc)
+        ret += ketbra(gc)
     ret /= len(edges)
     return ret

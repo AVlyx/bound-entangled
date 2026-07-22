@@ -71,7 +71,7 @@ def _build_sk_vectors(Q: np.ndarray, d: int):
     return sk
 
 
-def orthogonal_singlet(shield_dim: int) -> np.ndarray:
+def orthogonal_singlet(*, shield_dim: int) -> np.ndarray:
     """Construct the ρ_F2 (second-family) PPT singlet on C^{2d} ⊗ C^{2d}.
 
     Reverse-engineered from Tóth & Vértesi, PRL 120, 020506 (2018) and
@@ -103,17 +103,17 @@ def orthogonal_singlet(shield_dim: int) -> np.ndarray:
             for k in range(d):
                 if Q[j, i, k] != 0:
                     z = z + (Q[j, i, k] / sqrt(2)) * basis(d, 1, 1, j, k)
-            sum1 = sum1 + ketbra(z, z)
+            sum1 = sum1 + ketbra(z)
 
     ab01 = np.zeros(4, dtype=np.complex128)
     ab01[1] = 1.0
     sum2 = np.zeros((4 * d * d, 4 * d * d), dtype=np.complex128)
     for k in range(d):
-        sum2 = sum2 + np.kron(ketbra(ab01, ab01), ketbra(sk_vecs[k], sk_vecs[k]))
+        sum2 = sum2 + np.kron(ketbra(ab01), ketbra(sk_vecs[k]))
 
     sum3 = np.zeros((4 * d * d, 4 * d * d), dtype=np.complex128)
     for i in range(d):
         v = basis(d, 1, 0, i, i)
-        sum3 = sum3 + ketbra(v, v)
+        sum3 = sum3 + ketbra(v)
 
     return (p1 / d**2) * sum1 + (p2 / (2 * d)) * sum2 + (p2 / (2 * d)) * sum3

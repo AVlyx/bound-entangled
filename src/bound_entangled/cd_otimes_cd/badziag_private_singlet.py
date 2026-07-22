@@ -19,7 +19,7 @@ def basis(shield_dim: int, i: int, j: int, k: int, l: int):
     return tensor(ket_i(2, i), ket_i(2, j), ket_i(shield_dim, k), ket_i(shield_dim, l))
 
 
-def badziag_private_singlet(shield_dim: int) -> np.ndarray:
+def badziag_private_singlet(*, shield_dim: int) -> np.ndarray:
     """Construct the Bädziąg et al. private-singlet bound-entangled state on C^{2d} ⊗ C^{2d}.
 
     A PPT singlet in dimension 2d × 2d built from a shield subsystem of
@@ -39,10 +39,8 @@ def badziag_private_singlet(shield_dim: int) -> np.ndarray:
     ret = sum(
         ketbra(
             basis(shield_dim, 0, 0, i, j),
-            basis(shield_dim, 0, 0, i, j),
         )
         + ketbra(
-            basis(shield_dim, 1, 1, i, j),
             basis(shield_dim, 1, 1, i, j),
         )
         for i in range(shield_dim)
@@ -71,10 +69,8 @@ def badziag_private_singlet(shield_dim: int) -> np.ndarray:
     ret += sum(
         ketbra(
             basis(shield_dim, 0, 1, i, i),
-            basis(shield_dim, 0, 1, i, i),
         )
         + ketbra(
-            basis(shield_dim, 1, 0, i, i),
             basis(shield_dim, 1, 0, i, i),
         )
         for i in range(shield_dim)

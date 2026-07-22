@@ -34,4 +34,4 @@ def ncomms6297() -> np.ndarray:
 
     psi_i = [psi_1, psi_2, psi_3, psi_4]
     eigenvals = [3257 / 6884, 450 / 1721, 450 / 1721, 27 / 6884]
-    return sum([eig * ketbra(psi, psi) for psi, eig in zip(psi_i, eigenvals)])  # type: ignore
+    return sum([eig * ketbra(psi) for psi, eig in zip(psi_i, eigenvals)])  # type: ignore

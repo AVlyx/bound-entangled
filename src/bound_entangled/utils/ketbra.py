@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def ketbra(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+def ketbra(a: np.ndarray, b: np.ndarray | None = None) -> np.ndarray:
     """The outer product |a><b|.
 
     Args:
@@ -11,4 +11,6 @@ def ketbra(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     Returns:
         np.ndarray: the rank-1 operator |a><b|.
     """
+    if b is None:
+        b = a
     return np.outer(a, b.conj())

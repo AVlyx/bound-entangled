@@ -60,14 +60,14 @@ def gen_tiles1_basis(d: int) -> list[np.ndarray]:
     return basis
 
 
-def gen_tiles1(d: int) -> np.ndarray:
+def gen_tiles1(*, full_dim: int) -> np.ndarray:
     """The bound entangled state built from the GenTiles1 UPB on C^d (x) C^d.
 
     Args:
-        d: local dimension of both parties. Must be even and >= 4.
+        full_dim: local dimension of both parties. Must be even and >= 4.
 
     Returns:
         np.ndarray: the bound entangled state on the orthogonal complement of
         the GenTiles1 unextendible product basis.
     """
-    return upb(gen_tiles1_basis(d))
+    return upb(gen_tiles1_basis(full_dim))

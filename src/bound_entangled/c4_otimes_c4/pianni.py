@@ -26,7 +26,7 @@ def P_ij(i: int, j: int):
     """
     sigma_ij = np.kron(np.identity(4), np.kron(pauli(i), pauli(j)))  # type: ignore
     ket_ij = sigma_ij @ max_entangled(4)
-    return ketbra(ket_ij, ket_ij)
+    return ketbra(ket_ij)
 
 
 def pianni():
