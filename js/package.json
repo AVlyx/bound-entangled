@@ -30,6 +30,30 @@
       "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js"
     },
+    "./c3OtimesC3": {
+      "types": "./dist/c3OtimesC3/index.d.ts",
+      "import": "./dist/c3OtimesC3/index.js"
+    },
+    "./c4OtimesC4": {
+      "types": "./dist/c4OtimesC4/index.d.ts",
+      "import": "./dist/c4OtimesC4/index.js"
+    },
+    "./c5OtimesC5": {
+      "types": "./dist/c5OtimesC5/index.d.ts",
+      "import": "./dist/c5OtimesC5/index.js"
+    },
+    "./cdOtimesCd": {
+      "types": "./dist/cdOtimesCd/index.d.ts",
+      "import": "./dist/cdOtimesCd/index.js"
+    },
+    "./cmOtimesCn": {
+      "types": "./dist/cmOtimesCn/index.d.ts",
+      "import": "./dist/cmOtimesCn/index.js"
+    },
+    "./multipartite": {
+      "types": "./dist/multipartite/index.d.ts",
+      "import": "./dist/multipartite/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",

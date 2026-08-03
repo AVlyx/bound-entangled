@@ -1,5 +1,14 @@
+export { ket } from './ket.js';
 export { ketbra } from './ketbra.js';
+export { tensor } from './tensor.js';
+export { normalize, normalizeTrace } from './normalize.js';
 export { upb } from './upb.js';
+export { pauli } from './pauli.js';
+export type { PauliIndex } from './pauli.js';
+export { maxEntangled } from './maxEntangled.js';
+export type { MaxEntangledOptions } from './maxEntangled.js';
+export { fourier } from './fourier.js';
 export { partialTranspose } from './partialTranspose.js';
+export { permuteSystems } from './permuteSystems.js';
 export { isPSD, DEFAULT_TOLERANCE } from './isPSD.js';
 export { isPPT } from './isPPT.js';

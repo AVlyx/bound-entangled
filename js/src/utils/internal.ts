@@ -4,12 +4,42 @@
  * here, so the numeric code only ever sees plain nested arrays.
  */
 
-import { isComplex, isMatrix } from 'mathjs';
+import { add, complex, isComplex, isMatrix } from 'mathjs';
+import type { Complex, Matrix } from 'mathjs';
 import type { Dims, MatrixLike, Scalar, VectorLike } from '../types.js';
 
 export function fail(message: string): never {
   // Prefixed so the origin of the error is unambiguous in a user's stack trace.
   throw new Error(`bound-entangled: ${message}`);
+}
+
+/**
+ * The sum of a non-empty list of matrices. Most states in this library are a
+ * weighted sum of rank-1 projectors, so this is the shape of nearly every
+ * construction.
+ */
+export function sumMatrices(terms: readonly Matrix[]): Matrix {
+  if (terms.length === 0) {
+    fail('cannot sum an empty list of matrices');
+  }
+  let total = terms[0];
+  for (let i = 1; i < terms.length; i++) {
+    total = add(total, terms[i]);
+  }
+  return total;
+}
+
+/**
+ * `exp(2πi · exponent / order)`, an `order`-th root of unity.
+ *
+ * Built straight from a cosine and a sine rather than by raising a complex
+ * number to a power: reducing the exponent modulo `order` first keeps the
+ * angle small and lands exactly on the quarter turns.
+ */
+export function rootOfUnity(exponent: number, order: number): Complex {
+  const reduced = ((exponent % order) + order) % order;
+  const angle = (2 * Math.PI * reduced) / order;
+  return complex(Math.cos(angle), Math.sin(angle));
 }
 
 /** The real part of a scalar, whether it is a plain number or a mathjs Complex. */
@@ -101,4 +131,31 @@ export function strides(dims: Dims): number[] {
     stride *= dims[s];
   }
   return result;
+}
+
+/**
+ * The flat index of a composite basis state. A plain number is taken to be the
+ * flat index already; a list gives one local index per subsystem.
+ */
+export function flatIndex(dims: Dims, index: number | readonly number[]): number {
+  const total = totalDimension(dims);
+  if (typeof index === 'number') {
+    if (!Number.isInteger(index) || index < 0 || index >= total) {
+      fail(`index ${index} is out of range for dimension ${total}`);
+    }
+    return index;
+  }
+  if (index.length !== dims.length) {
+    fail(`expected ${dims.length} local index/indices, got ${index.length}`);
+  }
+  const stride = strides(dims);
+  let flat = 0;
+  for (let s = 0; s < dims.length; s++) {
+    const local = index[s];
+    if (!Number.isInteger(local) || local < 0 || local >= dims[s]) {
+      fail(`index ${local} is out of range for subsystem ${s} of dimension ${dims[s]}`);
+    }
+    flat += local * stride[s];
+  }
+  return flat;
 }
