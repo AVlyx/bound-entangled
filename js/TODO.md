@@ -11,7 +11,6 @@ implementation — see the state tables in [README.md](README.md).
 
 | State | Needs |
 |---|---|
-| `tilesUpb` (C³ ⊗ C³) | `tile` — the five product vectors, which already exist as a fixture in [tests/helpers.ts](tests/helpers.ts) (`tilesBasis`). |
 | `randomNPT`, `randomPPT`, `randomPPTCloseToThePPTEdge` | `randomDensityMatrix`. toqito builds it from the Ginibre ensemble: draw a `dim × k` matrix of i.i.d. standard Gaussians (complex unless `isReal`), then `rho = G G† / tr(G G†)`; `k = dim` gives the Hilbert–Schmidt measure. Needs Box–Muller over an injectable `rng: () => number`, since Node has no `np.random.seed`. Its `bures` variant additionally needs `randomUnitary` (Ginibre → QR → `Q · diag(sign(diag(R)))`). |
 
 Note on seeding: the Python suite's `np.random.seed(1234)` fixture in
@@ -26,8 +25,10 @@ The Python package wraps toqito for these, so the TS port needs real
 implementations rather than a wrapper:
 
 - `chessboard`, `chessboardExtremalPPT` (C³ ⊗ C³) — [quant-ph/9911056](https://arxiv.org/abs/quant-ph/9911056)
-- `horodecki` on C² ⊗ C⁴ and on C³ ⊗ C³ — [quant-ph/9703004](https://arxiv.org/abs/quant-ph/9703004)
 - `breuer` (C⁴ ⊗ C⁴) — [quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036)
+
+Both Horodecki states and `tile` / `tilesUpb` have now been written from the
+toqito sources and match bit-for-bit.
 
 ## Other
 

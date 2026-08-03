@@ -11,6 +11,7 @@ export {
   pauli,
   maxEntangled,
   fourier,
+  tile,
   partialTranspose,
   permuteSystems,
   isPSD,
@@ -18,6 +19,7 @@ export {
   DEFAULT_TOLERANCE,
 } from './utils/index.js';
 
+export type { HorodeckiOptions } from './c3OtimesC3/index.js';
 export type { ParametrizedUpbOptions, SteeringStateOptions } from './c3OtimesC3/index.js';
 export {
   crossHatch,
@@ -27,7 +29,15 @@ export {
   pyramidBasis,
   parametrizedUpb,
   parametrizedBasis,
+  tilesUpb,
+  tilesBasis,
 } from './c3OtimesC3/index.js';
+
+// The two Horodecki states share a name in their own modules, matching the
+// Python package. At the root they need distinguishing, so each is aliased by
+// the space it lives in — as `horodecki2ByDGeneralized` already is.
+export { horodecki as horodecki3By3 } from './c3OtimesC3/index.js';
+export { horodecki as horodecki2By4 } from './c2OtimesC4/index.js';
 
 export { pianni, projectorIj } from './c4OtimesC4/index.js';
 

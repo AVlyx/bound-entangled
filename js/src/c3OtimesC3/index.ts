@@ -1,4 +1,7 @@
 export { crossHatch } from './crossHatch.js';
+export { horodecki } from './horodecki.js';
+export type { HorodeckiOptions } from './horodecki.js';
+export { tilesUpb, tilesBasis } from './upb/tilesUpb.js';
 export { steeringState } from './steering.js';
 export type { SteeringStateOptions } from './steering.js';
 export { ncomms6297 } from './ncomms6297.js';

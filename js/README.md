@@ -37,6 +37,10 @@ const sigma = yuOh({ fullDim: 3, x: 0.5, y: 0.1 }); // Yu–Oh nonlocal bound en
 Any factory taking more than one parameter takes a single options object, so
 call sites name what they pass.
 
+The two Horodecki states are both called `horodecki` on their own subpath,
+matching the Python package. Since they would collide at the root, they are
+re-exported there as `horodecki3By3` and `horodecki2By4`.
+
 Vectors and matrices may be given as plain (nested) arrays or as mathjs
 matrices; every function returns a mathjs `Matrix`, so `.toArray()` gets you
 back to plain data.
@@ -58,11 +62,19 @@ partialTranspose(bell, [2, 2]);     // SWAP / 2
 
 ## States
 
+### `c2OtimesC4` — C² ⊗ C⁴
+
+| Factory | State | Reference |
+|---|---|---|
+| `horodecki` | 2×4 Horodecki bound entangled state | [quant-ph/9703004](https://arxiv.org/abs/quant-ph/9703004) |
+
 ### `c3OtimesC3` — C³ ⊗ C³
 
 | Factory | State | Reference |
 |---|---|---|
 | `crossHatch` | 3×3 "cross-hatch" grid state (CCNR-detected) | [1705.09261](https://arxiv.org/abs/1705.09261) |
+| `horodecki` | 3×3 Horodecki bound entangled state | [quant-ph/9703004](https://arxiv.org/abs/quant-ph/9703004) |
+| `tilesUpb`, `tilesBasis` | State from the Tiles unextendible product basis | [quant-ph/9808030](https://arxiv.org/abs/quant-ph/9808030) |
 | `steeringState` | Steerable bound entangled state (counterexample to the stronger Peres conjecture) | [1405.0262](https://arxiv.org/abs/1405.0262) |
 | `ncomms6297` | Rank-4 PPT entangled state from an explicit spectral decomposition | [ncomms6297](https://www.nature.com/articles/ncomms6297) |
 | `pyramidUpb`, `pyramidBasis` | State from the Pyramid unextendible product basis | [quant-ph/9808030](https://arxiv.org/abs/quant-ph/9808030) |
@@ -120,6 +132,7 @@ Building blocks:
 | `pauli(index)` | A Pauli operator by name or index (`0 = I, 1 = X, 2 = Y, 3 = Z`); a list gives their tensor product. |
 | `maxEntangled(dim, options?)` | `(1/√d) Σ\|ii>`, or the bare `Σ\|ii>` with `{ normalized: false }`. |
 | `fourier(dim)` | The DFT matrix `W[j][k] = ω^(jk)/√d`. |
+| `tile(index)` | One of the five Tile states on C³ ⊗ C³, `index` 0–4. |
 | `upb(basis)` | The bound entangled state on the orthogonal complement of an unextendible product basis. |
 
 Properties:

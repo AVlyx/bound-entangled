@@ -30,6 +30,10 @@
       "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js"
     },
+    "./c2OtimesC4": {
+      "types": "./dist/c2OtimesC4/index.d.ts",
+      "import": "./dist/c2OtimesC4/index.js"
+    },
     "./c3OtimesC3": {
       "types": "./dist/c3OtimesC3/index.d.ts",
       "import": "./dist/c3OtimesC3/index.js"
