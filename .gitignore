@@ -5,6 +5,10 @@ build/
 *.egg
 site/
 
+# Node
+node_modules/
+*.tsbuildinfo
+
 # Virtual environments
 venv/
 .venv/

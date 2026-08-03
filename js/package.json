@@ -1,0 +1,60 @@
+{
+  "name": "bound-entangled",
+  "version": "0.1.0",
+  "description": "Families of bound entangled states for Quantum Information",
+  "keywords": [
+    "quantum",
+    "quantum-information",
+    "entanglement",
+    "bound-entanglement",
+    "ppt",
+    "density-matrix",
+    "mathjs"
+  ],
+  "homepage": "https://github.com/AVlyx/bound-entangled#readme",
+  "bugs": "https://github.com/AVlyx/bound-entangled/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AVlyx/bound-entangled.git",
+    "directory": "js"
+  },
+  "license": "MIT",
+  "author": "AVlyx <anton@vancleem.com>",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "dependencies": {
+    "mathjs": "^15.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
