@@ -1,0 +1,59 @@
+.scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 2px 0;
+}
+
+.matrix {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: 'Latin Modern Math', 'STIX Two Math', 'Cambria Math', 'Times New Roman', serif;
+  font-size: 0.95em;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-h);
+}
+
+.label {
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.body {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.bracket {
+  width: 0.32em;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+}
+
+.bracketLeft {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.bracketRight {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 0.35em 0.9em;
+  padding: 0.45em 0.6em;
+  justify-items: center;
+}
+
+.cell {
+  white-space: nowrap;
+}
+
+.cellZero {
+  opacity: 0.3;
+}
