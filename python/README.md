@@ -34,7 +34,7 @@ from bound_entangled.cd_otimes_cd import yu_oh
 from bound_entangled.c5_otimes_c5 import sn3_grid_state
 
 rho = chessboard_extremal_PPT()   # 9x9 PPT-entangled chessboard state
-rho = yu_oh(d=3, x=0.5, y=0.5)    # Yu-Oh nonlocal bound entangled state
+rho = yu_oh(full_dim=3, x=0.5, y=0.5)  # Yu-Oh nonlocal bound entangled state
 ```
 
 ## States

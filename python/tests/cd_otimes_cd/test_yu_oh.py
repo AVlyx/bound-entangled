@@ -22,9 +22,9 @@ class TestIsValidYuOhInput:
 class TestYuOh:
     @pytest.mark.parametrize("d", [3, 4])
     def test_is_bound_entangled(self, d):
-        rho = yu_oh(d, 0.5, 0.1)
+        rho = yu_oh(full_dim=d, x=0.5, y=0.1)
         assert_bound_entangled(rho, dim=[d, d])
 
     def test_rejects_invalid_parameters(self):
         with pytest.raises(AssertionError):
-            yu_oh(3, 0.9, 0.9)
+            yu_oh(full_dim=3, x=0.9, y=0.9)

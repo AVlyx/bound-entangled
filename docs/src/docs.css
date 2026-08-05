@@ -1,0 +1,801 @@
+/*
+ * Global styles for the bound-entangled documentation.
+ *
+ * `index.css` owns the design tokens and the page shell; this file owns the
+ * documentation itself: page layout, headings, prose, equations, code, tables,
+ * callouts and the small controls that drive the interactive state examples.
+ *
+ * Everything is plain class names (no CSS modules) so any page or component can
+ * use them. Prose rules are scoped under `.doc` so the landing page keeps the
+ * centred layout it gets from `#root`.
+ */
+
+:root {
+  /* Serif stack used for anything mathematical, matching LatexMatrix. */
+  --math:
+    'Latin Modern Math', 'STIX Two Math', 'Cambria Math', 'Times New Roman',
+    serif;
+
+  /* Spacing scale, used for vertical rhythm between prose blocks. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius: 8px;
+  --radius-sm: 4px;
+
+  /* Measure of a comfortable line of body text. */
+  --measure: 68ch;
+  --doc-width: 1126px;
+
+  /* Callout colours. */
+  --note: #2f6fd0;
+  --note-bg: rgba(47, 111, 208, 0.08);
+  --tip: #1d915f;
+  --tip-bg: rgba(29, 145, 95, 0.08);
+  --warn: #b8730a;
+  --warn-bg: rgba(184, 115, 10, 0.1);
+  --danger: #cc3244;
+  --danger-bg: rgba(204, 50, 68, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --note: #7aa9f0;
+    --note-bg: rgba(122, 169, 240, 0.12);
+    --tip: #5fd1a0;
+    --tip-bg: rgba(95, 209, 160, 0.12);
+    --warn: #e6a83d;
+    --warn-bg: rgba(230, 168, 61, 0.12);
+    --danger: #f2798a;
+    --danger-bg: rgba(242, 121, 138, 0.12);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Layout
+ * ------------------------------------------------------------------ */
+
+/* Sidebar next to the documentation page. Below the shell width the sidebar
+   goes off-canvas (see Sidebar.module.css) and the page takes the full width. */
+.doc-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  flex-grow: 1;
+  text-align: left;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
+
+.doc-main {
+  min-width: 0;
+}
+
+/* A documentation page: left aligned, padded, capped to the shell width. */
+.doc {
+  text-align: left;
+  width: 100%;
+  max-width: var(--doc-width);
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6) var(--space-8);
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    padding: var(--space-5) var(--space-4) var(--space-7);
+  }
+}
+
+/* Constrains running text to a readable measure without shrinking figures. */
+.doc-prose {
+  max-width: var(--measure);
+}
+
+/* A titled block of documentation, separated from the previous one. */
+.doc-section {
+  margin-top: var(--space-7);
+  scroll-margin-top: var(--space-6);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+/* Two columns on wide screens, stacked on narrow ones — e.g. text next to a
+   matrix, or controls next to their output. */
+.doc-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+/* Vertical stack with consistent gaps, for ad-hoc groups. */
+.doc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ------------------------------------------------------------------ *
+ * Titles
+ * ------------------------------------------------------------------ */
+
+/* Small uppercase label above a title, e.g. the Hilbert space of a state. */
+.doc-eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-2);
+}
+
+.doc-title {
+  font-family: var(--heading);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 115%;
+  letter-spacing: -1.2px;
+  color: var(--text-h);
+  margin: 0 0 var(--space-3);
+
+  @media (max-width: 1024px) {
+    font-size: 30px;
+    letter-spacing: -0.8px;
+  }
+}
+
+/* One-sentence summary directly under a page title. */
+.doc-lead {
+  font-size: 1.1em;
+  line-height: 155%;
+  color: var(--text);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+}
+
+.doc h2,
+.doc-h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 125%;
+  letter-spacing: -0.24px;
+  color: var(--text-h);
+  margin: 0 0 var(--space-3);
+  scroll-margin-top: var(--space-6);
+}
+
+.doc h3,
+.doc-h3 {
+  font-family: var(--heading);
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 130%;
+  color: var(--text-h);
+  margin: var(--space-5) 0 var(--space-2);
+  scroll-margin-top: var(--space-6);
+}
+
+.doc h4,
+.doc-h4 {
+  font-family: var(--heading);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: var(--space-5) 0 var(--space-2);
+}
+
+/* Clickable `#` that appears on hover, for linkable headings. */
+.doc-anchor {
+  color: var(--accent);
+  text-decoration: none;
+  margin-left: var(--space-2);
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  :is(h1, h2, h3, h4):hover > &,
+  &:focus-visible {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Text
+ * ------------------------------------------------------------------ */
+
+.doc p {
+  margin: 0 0 var(--space-4);
+  max-width: var(--measure);
+}
+
+.doc strong {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.doc a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-border);
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-bottom-color: var(--accent);
+  }
+}
+
+.doc ul,
+.doc ol {
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-5);
+  max-width: var(--measure);
+}
+
+.doc li {
+  margin-bottom: var(--space-2);
+
+  &::marker {
+    color: var(--accent);
+  }
+}
+
+/* Term/definition pairs, e.g. the parameters a state takes. */
+.doc-dl {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-2) var(--space-5);
+  margin: 0 0 var(--space-4);
+
+  dt {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--text-h);
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1) 0;
+
+    dd {
+      margin-bottom: var(--space-3);
+    }
+  }
+}
+
+.doc blockquote {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-1) 0 var(--space-1) var(--space-4);
+  border-left: 2px solid var(--border);
+  color: var(--text);
+  font-style: italic;
+  max-width: var(--measure);
+}
+
+.doc hr,
+.doc-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-6) 0;
+}
+
+/* Bibliographic reference under a definition or figure. */
+.doc-cite {
+  display: block;
+  font-size: 0.82em;
+  line-height: 145%;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.doc-muted {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+/* ------------------------------------------------------------------ *
+ * Equations and math
+ * ------------------------------------------------------------------ */
+
+/* Inline math inside a sentence: ρ, |ψ⟩, d ⊗ d. */
+.math {
+  font-family: var(--math);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-h);
+  white-space: nowrap;
+}
+
+/* An italic symbol standing for a variable. */
+.math-var {
+  font-family: var(--math);
+  font-style: italic;
+  color: var(--text-h);
+}
+
+/* An upright operator or function name (Tr, rank, det), as LaTeX sets them. */
+.math-op {
+  font-family: var(--math);
+  font-style: normal;
+  color: var(--text-h);
+}
+
+/* Display equation: centred, on its own line, scrollable when too wide. */
+.equation {
+  font-family: var(--math);
+  font-size: 1.05em;
+  line-height: 1.5;
+  color: var(--text-h);
+  text-align: center;
+  margin: var(--space-5) 0;
+  padding: var(--space-2) 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+/* Numbered equation: put the tag in `data-number`, e.g. data-number="1". */
+.equation-numbered {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: var(--space-4);
+  overflow: visible;
+
+  &::after {
+    content: '(' attr(data-number) ')';
+    font-family: var(--math);
+    color: var(--text);
+  }
+
+  /* The equation body still scrolls on its own inside the grid. */
+  > * {
+    min-width: 0;
+    overflow-x: auto;
+  }
+}
+
+/* Caption under an equation or a rendered matrix. */
+.equation-caption {
+  display: block;
+  text-align: center;
+  font-size: 0.85em;
+  line-height: 145%;
+  color: var(--text);
+  margin-top: var(--space-2);
+}
+
+/* Boxed result — the punchline equation of a section. */
+.equation-boxed {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  padding: var(--space-4) var(--space-5);
+}
+
+/* ------------------------------------------------------------------ *
+ * Code
+ * ------------------------------------------------------------------ */
+
+.doc pre {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 160%;
+  color: var(--text-h);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  margin: 0 0 var(--space-4);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  tab-size: 2;
+
+  /* `code` inside `pre` must not inherit the inline chip styling. */
+  code {
+    display: block;
+    padding: 0;
+    background: none;
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+
+/* Language tag shown above a block: <pre data-lang="ts">. */
+.code-block {
+  position: relative;
+
+  &[data-lang]::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-3);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.6;
+  }
+}
+
+/* Code sample with a copy button — see components/CodeBlock. The button sits in
+   the top right corner, so the language tag shifts left to make room. */
+.code-wrap {
+  position: relative;
+  margin: 0 0 var(--space-4);
+
+  .code-block {
+    margin-bottom: 0;
+    padding-top: var(--space-6);
+  }
+
+  .code-block[data-lang]::before {
+    top: var(--space-3);
+    right: 5.5rem;
+  }
+}
+
+.code-copy {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+
+  &:hover {
+    color: var(--text-h);
+    border-color: var(--accent-border);
+  }
+
+  &[data-status='copied'] {
+    color: var(--accent);
+    border-color: var(--accent-border);
+  }
+
+  &[data-status='failed'] {
+    color: var(--danger);
+    border-color: var(--danger);
+  }
+}
+
+/* A function signature set apart from the prose. */
+.api-signature {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 160%;
+  color: var(--text-h);
+  background: var(--accent-bg);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: var(--space-3) var(--space-4);
+  margin: 0 0 var(--space-4);
+  overflow-x: auto;
+}
+
+/* ------------------------------------------------------------------ *
+ * Tables
+ * ------------------------------------------------------------------ */
+
+/* Wrap wide tables in `.scroll-x` so the page itself never scrolls sideways. */
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  margin: 0 0 var(--space-4);
+
+  th,
+  td {
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: 600;
+    color: var(--text-h);
+    white-space: nowrap;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Numeric columns read better right aligned and tabular. */
+  .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-family: var(--mono);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Callouts
+ * ------------------------------------------------------------------ */
+
+.callout {
+  --callout: var(--note);
+  --callout-bg: var(--note-bg);
+
+  border-left: 3px solid var(--callout);
+  background: var(--callout-bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: var(--space-3) var(--space-4);
+  margin: 0 0 var(--space-4);
+  max-width: var(--measure);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.callout-title {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--callout);
+  margin-bottom: var(--space-1);
+}
+
+.callout-tip {
+  --callout: var(--tip);
+  --callout-bg: var(--tip-bg);
+}
+
+.callout-warn {
+  --callout: var(--warn);
+  --callout-bg: var(--warn-bg);
+}
+
+.callout-danger {
+  --callout: var(--danger);
+  --callout-bg: var(--danger-bg);
+}
+
+/* Small status word: "bound", "PPT", "separable". */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ *
+ * Figures and interactive examples
+ * ------------------------------------------------------------------ */
+
+.figure {
+  margin: 0 0 var(--space-5);
+  text-align: center;
+
+  img,
+  svg,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.figure-caption {
+  display: block;
+  font-size: 0.85em;
+  line-height: 145%;
+  color: var(--text);
+  margin-top: var(--space-2);
+  text-align: center;
+}
+
+/* Card holding a live example: controls on top, rendered state below. */
+.example {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  padding: var(--space-5);
+  margin: 0 0 var(--space-5);
+  overflow: hidden;
+
+  @media (max-width: 1024px) {
+    padding: var(--space-4);
+  }
+}
+
+.example-output {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-4);
+  overflow-x: auto;
+}
+
+/* Row of parameter controls. */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  align-items: center;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.control-label {
+  font-family: var(--math);
+  font-style: italic;
+  font-size: 1.05em;
+  color: var(--text-h);
+}
+
+/* Current value of a control, in a chip next to it. */
+.control-value {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  min-width: 4ch;
+  text-align: center;
+}
+
+/* Range and number inputs share the accent colour. */
+.doc input[type='range'],
+.doc input[type='number'] {
+  accent-color: var(--accent);
+  font-family: var(--mono);
+  color: var(--text-h);
+}
+
+.doc input[type='number'] {
+  width: 7ch;
+  font-size: 14px;
+  padding: 4px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* ------------------------------------------------------------------ *
+ * Navigation
+ * ------------------------------------------------------------------ */
+
+/* On-page table of contents. */
+.toc {
+  font-size: 0.9em;
+  border-left: 1px solid var(--border);
+  padding-left: var(--space-4);
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: var(--space-2);
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: none;
+
+    &:hover,
+    &[aria-current='true'] {
+      color: var(--accent);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Utilities
+ * ------------------------------------------------------------------ */
+
+/* Anything that may overflow horizontally goes in one of these. */
+.scroll-x {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ *
+ * Global behaviour
+ * ------------------------------------------------------------------ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+::selection {
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .doc {
+    padding: 0;
+  }
+
+  .toc,
+  .doc-anchor {
+    display: none;
+  }
+
+  .example,
+  .doc pre {
+    break-inside: avoid;
+  }
+}

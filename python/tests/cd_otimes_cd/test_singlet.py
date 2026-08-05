@@ -23,38 +23,38 @@ def _permute_to_alice_bob(rho: np.ndarray, shield_dim: int) -> np.ndarray:
 class TestBadziagPrivateSinglet:
     @pytest.mark.parametrize("d", [2, 3])
     def test_is_bound_entangled(self, d):
-        rho = badziag_private_singlet(d)
+        rho = badziag_private_singlet(shield_dim=d)
         rho_perm = _permute_to_alice_bob(rho, d)
         assert_bound_entangled(rho_perm, dim=[2 * d, 2 * d])
 
     @pytest.mark.parametrize("d", [2, 3])
     def test_shape(self, d):
-        rho = badziag_private_singlet(d)
+        rho = badziag_private_singlet(shield_dim=d)
         assert rho.shape == (4 * d * d, 4 * d * d)
 
     @pytest.mark.parametrize("d", [2, 3])
     def test_is_valid_density_matrix(self, d):
-        rho = badziag_private_singlet(d)
+        rho = badziag_private_singlet(shield_dim=d)
         assert_density_matrix(rho, dim=[2 * d, 2 * d])
 
 
 class TestOrthogonalSinglet:
     @pytest.mark.parametrize("d", [2, 3])
     def test_is_bound_entangled(self, d):
-        rho = orthogonal_singlet(d)
+        rho = orthogonal_singlet(shield_dim=d)
         rho_perm = _permute_to_alice_bob(rho, d)
         assert_bound_entangled(rho_perm, dim=[2 * d, 2 * d])
 
     @pytest.mark.parametrize("d", [2, 3])
     def test_shape(self, d):
-        rho = orthogonal_singlet(d)
+        rho = orthogonal_singlet(shield_dim=d)
         assert rho.shape == (4 * d * d, 4 * d * d)
 
     @pytest.mark.parametrize("d", [2, 3])
     def test_is_valid_density_matrix(self, d):
-        rho = orthogonal_singlet(d)
+        rho = orthogonal_singlet(shield_dim=d)
         assert_density_matrix(rho, dim=[2 * d, 2 * d])
 
     def test_rejects_invalid_shield_dim(self):
         with pytest.raises(ValueError):
-            orthogonal_singlet(5)
+            orthogonal_singlet(shield_dim=5)

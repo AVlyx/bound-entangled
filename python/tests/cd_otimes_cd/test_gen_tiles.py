@@ -28,4 +28,4 @@ def test_gen_tiles1_basis_rejects_invalid_d():
 
 @pytest.mark.parametrize("d", [4, 6])
 def test_gen_tiles1_is_bound_entangled(d):
-    assert_bound_entangled(gen_tiles1(d), dim=[d, d])
+    assert_bound_entangled(gen_tiles1(full_dim=d), dim=[d, d])
