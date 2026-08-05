@@ -1,6 +1,7 @@
 import { tilesBasis, tilesUpb } from "bound-entangled";
 import CodeBlock from "../../../../CodeBlock";
 import LatexMatrix from "../../../../LatexMatrix";
+import Citation from "../../../../Citation";
 
 // Floating-point residue (~1e-16) from cos/sin arithmetic would otherwise show up as
 // e.g. "2.6e-17" instead of a clean zero; snap anything this small down to exactly 0.
@@ -22,11 +23,11 @@ function TilesUpb() {
   return (
     <>
       <p>
-        The Tiles UPB is the original unextendible product basis of Bennett, DiVincenzo, Mor,
-        Shor, Smolin and Terhal: five orthonormal product vectors on ℂ³ ⊗ ℂ³, laid out like tiles
-        on a 3×3 grid, chosen so that no product vector is orthogonal to all five at once. The
-        bound entangled state built from it is the normalised projector onto the orthogonal
-        complement of the basis.
+        The Tiles UPB is the original unextendible product basis of Bennett, DiVincenzo, Mor, Shor,
+        Smolin and Terhal: five orthonormal product vectors on ℂ³ ⊗ ℂ³, laid out like tiles on a 3×3
+        grid, chosen so that no product vector is orthogonal to all five at once. The bound
+        entangled state built from it is the normalised projector onto the orthogonal complement of
+        the basis.
       </p>
 
       <div className="doc-section">
@@ -95,19 +96,18 @@ rho = tiles_upb()`}
           ρ is a 9×9 density matrix (dimension ℂ³ ⊗ ℂ³): Hermitian, trace one, and positive
           semidefinite, with a positive partial transpose. Because the five Tiles vectors are
           orthonormal, ρ has rank 4 with every nonzero eigenvalue equal to 1/4, and ρ|ψᵢ⟩ = 0 for
-          each of the five basis vectors. It has no product vector in its range, so it is
-          entangled despite being PPT: a bound entangled state.
+          each of the five basis vectors. It has no product vector in its range, so it is entangled
+          despite being PPT: a bound entangled state.
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           C. H. Bennett, D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal,
           "Unextendible Product Bases and Bound Entanglement", Phys. Rev. Lett. 82, 5385 (1999).{" "}
           <a href="https://arxiv.org/abs/quant-ph/9808030">arXiv:quant-ph/9808030</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

@@ -5,6 +5,7 @@
 import { ncomms6297 } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
 import LatexMatrix from "../../../LatexMatrix";
+import Citation from "../../../Citation";
 
 function Ncomms6297() {
   const rho = ncomms6297();
@@ -26,17 +27,11 @@ function Ncomms6297() {
           <span className="math">a = √(131/2)</span>:
         </p>
         <div className="equation">|ψ₁⟩ = (1/√2)(|00⟩ + |11⟩)</div>
-        <div className="equation">
-          |ψ₂⟩ = (a/12)(|01⟩ + |10⟩) + (1/60)|02⟩ − (3/10)|21⟩
-        </div>
-        <div className="equation">
-          |ψ₃⟩ = (a/12)(|00⟩ − |11⟩) + (1/60)|12⟩ + (3/10)|20⟩
-        </div>
+        <div className="equation">|ψ₂⟩ = (a/12)(|01⟩ + |10⟩) + (1/60)|02⟩ − (3/10)|21⟩</div>
+        <div className="equation">|ψ₃⟩ = (a/12)(|00⟩ − |11⟩) + (1/60)|12⟩ + (3/10)|20⟩</div>
         <div className="equation">|ψ₄⟩ = (1/√3)(−|01⟩ + |10⟩ + |22⟩)</div>
         <p>with eigenvalues</p>
-        <div className="equation">
-          λ = (3257/6884, 450/1721, 450/1721, 27/6884)
-        </div>
+        <div className="equation">λ = (3257/6884, 450/1721, 450/1721, 27/6884)</div>
       </div>
 
       <div className="doc-section">
@@ -67,13 +62,12 @@ rho = ncomms6297()`}
         </ul>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           Nature Commun. 5, 6297 (2014).{" "}
           <a href="https://www.nature.com/articles/ncomms6297">nature.com/articles/ncomms6297</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

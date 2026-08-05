@@ -8,6 +8,7 @@ import type { QuasiDsSign } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 function QuasiDs() {
   const [n, setN] = useState<number>(3);
@@ -19,22 +20,27 @@ function QuasiDs() {
   return (
     <>
       <p>
-        A family of permutationally invariant states on an odd number <span className="math">n</span>{" "}
-        of qubits, built by dressing a diagonal matrix in the symmetric Dicke basis with two
-        off-diagonal corners. Quasi-Dicke states are PPT across every bipartition and bound
-        entangled for every valid choice of parameters.
+        A family of permutationally invariant states on an odd number{" "}
+        <span className="math">n</span> of qubits, built by dressing a diagonal matrix in the
+        symmetric Dicke basis with two off-diagonal corners. Quasi-Dicke states are PPT across every
+        bipartition and bound entangled for every valid choice of parameters.
       </p>
 
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
-          The permutationally symmetric Dicke states <span className="math">|D<sub>k</sub><sup>n</sup>⟩</span>,{" "}
-          <span className="math">k = 0, …, n</span>, index the computational basis by Hamming
+          The permutationally symmetric Dicke states{" "}
+          <span className="math">
+            |D<sub>k</sub>
+            <sup>n</sup>⟩
+          </span>
+          , <span className="math">k = 0, …, n</span>, index the computational basis by Hamming
           weight. The isometry <span className="math-var">V</span> maps the Dicke basis into the
           computational basis,
         </p>
         <div className="equation">
-          V = Σ<sub>i₁…iₙ</sub> <span className="math-op">binom</span>(n, ν)<sup>−1/2</sup> |i₁…iₙ⟩⟨ν|
+          V = Σ<sub>i₁…iₙ</sub> <span className="math-op">binom</span>(n, ν)<sup>−1/2</sup>{" "}
+          |i₁…iₙ⟩⟨ν|
         </div>
         <p>
           with <span className="math">ν</span> the Hamming weight of the bit string{" "}
@@ -47,12 +53,19 @@ function QuasiDs() {
           <span className="math">(0, n)</span> and <span className="math">(n, 0)</span>:
         </p>
         <div className="equation">
-          D(z)<sub>kk</sub> = <span className="math-op">binom</span>(n, k) · f<sub>K−k</sub>(z), K = ⌊n / 2⌋
+          D(z)<sub>kk</sub> = <span className="math-op">binom</span>(n, k) · f<sub>K−k</sub>(z), K =
+          ⌊n / 2⌋
         </div>
         <p>
-          where <span className="math">f<sub>k</sub>(z)</span> follows the recurrence{" "}
-          <span className="math">f<sub>k+2</sub>(z) = (2 + z) f<sub>k+1</sub>(z) − f<sub>k</sub>(z)</span>,{" "}
-          <span className="math">f₀ = 1</span>, <span className="math">f₁ = 1 + z</span>. The
+          where{" "}
+          <span className="math">
+            f<sub>k</sub>(z)
+          </span>{" "}
+          follows the recurrence{" "}
+          <span className="math">
+            f<sub>k+2</sub>(z) = (2 + z) f<sub>k+1</sub>(z) − f<sub>k</sub>(z)
+          </span>
+          , <span className="math">f₀ = 1</span>, <span className="math">f₁ = 1 + z</span>. The
           normalized Dicke-basis density matrix is
         </p>
         <div className="equation">ρ_Dicke(z, σ) = (D(z) + O(σ)) / (2 (4 + z)ᴷ)</div>
@@ -120,8 +133,8 @@ rho = quasi_ds(n=3, z=1, sigma=1)`}
           </div>
         </div>
         <p className="figure-caption">
-          <span className="math">z</span> is restricted to <span className="math">[0, 1]</span>{" "}
-          here for a well-behaved demo; the factory accepts any finite real value.
+          <span className="math">z</span> is restricted to <span className="math">[0, 1]</span> here
+          for a well-behaved demo; the factory accepts any finite real value.
         </p>
       </div>
 
@@ -129,8 +142,8 @@ rho = quasi_ds(n=3, z=1, sigma=1)`}
         <h2>Properties</h2>
         <ul>
           <li>
-            <span className="math">(n + 1) × (n + 1)</span> density matrix in the Dicke basis
-            (<span className="math-var">quasiDsDickeBasis</span>), lifted to a{" "}
+            <span className="math">(n + 1) × (n + 1)</span> density matrix in the Dicke basis (
+            <span className="math-var">quasiDsDickeBasis</span>), lifted to a{" "}
             <span className="math">2ⁿ × 2ⁿ</span> density matrix on <span className="math">n</span>{" "}
             qubits via the isometry <span className="math-var">dickeIso</span>.
           </li>
@@ -150,9 +163,8 @@ rho = quasi_ds(n=3, z=1, sigma=1)`}
         </ul>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           J. Tura, R. Augusiak, P. Hyllus, M. Kuś, J. Samsonowicz, M. Lewenstein, “Four-qubit
           entangled symmetric states with positive partial transpositions,” Nature Commun. 5, 6297
           (2014).{" "}
@@ -160,7 +172,7 @@ rho = quasi_ds(n=3, z=1, sigma=1)`}
             nature.com/articles/ncomms6297
           </a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

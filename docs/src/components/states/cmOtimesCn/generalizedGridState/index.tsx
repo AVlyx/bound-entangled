@@ -8,6 +8,7 @@ import { generalizedGridState } from "bound-entangled";
 import type { Hyperedge } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
 import LatexMatrix from "../../../LatexMatrix";
+import Citation from "../../../Citation";
 
 interface Preset {
   label: string;
@@ -57,9 +58,9 @@ function GeneralizedGridState() {
       <p>
         The generalized grid state extends the <Link to="/states/cm-cn/grid-state">grid state</Link>{" "}
         by letting a hyperedge span any number of vertices of the m × n grid, not just two. Each
-        hyperedge contributes the (unnormalized) sum of its vertices' basis states rather than
-        their normalized difference, and the mixture is trace-normalized rather than divided by an
-        edge count.
+        hyperedge contributes the (unnormalized) sum of its vertices' basis states rather than their
+        normalized difference, and the mixture is trace-normalized rather than divided by an edge
+        count.
       </p>
 
       <div className="doc-section">
@@ -78,16 +79,15 @@ function GeneralizedGridState() {
           |<span className="math-var">i</span>, <span className="math-var">j</span>⟩
         </div>
         <p>
-          The generalized grid state is the trace-normalized mixture over a chosen set of
-          hyperedges <span className="math-var">H</span>:
+          The generalized grid state is the trace-normalized mixture over a chosen set of hyperedges{" "}
+          <span className="math-var">H</span>:
         </p>
         <div className="equation">
           <span className="math-op">ρ</span> = (Σ
           <sub>
             <span className="math-var">h</span> ∈ <span className="math-var">H</span>
           </sub>{" "}
-          |<span className="math-var">h</span>⟩⟨<span className="math-var">h</span>|) /{" "}
-          Tr(Σ
+          |<span className="math-var">h</span>⟩⟨<span className="math-var">h</span>|) / Tr(Σ
           <sub>
             <span className="math-var">h</span> ∈ <span className="math-var">H</span>
           </sub>{" "}
@@ -105,12 +105,12 @@ function GeneralizedGridState() {
           </dd>
           <dt>hyperedges</dt>
           <dd>
-            A non-empty array of <code>Hyperedge</code>. Each <code>Hyperedge</code> is a
-            non-empty array of <code>Vertex</code>, and each <code>Vertex</code> is a pair{" "}
+            A non-empty array of <code>Hyperedge</code>. Each <code>Hyperedge</code> is a non-empty
+            array of <code>Vertex</code>, and each <code>Vertex</code> is a pair{" "}
             <span className="math-var">[i, j]</span> with 0 ≤ <span className="math-var">i</span>{" "}
-            &lt; <span className="math-var">m</span> and 0 ≤{" "}
-            <span className="math-var">j</span> &lt; <span className="math-var">n</span>. An empty
-            hyperedge set, or a hyperedge spanning zero vertices, is rejected.
+            &lt; <span className="math-var">m</span> and 0 ≤ <span className="math-var">j</span>{" "}
+            &lt; <span className="math-var">n</span>. An empty hyperedge set, or a hyperedge
+            spanning zero vertices, is rejected.
           </dd>
         </dl>
       </div>
@@ -134,10 +134,7 @@ rho = generalized_grid_state(
           <div className="controls">
             <div className="control">
               <span className="control-label">hyperedges</span>
-              <select
-                value={presetIndex}
-                onChange={(e) => setPresetIndex(Number(e.target.value))}
-              >
+              <select value={presetIndex} onChange={(e) => setPresetIndex(Number(e.target.value))}>
                 {PRESETS.map((p, i) => (
                   <option key={p.label} value={i}>
                     {p.label}
@@ -152,14 +149,14 @@ rho = generalized_grid_state(
         </div>
       </div>
 
-      <div className="doc-section">
+      <div>
         <h2>Properties</h2>
         <p>
-          A hyperedge spanning exactly one vertex (a "loop") contributes a diagonal basis
-          projector, and a vertex repeated within a hyperedge weights that basis state more
-          heavily — neither is expressible with an ordinary two-vertex edge. For a single
-          two-vertex hyperedge, ρ reduces exactly to the projector onto its normalized component,
-          the same pure, entangled state an ordinary edge would give.
+          A hyperedge spanning exactly one vertex (a "loop") contributes a diagonal basis projector,
+          and a vertex repeated within a hyperedge weights that basis state more heavily — neither
+          is expressible with an ordinary two-vertex edge. For a single two-vertex hyperedge, ρ
+          reduces exactly to the projector onto its normalized component, the same pure, entangled
+          state an ordinary edge would give.
         </p>
         <p className="doc-cite">
           Loops and repeated-vertex hyperedges are exactly the tools used to build the{" "}
@@ -170,14 +167,12 @@ rho = generalized_grid_state(
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
-          R. Krebs, M. Gachechiladze, "High Schmidt number concentration in quantum bound
-          entangled states".{" "}
-          <a href="https://arxiv.org/abs/2402.12966">arXiv:2402.12966</a>
+      <Citation>
+        <p>
+          R. Krebs, M. Gachechiladze, "High Schmidt number concentration in quantum bound entangled
+          states". <a href="https://arxiv.org/abs/2402.12966">arXiv:2402.12966</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

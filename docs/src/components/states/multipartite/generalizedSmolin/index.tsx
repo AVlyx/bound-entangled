@@ -6,6 +6,7 @@ import { useState } from "react";
 import { generalizedSmolin } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 function GeneralizedSmolin() {
   const [n, setN] = useState<number>(2);
@@ -17,25 +18,42 @@ function GeneralizedSmolin() {
       <p>
         Kay's generalization of Smolin's state to <span className="math">2n</span> qubits, built
         from equal-weight sums of the fully-aligned Pauli words{" "}
-        <span className="math">X<sup>⊗2n</sup></span>, <span className="math">Y<sup>⊗2n</sup></span>{" "}
-        and <span className="math">Z<sup>⊗2n</sup></span>. It reduces to the original Smolin state
-        at <span className="math-var">systems = 4</span>, and is bound entangled for every even{" "}
-        <span className="math-var">systems ≥ 4</span>.
+        <span className="math">
+          X<sup>⊗2n</sup>
+        </span>
+        ,{" "}
+        <span className="math">
+          Y<sup>⊗2n</sup>
+        </span>{" "}
+        and{" "}
+        <span className="math">
+          Z<sup>⊗2n</sup>
+        </span>
+        . It reduces to the original Smolin state at <span className="math-var">systems = 4</span>,
+        and is bound entangled for every even <span className="math-var">systems ≥ 4</span>.
       </p>
 
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
-          For <span className="math">systems = 2n</span> qubits, the generalized Smolin (GSS)
-          state is
+          For <span className="math">systems = 2n</span> qubits, the generalized Smolin (GSS) state
+          is
         </p>
         <div className="equation">
-          ρ = (I + (−1)ⁿ Σ<sub>i∈{"{"}X,Y,Z{"}"}</sub> σᵢ<sup>⊗2n</sup>) / 2<sup>2n</sup>
+          ρ = (I + (−1)ⁿ Σ
+          <sub>
+            i∈{"{"}X,Y,Z{"}"}
+          </sub>{" "}
+          σᵢ<sup>⊗2n</sup>) / 2<sup>2n</sup>
         </div>
         <p>
-          where <span className="math">σᵢ<sup>⊗2n</sup></span> is the operator{" "}
-          <span className="math">σᵢ</span> applied to every one of the <span className="math">2n</span>{" "}
-          qubits. The sign alternates with the parity of <span className="math">n</span>.
+          where{" "}
+          <span className="math">
+            σᵢ<sup>⊗2n</sup>
+          </span>{" "}
+          is the operator <span className="math">σᵢ</span> applied to every one of the{" "}
+          <span className="math">2n</span> qubits. The sign alternates with the parity of{" "}
+          <span className="math">n</span>.
         </p>
       </div>
 
@@ -82,8 +100,10 @@ rho = generalized_smolin(systems=6)`}
         <h2>Properties</h2>
         <ul>
           <li>
-            <span className="math">2<sup>systems</sup> × 2<sup>systems</sup></span> density matrix
-            on <span className="math">systems</span> qubits.
+            <span className="math">
+              2<sup>systems</sup> × 2<sup>systems</sup>
+            </span>{" "}
+            density matrix on <span className="math">systems</span> qubits.
           </li>
           <li>
             <span className="math-var">systems = 4</span> (<span className="math">n = 2</span>)
@@ -95,7 +115,9 @@ rho = generalized_smolin(systems=6)`}
             falls outside the bound-entangled range and reduces instead to the two-qubit singlet
             projector <span className="math">|ψ⁻⟩⟨ψ⁻|</span>, a pure state.
           </li>
-          <li>Bound entangled for every even <span className="math">systems ≥ 4</span>.</li>
+          <li>
+            Bound entangled for every even <span className="math">systems ≥ 4</span>.
+          </li>
         </ul>
         <div className="callout callout-tip">
           <span className="callout-title">Genuinely multipartite</span>
@@ -107,23 +129,23 @@ rho = generalized_smolin(systems=6)`}
         </div>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
-          A. Kay, “Degree of quantum bound entanglement for a family of mixed states,” Phys. Rev.
-          A 71, 032309 (2005).{" "}
+      <Citation>
+        {" "}
+        <p>
+          A. Kay, “Degree of quantum bound entanglement for a family of mixed states,” Phys. Rev. A
+          71, 032309 (2005).{" "}
           <a href="https://arxiv.org/abs/quant-ph/0411142" target="_blank" rel="noreferrer">
             arXiv:quant-ph/0411142
           </a>
         </p>
-        <p className="doc-cite">
+        <p>
           See also J. A. Smolin, “Four-party unlockable bound entangled state,” Phys. Rev. A 63,
           032306 (2001).{" "}
           <a href="https://arxiv.org/abs/quant-ph/0001001" target="_blank" rel="noreferrer">
             arXiv:quant-ph/0001001
           </a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

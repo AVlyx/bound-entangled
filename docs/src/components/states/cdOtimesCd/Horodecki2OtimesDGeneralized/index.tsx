@@ -3,6 +3,7 @@ import { horodecki2ByDGeneralized } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 /** The few smallest valid second dimensions, keeping the rendered matrix small. */
 const DIMENSIONS = [2, 3, 4, 5];
@@ -19,24 +20,25 @@ function Horodecki2OtimesDGeneralized() {
   return (
     <>
       <p>
-        This state generalizes the original C² ⊗ C⁴ Horodecki state to C² ⊗ C<span className="math-var">d</span>,
-        for any second dimension <span className="math-var">d</span> ≥ 2. It mixes an entangled component built
-        from a chain of <span className="math-var">d</span> − 1 partially entangled vectors with a single product
+        This state generalizes the original C² ⊗ C⁴ Horodecki state to C² ⊗ C
+        <span className="math-var">d</span>, for any second dimension{" "}
+        <span className="math-var">d</span> ≥ 2. It mixes an entangled component built from a chain
+        of <span className="math-var">d</span> − 1 partially entangled vectors with a single product
         vector, in proportions set by the free parameter <span className="math-var">b</span>.
       </p>
 
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
-          The inseparable part mixes the <span className="math-var">d</span> − 1 vectors |ψᵢ⟩ = (|0, i⟩ + |1, i +
-          1⟩) / √2, for i = 0, …, d − 2, with the corner state |1, 0⟩:
+          The inseparable part mixes the <span className="math-var">d</span> − 1 vectors |ψᵢ⟩ = (|0,
+          i⟩ + |1, i + 1⟩) / √2, for i = 0, …, d − 2, with the corner state |1, 0⟩:
         </p>
         <div className="equation">
           ρ<sub>insep</sub> = 2/(2d − 1) · Σᵢ |ψᵢ⟩⟨ψᵢ| + 1/(2d − 1) · |1, 0⟩⟨1, 0|
         </div>
         <p>
-          The separable part is a single product vector: a qubit fixed in the |0⟩ direction tensored with a
-          two-level superposition on the shield system,
+          The separable part is a single product vector: a qubit fixed in the |0⟩ direction tensored
+          with a two-level superposition on the shield system,
         </p>
         <div className="equation">|φ_b⟩ = (1/√2) |0⟩ ⊗ (√(1 − b) |0⟩ + √(1 + b) |d − 1⟩)</div>
         <p>and the full state is the weighted mixture</p>
@@ -59,8 +61,8 @@ function Horodecki2OtimesDGeneralized() {
           </dd>
           <dt>b</dt>
           <dd>
-            The free real parameter weighing the entangled component against the product state. Since
-            φ_b needs √(1 − b) and √(1 + b) to stay real, b must lie in [−1, 1].
+            The free real parameter weighing the entangled component against the product state.
+            Since φ_b needs √(1 − b) and √(1 + b) to stay real, b must lie in [−1, 1].
           </dd>
         </dl>
       </div>
@@ -103,17 +105,17 @@ rho = horodecki_2_by_d_generalized(second_dim_d=4, b=0.5)`}
       <div className="doc-section">
         <h2>Properties</h2>
         <p>
-          The state is a valid density matrix that stays positive under partial transpose (PPT) across the 2 |
-          d split, while its inseparable component keeps it entangled: a bound entangled state.
+          The state is a valid density matrix that stays positive under partial transpose (PPT)
+          across the 2 | d split, while its inseparable component keeps it entangled: a bound
+          entangled state.
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
+      <Citation>
         <p className="doc-cite">
           <a href="https://arxiv.org/abs/1203.3711">arXiv:1203.3711</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

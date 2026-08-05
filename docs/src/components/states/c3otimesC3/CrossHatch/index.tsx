@@ -5,6 +5,7 @@
 import { crossHatch } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
 import LatexMatrix from "../../../LatexMatrix";
+import Citation from "../../../Citation";
 
 function CrossHatch() {
   const rho = crossHatch();
@@ -25,15 +26,13 @@ function CrossHatch() {
           <span className="math">
             <span className="math-var">C</span>ᵐ ⊗ <span className="math-var">C</span>ⁿ
           </span>{" "}
-          and whose edges pair up vertices. An edge joining <span className="math">(i, j)</span>{" "}
-          and <span className="math">(k, l)</span> carries the pure state
+          and whose edges pair up vertices. An edge joining <span className="math">(i, j)</span> and{" "}
+          <span className="math">(k, l)</span> carries the pure state
         </p>
         <div className="equation">|e⟩ = (|ij⟩ − |kl⟩) / √2</div>
         <p>and the grid state is the uniform mixture of the states carried by every edge:</p>
         <div className="equation">ρ = (1 / |E|) Σₑ |e⟩⟨e|</div>
-        <p>
-          The cross-hatch state is this construction on the 3×3 grid, with the four edges
-        </p>
+        <p>The cross-hatch state is this construction on the 3×3 grid, with the four edges</p>
         <div className="equation">
           {"{(0,0), (1,2)},  {(1,0), (2,2)},  {(0,1), (2,0)},  {(0,2), (2,1)}"}
         </div>
@@ -71,14 +70,13 @@ rho = cross_hatch()`}
         </ul>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           J. Lockhart, O. Gühne, S. Severini, "Entanglement properties of quantum grid states",
           Phys. Rev. A 97, 062340 (2018).{" "}
           <a href="https://arxiv.org/abs/1705.09261">arXiv:1705.09261</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

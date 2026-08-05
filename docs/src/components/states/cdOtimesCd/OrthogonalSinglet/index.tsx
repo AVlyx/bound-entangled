@@ -6,6 +6,7 @@ import { useState } from "react";
 import { orthogonalSinglet } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 /** Shield dimensions that are both valid (3 or a power of two) and small enough to render. */
 const SHIELD_DIMS = [2, 3] as const;
@@ -48,8 +49,8 @@ function OrthogonalSinglet() {
         </p>
         <div className="equation">
           ρ = (p<sub>1</sub>/d²) Σ<sub>ij</sub> |z<sub>ij</sub>⟩⟨z<sub>ij</sub>| + (p<sub>2</sub>
-          /2d) Σ<sub>k</sub> |01⟩⟨01|<sub>AB</sub> ⊗ |s<sub>k</sub>⟩⟨s<sub>k</sub>|<sub>A′B′</sub>{" "}
-          + (p<sub>2</sub>/2d) Σ<sub>i</sub> |10, ii⟩⟨10, ii|
+          /2d) Σ<sub>k</sub> |01⟩⟨01|<sub>AB</sub> ⊗ |s<sub>k</sub>⟩⟨s<sub>k</sub>|<sub>A′B′</sub> +
+          (p<sub>2</sub>/2d) Σ<sub>i</sub> |10, ii⟩⟨10, ii|
         </div>
         <p>
           where |z<sub>ij</sub>⟩ = (1/√2)( |00, ij⟩ + Σ<sub>k</sub> Q<sup>j</sup>
@@ -65,8 +66,8 @@ function OrthogonalSinglet() {
           <sub>1</sub>⟩ = (|01⟩ − |10⟩)/√2, |s<sub>2</sub>⟩ = |22⟩. For{" "}
           <span className="math-var">d</span> = 2<sup>n</sup> a power of two, Q<sup>k</sup> is the{" "}
           <span className="math-var">n</span>-fold tensor product of the Pauli X and the identity,
-          one factor per bit of <span className="math-var">k</span>, and |s<sub>k</sub>⟩ = (1/√d)
-          Σ<sub>ij</sub> Q<sup>k</sup>
+          one factor per bit of <span className="math-var">k</span>, and |s<sub>k</sub>⟩ = (1/√d) Σ
+          <sub>ij</sub> Q<sup>k</sup>
           <sub>ij</sub> |ij⟩ directly.
         </p>
         <p className="doc-muted">
@@ -80,9 +81,9 @@ function OrthogonalSinglet() {
         <dl className="doc-dl">
           <dt>shieldDim</dt>
           <dd>
-            The shield subsystem dimension <span className="math-var">d</span>. Must be 3 or a
-            power of two, so the total local dimension 2<span className="math-var">d</span> is one
-            of 4, 6, 8, 16, … Other values throw.
+            The shield subsystem dimension <span className="math-var">d</span>. Must be 3 or a power
+            of two, so the total local dimension 2<span className="math-var">d</span> is one of 4,
+            6, 8, 16, … Other values throw.
           </dd>
         </dl>
       </div>
@@ -103,17 +104,16 @@ rho = orthogonal_singlet(shield_dim=2)
           <div className="controls">
             <div className="control">
               <span className="control-label">d</span>
-              <select
-                value={shieldDim}
-                onChange={(e) => setShieldDim(Number(e.target.value))}
-              >
+              <select value={shieldDim} onChange={(e) => setShieldDim(Number(e.target.value))}>
                 {SHIELD_DIMS.map((d) => (
                   <option key={d} value={d}>
                     {d}
                   </option>
                 ))}
               </select>
-              <span className="control-value">{totalDim}×{totalDim} shield block</span>
+              <span className="control-value">
+                {totalDim}×{totalDim} shield block
+              </span>
             </div>
           </div>
           <div className="example-output">
@@ -140,16 +140,15 @@ rho = orthogonal_singlet(shield_dim=2)
         <div className="callout callout-warn">
           <span className="callout-title">Ordering</span>
           <p>
-            The raw output of <code>orthogonalSinglet</code> is in ABA′B′ ordering (two-qubit
-            pair, then shield pair). Testing the physical Alice|Bob cut — Alice = (A, A′), Bob =
-            (B, B′) — requires permuting the systems to AA′BB′ before checking PPT.
+            The raw output of <code>orthogonalSinglet</code> is in ABA′B′ ordering (two-qubit pair,
+            then shield pair). Testing the physical Alice|Bob cut — Alice = (A, A′), Bob = (B, B′) —
+            requires permuting the systems to AA′BB′ before checking PPT.
           </p>
         </div>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           ρ<sub>F2</sub> from Phys. Rev. Research 3, 023101 (2021) — the "second family" of PPT
           singlets, reverse-engineered from G. Tóth, T. Vértesi, "Quantum States with a Positive
           Partial Transpose are Useful for Metrology", Phys. Rev. Lett. 120, 020506 (2018). Port of{" "}
@@ -158,7 +157,7 @@ rho = orthogonal_singlet(shield_dim=2)
             journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.3.023101
           </a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

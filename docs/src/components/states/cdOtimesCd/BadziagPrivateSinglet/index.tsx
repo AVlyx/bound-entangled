@@ -6,6 +6,7 @@ import { useState } from "react";
 import { badziagPrivateSinglet } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 /** Shield dimensions small enough to render as a matrix on this page. */
 const SHIELD_DIMS = [2, 3] as const;
@@ -36,25 +37,21 @@ function BadziagPrivateSinglet() {
             C<sup>2</sup> ⊗ C<sup>2</sup> ⊗ C<sup>d</sup> ⊗ C<sup>d</sup>
           </span>{" "}
           in ABA′B′ ordering: a two-qubit pair AB and a shield pair A′B′, each of dimension{" "}
-          <span className="math-var">d</span>. Writing basis states as |<span className="math-var">
-            i j k l
-          </span>
-          ⟩ = |<span className="math-var">i</span>⟩<sub>A</sub> ⊗ |<span className="math-var">
-            j
-          </span>
-          ⟩<sub>B</sub> ⊗ |<span className="math-var">k</span>⟩<sub>A′</sub> ⊗ |
-          <span className="math-var">l</span>⟩<sub>B′</sub>, the state mixes two branches with
-          weights
+          <span className="math-var">d</span>. Writing basis states as |
+          <span className="math-var">i j k l</span>⟩ = |<span className="math-var">i</span>⟩
+          <sub>A</sub> ⊗ |<span className="math-var">j</span>⟩<sub>B</sub> ⊗ |
+          <span className="math-var">k</span>⟩<sub>A′</sub> ⊗ |<span className="math-var">l</span>⟩
+          <sub>B′</sub>, the state mixes two branches with weights
         </p>
         <div className="equation">
           p<sub>1</sub> = √d / (1 + √d), &nbsp;&nbsp; p<sub>2</sub> = 1 − p<sub>1</sub>
         </div>
         <p>
-          The p<sub>1</sub> branch is supported on the |00, <span className="math-var">ij</span>
-          ⟩ and |11, <span className="math-var">ij</span>⟩ basis states, with diagonal
-          populations plus coherences weighted by the entries of the{" "}
-          <span className="math-var">d</span> × <span className="math-var">d</span> discrete
-          Fourier matrix U (U<sub>ij</sub> = ω<sup>ij</sup>/√d, ω = e<sup>2πi/d</sup>):
+          The p<sub>1</sub> branch is supported on the |00, <span className="math-var">ij</span>⟩
+          and |11, <span className="math-var">ij</span>⟩ basis states, with diagonal populations
+          plus coherences weighted by the entries of the <span className="math-var">d</span> ×{" "}
+          <span className="math-var">d</span> discrete Fourier matrix U (U<sub>ij</sub> = ω
+          <sup>ij</sup>/√d, ω = e<sup>2πi/d</sup>):
         </p>
         <div className="equation">
           Σ<sub>ij</sub> (1/2d²)( |00, ij⟩⟨00, ij| + |11, ij⟩⟨11, ij| ) + (1/2d√d)( U<sub>ij</sub>{" "}
@@ -71,8 +68,8 @@ function BadziagPrivateSinglet() {
         </div>
         <p className="doc-muted">
           ρ = p<sub>1</sub> · (p<sub>1</sub> branch, normalised) + p<sub>2</sub> · (p<sub>2</sub>{" "}
-          branch, normalised). The returned matrix is in ABA′B′ ordering; testing the physical
-          Alice = (A, A′) | Bob = (B, B′) cut requires permuting the systems to AA′BB′ first.
+          branch, normalised). The returned matrix is in ABA′B′ ordering; testing the physical Alice
+          = (A, A′) | Bob = (B, B′) cut requires permuting the systems to AA′BB′ first.
         </p>
         <p>
           The "private singlet" name follows the source, which frames the construction as a PPT
@@ -86,8 +83,8 @@ function BadziagPrivateSinglet() {
         <dl className="doc-dl">
           <dt>shieldDim</dt>
           <dd>
-            The shield subsystem dimension <span className="math-var">d</span>, an integer ≥ 2.
-            The full state lives on{" "}
+            The shield subsystem dimension <span className="math-var">d</span>, an integer ≥ 2. The
+            full state lives on{" "}
             <span className="math">
               C<sup>2</sup> ⊗ C<sup>2</sup> ⊗ C<sup>d</sup> ⊗ C<sup>d</sup>
             </span>
@@ -112,17 +109,16 @@ rho = badziag_private_singlet(shield_dim=2)
           <div className="controls">
             <div className="control">
               <span className="control-label">d</span>
-              <select
-                value={shieldDim}
-                onChange={(e) => setShieldDim(Number(e.target.value))}
-              >
+              <select value={shieldDim} onChange={(e) => setShieldDim(Number(e.target.value))}>
                 {SHIELD_DIMS.map((d) => (
                   <option key={d} value={d}>
                     {d}
                   </option>
                 ))}
               </select>
-              <span className="control-value">{totalDim}×{totalDim} shield block</span>
+              <span className="control-value">
+                {totalDim}×{totalDim} shield block
+              </span>
             </div>
           </div>
           <div className="example-output">
@@ -147,23 +143,22 @@ rho = badziag_private_singlet(shield_dim=2)
           <span className="callout-title">Ordering</span>
           <p>
             The raw output of <code>badziagPrivateSinglet</code> is in ABA′B′ ordering (two-qubit
-            pair, then shield pair). Testing the physical Alice|Bob cut — Alice = (A, A′), Bob =
-            (B, B′) — requires permuting the systems to AA′BB′ before checking PPT.
+            pair, then shield pair). Testing the physical Alice|Bob cut — Alice = (A, A′), Bob = (B,
+            B′) — requires permuting the systems to AA′BB′ before checking PPT.
           </p>
         </div>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
-          P. Bądziąg, K. Horodecki, M. Horodecki, J. Jenkins, "Bound entanglement is not
-          sufficient for private key distillation"-style PPT singlets, presented as ρ
-          <sub>F1</sub> in Phys. Rev. Research 3, 023101 (2021).{" "}
+      <Citation>
+        <p>
+          P. Bądziąg, K. Horodecki, M. Horodecki, J. Jenkins, "Bound entanglement is not sufficient
+          for private key distillation"-style PPT singlets, presented as ρ<sub>F1</sub> in Phys.
+          Rev. Research 3, 023101 (2021).{" "}
           <a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.3.023101">
             journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.3.023101
           </a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

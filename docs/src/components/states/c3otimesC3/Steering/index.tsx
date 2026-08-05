@@ -7,6 +7,7 @@ import { steeringState } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
 import LatexMatrix from "../../../LatexMatrix";
 import Slider from "../../../Slider";
+import Citation from "../../../Citation";
 
 function Steering() {
   const [m1, setM1] = useState<number>(0.5);
@@ -23,8 +24,8 @@ function Steering() {
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
-          The state is written in the product basis <span className="math">|ij⟩</span> of
-          C³ ⊗ C³, in terms of two free parameters <span className="math-var">m1</span>,{" "}
+          The state is written in the product basis <span className="math">|ij⟩</span> of C³ ⊗ C³,
+          in terms of two free parameters <span className="math-var">m1</span>,{" "}
           <span className="math-var">m2</span> and
         </p>
         <div className="equation">m3 = √((1 − m1² − m2²) / 2)</div>
@@ -33,15 +34,11 @@ function Steering() {
         <div className="equation">|ψ₃⟩ = m1|01⟩ + m2|10⟩ + m3|11⟩ + m3|22⟩</div>
         <div className="equation">|ψ̃₃⟩ = m1|02⟩ − m2|20⟩ + m3|21⟩ − m3|12⟩</div>
         <p>combined as</p>
-        <div className="equation">
-          ρ = λ1 |ψ₁⟩⟨ψ₁| + λ2 |ψ₂⟩⟨ψ₂| + λ3 (|ψ₃⟩⟨ψ₃| + |ψ̃₃⟩⟨ψ̃₃|)
-        </div>
+        <div className="equation">ρ = λ1 |ψ₁⟩⟨ψ₁| + λ2 |ψ₂⟩⟨ψ₂| + λ3 (|ψ₃⟩⟨ψ₃| + |ψ̃₃⟩⟨ψ̃₃|)</div>
         <p>
           with <span className="math">D = 4 − 2m1² + m1·m2 − 2m2²</span> and
         </p>
-        <div className="equation">
-          λ1 = 1 − (2 + 3·m1·m2) / D, λ3 = 1 / D, λ2 = 1 − λ1 − 2λ3
-        </div>
+        <div className="equation">λ1 = 1 − (2 + 3·m1·m2) / D, λ3 = 1 / D, λ2 = 1 − λ1 − 2λ3</div>
       </div>
 
       <div className="doc-section">
@@ -86,8 +83,8 @@ rho = steering_state(0.5, 0.5)`}
             <div className="callout callout-warn">
               <span className="callout-title">Invalid parameters</span>
               <p>
-                m1² + m2² must be at most 1; currently m1² + m2² ={" "}
-                {(m1 ** 2 + m2 ** 2).toFixed(2)}. Lower m1 or m2.
+                m1² + m2² must be at most 1; currently m1² + m2² = {(m1 ** 2 + m2 ** 2).toFixed(2)}.
+                Lower m1 or m2.
               </p>
             </div>
           )}
@@ -104,14 +101,13 @@ rho = steering_state(0.5, 0.5)`}
         </ul>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           T. Moroder, O. Gittsovich, M. Huber, O. Gühne, "Steering Bound Entangled States: A
           Counterexample to the Stronger Peres Conjecture", Phys. Rev. Lett. 113, 050404 (2014).{" "}
           <a href="https://arxiv.org/abs/1405.0262">arXiv:1405.0262</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

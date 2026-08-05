@@ -3,6 +3,7 @@ import { isValidYuOhInput, yuOh } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 /** The three smallest valid local dimensions. */
 const DIMENSIONS = [3, 4, 5];
@@ -25,32 +26,35 @@ function YuOh() {
   return (
     <>
       <p>
-        The Yu–Oh state is a family of bound entangled states on Cᵈ ⊗ Cᵈ (d ≥ 3), parametrized by two real
-        numbers x and y, that violate a Bell inequality — hence nonlocal despite being bound entangled.
+        The Yu–Oh state is a family of bound entangled states on Cᵈ ⊗ Cᵈ (d ≥ 3), parametrized by
+        two real numbers x and y, that violate a Bell inequality — hence nonlocal despite being
+        bound entangled.
       </p>
 
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
-          The construction uses the antisymmetric vectors ψ<sub>ij</sub> = |ij⟩ − |ji⟩, and a family of d unit
-          vectors θ<sub>1</sub>, …, θ<sub>d</sub> in ℝᵈ built by induction on the dimension, which sum to the zero
-          vector. From these, for k = 1, …, d − 1:
+          The construction uses the antisymmetric vectors ψ<sub>ij</sub> = |ij⟩ − |ji⟩, and a family
+          of d unit vectors θ<sub>1</sub>, …, θ<sub>d</sub> in ℝᵈ built by induction on the
+          dimension, which sum to the zero vector. From these, for k = 1, …, d − 1:
         </p>
         <div className="equation">
-          φ<sub>k</sub> = ((d − 1)<sup>3/2</sup> / (d √(d − 2))) · Σ<sub>p</sub> θ<sub>p</sub>(k) |θ<sub>p</sub>⟩ ⊗
-          |θ<sub>p</sub>⟩
+          φ<sub>k</sub> = ((d − 1)<sup>3/2</sup> / (d √(d − 2))) · Σ<sub>p</sub> θ<sub>p</sub>(k) |θ
+          <sub>p</sub>⟩ ⊗ |θ<sub>p</sub>⟩
         </div>
         <p>
-          φ<sub>k</sub> is symmetric under swapping the two factors. It combines with x and y into ψ<sub>k</sub> = x
-          |0, k⟩ + y |k, 0⟩ + z · φ<sub>k</sub>, where z = √(1 − x² − y²). The full state is then
+          φ<sub>k</sub> is symmetric under swapping the two factors. It combines with x and y into ψ
+          <sub>k</sub> = x |0, k⟩ + y |k, 0⟩ + z · φ<sub>k</sub>, where z = √(1 − x² − y²). The full
+          state is then
         </p>
         <div className="equation">
-          ρ = (xy / R) |Φ<sub>d</sub>⟩⟨Φ<sub>d</sub>| + (δ / R) Σ<sub>1 ≤ j &lt; i &lt; d</sub>{" "}
-          |ψ<sub>ij</sub>⟩⟨ψ<sub>ij</sub>| + (1 / R) Σ<sub>k=1</sub><sup>d − 1</sup> |ψ<sub>k</sub>⟩⟨ψ<sub>k</sub>|
+          ρ = (xy / R) |Φ<sub>d</sub>⟩⟨Φ<sub>d</sub>| + (δ / R) Σ<sub>1 ≤ j &lt; i &lt; d</sub> |ψ
+          <sub>ij</sub>⟩⟨ψ<sub>ij</sub>| + (1 / R) Σ<sub>k=1</sub>
+          <sup>d − 1</sup> |ψ<sub>k</sub>⟩⟨ψ<sub>k</sub>|
         </div>
         <p>
-          with |Φ<sub>d</sub>⟩ = Σᵢ |ii⟩ the unnormalized maximally entangled ket, δ = z²/(d − 2) − xy, and R = d ·
-          xy + (d − 1)(d − 2)δ + d − 1.
+          with |Φ<sub>d</sub>⟩ = Σᵢ |ii⟩ the unnormalized maximally entangled ket, δ = z²/(d − 2) −
+          xy, and R = d · xy + (d − 1)(d − 2)δ + d − 1.
         </p>
       </div>
 
@@ -59,8 +63,8 @@ function YuOh() {
         <dl className="doc-dl">
           <dt>fullDim</dt>
           <dd>
-            The local dimension <span className="math-var">d</span> shared by both parties. Must be an integer ≥
-            3.
+            The local dimension <span className="math-var">d</span> shared by both parties. Must be
+            an integer ≥ 3.
           </dd>
           <dt>x</dt>
           <dd>First free real parameter.</dd>
@@ -68,8 +72,8 @@ function YuOh() {
           <dd>Second free real parameter.</dd>
         </dl>
         <p>
-          (x, y) must jointly satisfy x² + y² ≤ 1 and δ = z²/(d − 2) − xy &gt; 0, where z = √(1 − x² − y²) —
-          checked by isValidYuOhInput.
+          (x, y) must jointly satisfy x² + y² ≤ 1 and δ = z²/(d − 2) − xy &gt; 0, where z = √(1 − x²
+          − y²) — checked by isValidYuOhInput.
         </p>
       </div>
 
@@ -123,8 +127,8 @@ if is_valid_yu_oh_input(full_dim=3, x=0.5, y=0.1):
                     x² + y² = {sumSq.toFixed(2)} ≤ 1, but δ = {delta.toFixed(3)} is not positive.
                   </>
                 )}{" "}
-                yuOh requires x² + y² ≤ 1 and δ = z²/(d − 2) − xy &gt; 0. Lower x or y to bring the state back
-                into the valid domain.
+                yuOh requires x² + y² ≤ 1 and δ = z²/(d − 2) − xy &gt; 0. Lower x or y to bring the
+                state back into the valid domain.
               </p>
             </div>
           )}
@@ -134,18 +138,17 @@ if is_valid_yu_oh_input(full_dim=3, x=0.5, y=0.1):
       <div className="doc-section">
         <h2>Properties</h2>
         <p>
-          The state is PPT and bound entangled on Cᵈ ⊗ Cᵈ. It additionally violates a Bell inequality, making
-          it nonlocal despite being bound entangled.
+          The state is PPT and bound entangled on Cᵈ ⊗ Cᵈ. It additionally violates a Bell
+          inequality, making it nonlocal despite being bound entangled.
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
-          S. Yu, C. H. Oh, "A family of nonlocal bound entangled states", Phys. Rev. A 95, 032111 (2017).{" "}
-          <a href="https://arxiv.org/abs/1509.08991">arXiv:1509.08991</a>
+      <Citation>
+        <p>
+          S. Yu, C. H. Oh, "A family of nonlocal bound entangled states", Phys. Rev. A 95, 032111
+          (2017). <a href="https://arxiv.org/abs/1509.08991">arXiv:1509.08991</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

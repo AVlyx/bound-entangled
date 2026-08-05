@@ -2,6 +2,7 @@ import { useState } from "react";
 import { genTiles1 } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 /** The two smallest valid dimensions; d = 8 would already render a 64x64 matrix. */
 const DIMENSIONS = [4, 6];
@@ -18,38 +19,40 @@ function Gentiles() {
   return (
     <>
       <p>
-        GenTiles1 generalizes the Tiles unextendible product basis (UPB) on C³ ⊗ C³ to any even local
-        dimension d ≥ 4. An unextendible product basis is a set of orthonormal product vectors that does
-        not span the whole space, yet no product vector fits in what is left over. Mixing uniformly over
-        that leftover space produces a state that is PPT — because every term removed is a product-state
-        projector, unaffected by partial transposition — yet entangled, because the UPB leaves no product
-        vector behind: a bound entangled state.
+        GenTiles1 generalizes the Tiles unextendible product basis (UPB) on C³ ⊗ C³ to any even
+        local dimension d ≥ 4. An unextendible product basis is a set of orthonormal product vectors
+        that does not span the whole space, yet no product vector fits in what is left over. Mixing
+        uniformly over that leftover space produces a state that is PPT — because every term removed
+        is a product-state projector, unaffected by partial transposition — yet entangled, because
+        the UPB leaves no product vector behind: a bound entangled state.
       </p>
 
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
-          The basis is built from a "half-filled" vector on C<span className="math-var">d</span>, a sum over
-          half of the computational basis states weighted by roots of unity:
+          The basis is built from a "half-filled" vector on C<span className="math-var">d</span>, a
+          sum over half of the computational basis states weighted by roots of unity:
         </p>
         <div className="equation">
-          |ω<sub>m</sub>(shift)⟩ = Σ<sub>j=0</sub><sup>d/2 − 1</sup> ω<sup>jm</sup> |(j + shift) mod d⟩, ω = exp(4πi
-          / d)
+          |ω<sub>m</sub>(shift)⟩ = Σ<sub>j=0</sub>
+          <sup>d/2 − 1</sup> ω<sup>jm</sup> |(j + shift) mod d⟩, ω = exp(4πi / d)
         </div>
         <p>
-          For m = 1, …, d/2 − 1 and k = 0, …, d − 1, two families of product vectors are formed from it — a
-          "vertical" and a "horizontal" tile — together with a single "stopper" state:
+          For m = 1, …, d/2 − 1 and k = 0, …, d − 1, two families of product vectors are formed from
+          it — a "vertical" and a "horizontal" tile — together with a single "stopper" state:
         </p>
         <div className="equation">
-          |V<sub>mk</sub>⟩ = |k⟩ ⊗ |ω<sub>m</sub>(k + 1)⟩, |H<sub>mk</sub>⟩ = |ω<sub>m</sub>(k)⟩ ⊗ |k⟩, |F⟩ = (1 / d)
-          Σᵢ Σⱼ |i⟩ ⊗ |j⟩
+          |V<sub>mk</sub>⟩ = |k⟩ ⊗ |ω<sub>m</sub>(k + 1)⟩, |H<sub>mk</sub>⟩ = |ω<sub>m</sub>(k)⟩ ⊗
+          |k⟩, |F⟩ = (1 / d) Σᵢ Σⱼ |i⟩ ⊗ |j⟩
         </div>
         <p>
-          Together these d² − 2d + 1 vectors form the GenTiles1 UPB (genTiles1Basis). The state is the uniform
-          mixture over its orthogonal complement,
+          Together these d² − 2d + 1 vectors form the GenTiles1 UPB (genTiles1Basis). The state is
+          the uniform mixture over its orthogonal complement,
         </p>
         <div className="equation">ρ = (I − Σᵢ |vᵢ⟩⟨vᵢ|) / (2d − 1)</div>
-        <p>where the sum runs over the d² − 2d + 1 basis vectors and I is the identity on Cᵈ ⊗ Cᵈ.</p>
+        <p>
+          where the sum runs over the d² − 2d + 1 basis vectors and I is the identity on Cᵈ ⊗ Cᵈ.
+        </p>
       </div>
 
       <div className="doc-section">
@@ -57,7 +60,8 @@ function Gentiles() {
         <dl className="doc-dl">
           <dt>fullDim</dt>
           <dd>
-            The local dimension <span className="math-var">d</span> shared by both parties. Must be even and ≥ 4.
+            The local dimension <span className="math-var">d</span> shared by both parties. Must be
+            even and ≥ 4.
           </dd>
         </dl>
       </div>
@@ -96,8 +100,8 @@ rho = gen_tiles1(full_dim=4)`}
       <div className="doc-section">
         <h2>Properties</h2>
         <p>
-          genTiles1Basis returns an orthonormal product basis of size d² − 2d + 1; genTiles1 is PPT and bound
-          entangled on Cᵈ ⊗ Cᵈ.
+          genTiles1Basis returns an orthonormal product basis of size d² − 2d + 1; genTiles1 is PPT
+          and bound entangled on Cᵈ ⊗ Cᵈ.
         </p>
         <div className="scroll-x">
           <table className="doc-table">
@@ -133,19 +137,20 @@ rho = gen_tiles1(full_dim=4)`}
         </div>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
-          D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal, "Unextendible Product Bases,
-          Uncompletable Product Bases and Bound Entanglement", Commun. Math. Phys. 238, 379 (2003), Section V B,
-          Theorem 5. <a href="https://arxiv.org/abs/quant-ph/9908070">arXiv:quant-ph/9908070</a>
+      <Citation>
+        <p>
+          D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal, "Unextendible Product
+          Bases, Uncompletable Product Bases and Bound Entanglement", Commun. Math. Phys. 238, 379
+          (2003), Section V B, Theorem 5.{" "}
+          <a href="https://arxiv.org/abs/quant-ph/9908070">arXiv:quant-ph/9908070</a>
         </p>
-        <p className="doc-cite">
-          C. H. Bennett, D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal, "Unextendible Product
-          Bases and Bound Entanglement", Phys. Rev. Lett. 82, 5385 (1999) — the general UPB-to-bound-entangled-state
-          construction used here. <a href="https://arxiv.org/abs/quant-ph/9808030">arXiv:quant-ph/9808030</a>
+        <p>
+          C. H. Bennett, D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal,
+          "Unextendible Product Bases and Bound Entanglement", Phys. Rev. Lett. 82, 5385 (1999) —
+          the general UPB-to-bound-entangled-state construction used here.{" "}
+          <a href="https://arxiv.org/abs/quant-ph/9808030">arXiv:quant-ph/9808030</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

@@ -4,6 +4,7 @@ import type { ParametrizedUpbOptions } from "bound-entangled";
 import type { Cell } from "../../../../LatexMatrix";
 import CodeBlock from "../../../../CodeBlock";
 import LatexMatrix from "../../../../LatexMatrix";
+import Citation from "../../../../Citation";
 
 /** The angle at which both parties' gamma and theta reduce this family to the Pyramid UPB. */
 const PYRAMID_ANGLE = Math.acos((Math.sqrt(5) - 1) / 2);
@@ -99,11 +100,10 @@ function ParametrizedUpb() {
   return (
     <>
       <p>
-        The Parametrized UPB is a six-parameter family of unextendible product bases on ℂ³ ⊗ ℂ³
-        from DiVincenzo, Mor, Shor, Smolin and Terhal, generalizing the Tiles and Pyramid UPBs:
-        each choice of the six angles gives five product vectors with the same orthogonality
-        structure, and hence the same construction of a bound entangled state on their orthogonal
-        complement.
+        The Parametrized UPB is a six-parameter family of unextendible product bases on ℂ³ ⊗ ℂ³ from
+        DiVincenzo, Mor, Shor, Smolin and Terhal, generalizing the Tiles and Pyramid UPBs: each
+        choice of the six angles gives five product vectors with the same orthogonality structure,
+        and hence the same construction of a bound entangled state on their orthogonal complement.
       </p>
 
       <div className="doc-section">
@@ -124,8 +124,8 @@ function ParametrizedUpb() {
           |v₄⟩ = (sinγ cosθ e^(iφ)/N) |1⟩ + (cosγ/N) |2⟩
         </div>
         <p>
-          Alice's and Bob's vectors are then paired in a shifted order — |ψᵢ⟩ = |aᵢ⟩ ⊗ |b_σ(i)⟩
-          with σ = (1, 3, 0, 2, 4) — rather than index by index. This mismatch is what forces the
+          Alice's and Bob's vectors are then paired in a shifted order — |ψᵢ⟩ = |aᵢ⟩ ⊗ |b_σ(i)⟩ with
+          σ = (1, 3, 0, 2, 4) — rather than index by index. This mismatch is what forces the
           resulting basis to be unextendible: every pair of the five |ψᵢ⟩ is orthogonal, either
           because Alice's factors are orthogonal or because Bob's are, covering all ten pairs (the
           orthogonality graph is the same for every UPB on ℂ³ ⊗ ℂ³). As for the Tiles and Pyramid
@@ -147,8 +147,8 @@ function ParametrizedUpb() {
         <dl className="doc-dl">
           <dt>gammaA</dt>
           <dd>
-            Alice's γ angle. Any real value with cos γ_A ≠ 0 and sin γ_A ≠ 0 — multiples of π/2
-            are excluded.
+            Alice's γ angle. Any real value with cos γ_A ≠ 0 and sin γ_A ≠ 0 — multiples of π/2 are
+            excluded.
           </dd>
           <dt>thetaA</dt>
           <dd>
@@ -185,8 +185,8 @@ rho = parametrized_upb(**angles)      # the bound entangled state on their compl
         <div className="callout callout-tip">
           <span className="callout-title">Tip</span>
           <p>
-            The sliders start at φ_A = φ_B = 0 and γ = θ = arccos((√5 − 1)/2) for both parties,
-            the angles that reproduce the Pyramid UPB. Drag them to explore the wider family.
+            The sliders start at φ_A = φ_B = 0 and γ = θ = arccos((√5 − 1)/2) for both parties, the
+            angles that reproduce the Pyramid UPB. Drag them to explore the wider family.
           </p>
         </div>
         <div className="example">
@@ -235,28 +235,27 @@ rho = parametrized_upb(**angles)      # the bound entangled state on their compl
         <p>
           For any valid choice of the six angles, ρ is a 9×9 density matrix (dimension ℂ³ ⊗ ℂ³):
           Hermitian, trace one, and positive semidefinite, with a positive partial transpose.
-          Because the five vectors are orthonormal, ρ has rank 4 with every nonzero eigenvalue
-          equal to 1/4, and ρ|ψᵢ⟩ = 0 for each basis vector. It has no product vector in its
-          range, so it is entangled despite being PPT: a bound entangled state, for every one of
-          the angles in the family.
+          Because the five vectors are orthonormal, ρ has rank 4 with every nonzero eigenvalue equal
+          to 1/4, and ρ|ψᵢ⟩ = 0 for each basis vector. It has no product vector in its range, so it
+          is entangled despite being PPT: a bound entangled state, for every one of the angles in
+          the family.
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal, "Unextendible Product
           Bases, Uncompletable Product Bases and Bound Entanglement", Commun. Math. Phys. 238, 379
           (2003), Section IV A.{" "}
           <a href="https://arxiv.org/abs/quant-ph/9908070">arXiv:quant-ph/9908070</a>
         </p>
-        <p className="doc-cite">
+        <p>
           C. H. Bennett, D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal,
           "Unextendible Product Bases and Bound Entanglement", Phys. Rev. Lett. 82, 5385 (1999) —
           the Tiles and Pyramid UPBs this family generalizes.{" "}
           <a href="https://arxiv.org/abs/quant-ph/9808030">arXiv:quant-ph/9808030</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

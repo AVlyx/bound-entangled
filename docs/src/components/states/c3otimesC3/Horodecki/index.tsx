@@ -3,6 +3,7 @@ import Slider from "../../../Slider";
 import { horodecki3By3 } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 /**
  * Documentation page for the 3 x 3 Horodecki state. The header (title, Hilbert
@@ -15,21 +16,20 @@ function Horodecki3by3() {
     <>
       <p>
         The <span className="math-var">C³ ⊗ C³</span> Horodecki state is one of the first known
-        families of bound entangled states. For every <span className="math-var">a</span> in
-        [0, 1] it is positive under partial transpose (PPT); for every{" "}
-        <span className="math-var">a</span> in the open interval (0, 1) it is entangled, so no
-        pure entanglement can be distilled from it. It is separable only at the endpoints{" "}
-        <span className="math-var">a</span> = 0 and <span className="math-var">a</span> = 1.
+        families of bound entangled states. For every <span className="math-var">a</span> in [0, 1]
+        it is positive under partial transpose (PPT); for every <span className="math-var">a</span>{" "}
+        in the open interval (0, 1) it is entangled, so no pure entanglement can be distilled from
+        it. It is separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
+        <span className="math-var">a</span> = 1.
       </p>
 
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
           In the product basis <span className="math">|i⟩⊗|j⟩</span>, with{" "}
-          <span className="math-var">i</span>, <span className="math-var">j</span> ∈{" "}
-          {"{0, 1, 2}"}, ordered as{" "}
-          <span className="math">|00⟩, |01⟩, |02⟩, |10⟩, ..., |22⟩</span>, the 9×9 Horodecki
-          density matrix is
+          <span className="math-var">i</span>, <span className="math-var">j</span> ∈ {"{0, 1, 2}"},
+          ordered as <span className="math">|00⟩, |01⟩, |02⟩, |10⟩, ..., |22⟩</span>, the 9×9
+          Horodecki density matrix is
         </p>
         <LatexMatrix
           value={[
@@ -70,8 +70,8 @@ function Horodecki3by3() {
         <dl className="doc-dl">
           <dt>aParam</dt>
           <dd>
-            The free real parameter, in [0, 1]. The state is PPT for every value in this range,
-            and separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
+            The free real parameter, in [0, 1]. The state is PPT for every value in this range, and
+            separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
             <span className="math-var">a</span> = 1. Values outside [0, 1] are rejected.
           </dd>
         </dl>
@@ -105,8 +105,7 @@ rho = horodecki(0.5)  # 9x9 density matrix`}
       <div className="doc-section">
         <h2>Properties</h2>
         <p>
-          <span className="badge">PPT</span>{" "}
-          <span className="badge">entangled for a ∈ (0, 1)</span>{" "}
+          <span className="badge">PPT</span> <span className="badge">entangled for a ∈ (0, 1)</span>{" "}
           <span className="badge">C³ ⊗ C³</span> <span className="badge">9×9</span>
         </p>
         <p>
@@ -115,28 +114,27 @@ rho = horodecki(0.5)  # 9x9 density matrix`}
           <span className="math">C² ⊗ C²</span> and <span className="math">C² ⊗ C³</span> the
           converse also holds — PPT implies separable — but from{" "}
           <span className="math">C³ ⊗ C³</span> on that converse fails: this state stays PPT for
-          every <span className="math-var">a</span> yet is entangled on the interior of the
-          range, which is exactly what makes it bound entangled.
+          every <span className="math-var">a</span> yet is entangled on the interior of the range,
+          which is exactly what makes it bound entangled.
         </p>
         <p>
           For every <span className="math-var">a</span> in [0, 1], including the endpoints,{" "}
-          <span className="math-var">ρ(a)</span> is a valid density matrix — trace one and
-          positive semidefinite.
+          <span className="math-var">ρ(a)</span> is a valid density matrix — trace one and positive
+          semidefinite.
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
-          P. Horodecki, "Separability criterion and inseparable mixed states with positive
-          partial transposition", Phys. Lett. A 232, 333 (1997), Section 4.1.{" "}
+      <Citation>
+        <p>
+          P. Horodecki, "Separability criterion and inseparable mixed states with positive partial
+          transposition", Phys. Lett. A 232, 333 (1997), Section 4.1.{" "}
           <a href="https://arxiv.org/abs/quant-ph/9703004">arXiv:quant-ph/9703004</a>
         </p>
-        <p className="doc-cite">
+        <p>
           D. Chruściński, A. Kossakowski, "Circulant states with positive partial transpose",{" "}
           <a href="https://arxiv.org/abs/1108.2233">arXiv:1108.2233</a>, Eq. (1).
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

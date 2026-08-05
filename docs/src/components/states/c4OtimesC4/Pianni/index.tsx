@@ -2,6 +2,7 @@ import { useState } from "react";
 import { pianni, projectorIj } from "bound-entangled";
 import LatexMatrix from "../../../LatexMatrix";
 import CodeBlock from "../../../CodeBlock";
+import Citation from "../../../Citation";
 
 /**
  * Documentation page for the Pianni state. The header (title and Hilbert space) comes
@@ -32,16 +33,16 @@ function Pianni() {
     <>
       <p>
         A bound entangled state on C⁴ ⊗ C⁴, built as a uniform mixture of six generalized Bell
-        projectors and then regrouped into two ququart parties so that it is positive under
-        partial transpose. It originates as an example of a quantum dynamical semigroup that
-        cannot be written as a mixture of decomposable ones.
+        projectors and then regrouped into two ququart parties so that it is positive under partial
+        transpose. It originates as an example of a quantum dynamical semigroup that cannot be
+        written as a mixture of decomposable ones.
       </p>
 
       <div className="doc-section">
         <h2>Definition</h2>
         <p>
-          Write <span className="math">|Ψ⁺₄⟩</span> for the (normalized) maximally entangled
-          state of <span className="math">C⁴ ⊗ C⁴</span>. For Pauli indices{" "}
+          Write <span className="math">|Ψ⁺₄⟩</span> for the (normalized) maximally entangled state
+          of <span className="math">C⁴ ⊗ C⁴</span>. For Pauli indices{" "}
           <span className="math-var">i</span>, <span className="math-var">j</span> ∈{" "}
           {"{0, 1, 2, 3}"} (0 = I, 1 = X, 2 = Y, 3 = Z), the generalized Bell state
         </p>
@@ -80,8 +81,8 @@ function Pianni() {
         </div>
         <p>
           Finally, regarding the 16 dimensions as four qubits (the first C⁴ factor split into two
-          qubits, the second — the one the Pauli operators acted on — split into the other two),
-          the Pianni state reorders those four qubits with the permutation [0, 2, 1, 3]:
+          qubits, the second — the one the Pauli operators acted on — split into the other two), the
+          Pianni state reorders those four qubits with the permutation [0, 2, 1, 3]:
         </p>
         <div className="equation">ρ = permuteSystems(ρ₀, [0, 2, 1, 3], [2, 2, 2, 2])</div>
         <p className="equation-caption">
@@ -104,9 +105,8 @@ rho = pianni()  # 16x16 density matrix on C⁴ ⊗ C⁴`}
       <div className="doc-section">
         <h2>Try it</h2>
         <p>
-          The 16×16 Pianni state itself has no free parameter; instead, explore the building
-          block <span className="math">Pᵢⱼ = projectorIj(i, j)</span> that the mixture is made
-          from.
+          The 16×16 Pianni state itself has no free parameter; instead, explore the building block{" "}
+          <span className="math">Pᵢⱼ = projectorIj(i, j)</span> that the mixture is made from.
         </p>
         <div className="example">
           <div className="controls">
@@ -136,8 +136,7 @@ rho = pianni()  # 16x16 density matrix on C⁴ ⊗ C⁴`}
           </div>
         </div>
         <p className="equation-caption">
-          The full state ρ = pianni(), the (1/6)-weighted, permuted sum of the six Pᵢⱼ listed
-          above:
+          The full state ρ = pianni(), the (1/6)-weighted, permuted sum of the six Pᵢⱼ listed above:
         </p>
         <div className="scroll-x">
           <LatexMatrix value={pianni()} precision={2} dimZeros label="ρ =" />
@@ -172,18 +171,17 @@ rho = pianni()  # 16x16 density matrix on C⁴ ⊗ C⁴`}
         </ul>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           F. Benatti, R. Floreanini, M. Piani, "Non-decomposable quantum dynamical semigroups and
           bound entangled states", Open Syst. Inf. Dyn. 11, 325 (2004).{" "}
           <a href="https://arxiv.org/abs/quant-ph/0411095">arXiv:quant-ph/0411095</a>
         </p>
-        <p className="doc-cite">
+        <p>
           Also presented as "the 4×4 bound entangled Piani state" in{" "}
           <a href="https://arxiv.org/abs/2010.08372">arXiv:2010.08372</a> (Appendix C5).
         </p>
-      </div>
+      </Citation>
     </>
   );
 }

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { genTiles2, genTiles2Basis } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
 import LatexMatrix from "../../../LatexMatrix";
+import Citation from "../../../Citation";
 
 const DIM_OPTIONS: readonly [number, number][] = [
   [3, 4],
@@ -37,18 +38,19 @@ function GenTiles() {
         </p>
         <div className="equation">
           |<span className="math-var">S</span>
-          <sub>j</sub>⟩ = (|<span className="math-var">j</span>⟩ − |<span className="math-var">j</span>
+          <sub>j</sub>⟩ = (|<span className="math-var">j</span>⟩ − |
+          <span className="math-var">j</span>
           +1 mod <span className="math-var">m</span>⟩) / √2 ⊗ |<span className="math-var">j</span>
-          ⟩, &nbsp; <span className="math-var">j</span> = 0, …,{" "}
-          <span className="math-var">m</span> − 1
+          ⟩, &nbsp; <span className="math-var">j</span> = 0, …, <span className="math-var">m</span>{" "}
+          − 1
         </div>
         <p className="equation-caption">m "short" tile states.</p>
         <div className="equation">
           |<span className="math-var">L</span>
-          <sub>jk</sub>⟩ = |<span className="math-var">j</span>⟩ ⊗ (normalized combination of
-          |<span className="math-var">j</span>+<span className="math-var">i</span>+1 mod{" "}
-          <span className="math-var">m</span>⟩ and |<span className="math-var">i</span>+2⟩,
-          weighted by roots of unity <span className="math-var">ω</span>
+          <sub>jk</sub>⟩ = |<span className="math-var">j</span>⟩ ⊗ (normalized combination of |
+          <span className="math-var">j</span>+<span className="math-var">i</span>+1 mod{" "}
+          <span className="math-var">m</span>⟩ and |<span className="math-var">i</span>+2⟩, weighted
+          by roots of unity <span className="math-var">ω</span>
           <sup>ik</sup>, ω = e<sup>2πi/(n−2)</sup>)
         </div>
         <p className="equation-caption">
@@ -72,10 +74,11 @@ function GenTiles() {
           uniform mixture over the orthogonal complement of their span:
         </p>
         <div className="equation">
-          <span className="math-op">ρ</span> = (<span className="math-op">I</span> − Σ
-          <sub>i</sub> |<span className="math-var">v</span>
+          <span className="math-op">ρ</span> = (<span className="math-op">I</span> − Σ<sub>i</sub> |
+          <span className="math-var">v</span>
           <sub>i</sub>⟩⟨<span className="math-var">v</span>
-          <sub>i</sub>|) / (<span className="math-var">mn</span> − <span className="math-var">N</span>)
+          <sub>i</sub>|) / (<span className="math-var">mn</span> −{" "}
+          <span className="math-var">N</span>)
         </div>
       </div>
 
@@ -129,34 +132,33 @@ rho = gen_tiles2((3, 4))`}
       <div className="doc-section">
         <h2>Properties</h2>
         <p>
-          Because each basis vector is a product state, none of the projectors it contributes
-          change under partial transposition, so ρ is PPT; because no product vector lies in the
-          range of ρ (the basis is unextendible), ρ is entangled — a bound entangled state for any
-          [m, n] satisfying the constraints above.
+          Because each basis vector is a product state, none of the projectors it contributes change
+          under partial transposition, so ρ is PPT; because no product vector lies in the range of ρ
+          (the basis is unextendible), ρ is entangled — a bound entangled state for any [m, n]
+          satisfying the constraints above.
         </p>
         <div className="callout callout-tip">
           <span className="callout-title">Why PPT + unextendible ⇒ bound entangled</span>
           The uniform mixture over the orthogonal complement of a UPB is PPT since each |v
           <sub>i</sub>⟩⟨v<sub>i</sub>| is a product-state projector, invariant under partial
-          transposition; it is entangled since the UPB property means no product vector lies in
-          ρ's range.
+          transposition; it is entangled since the UPB property means no product vector lies in ρ's
+          range.
         </div>
       </div>
 
-      <div className="doc-section">
-        <h2>References</h2>
-        <p className="doc-cite">
+      <Citation>
+        <p>
           D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal, "Unextendible Product
           Bases, Uncompletable Product Bases and Bound Entanglement", Commun. Math. Phys. 238, 379
           (2003), Section V B, Theorem 6.{" "}
           <a href="https://arxiv.org/abs/quant-ph/9908070">arXiv:quant-ph/9908070</a>
         </p>
-        <p className="doc-cite">
+        <p>
           C. H. Bennett, D. P. DiVincenzo, T. Mor, P. W. Shor, J. A. Smolin, B. M. Terhal,
           "Unextendible Product Bases and Bound Entanglement", Phys. Rev. Lett. 82, 5385 (1999).{" "}
           <a href="https://arxiv.org/abs/quant-ph/9808030">arXiv:quant-ph/9808030</a>
         </p>
-      </div>
+      </Citation>
     </>
   );
 }
