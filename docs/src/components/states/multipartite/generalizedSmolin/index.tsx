@@ -4,7 +4,8 @@
  */
 import { useState } from "react";
 import { generalizedSmolin } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -39,13 +40,7 @@ function GeneralizedSmolin() {
           For <span className="math">systems = 2n</span> qubits, the generalized Smolin (GSS) state
           is
         </p>
-        <div className="equation">
-          ρ = (I + (−1)ⁿ Σ
-          <sub>
-            i∈{"{"}X,Y,Z{"}"}
-          </sub>{" "}
-          σᵢ<sup>⊗2n</sup>) / 2<sup>2n</sup>
-        </div>
+        <EquationLine>{"ρ = (I + (−1)ⁿ Σ_{i∈{X,Y,Z}} σᵢ^{⊗2n}) / 2^{2n}"}</EquationLine>
         <p>
           where{" "}
           <span className="math">
@@ -70,11 +65,9 @@ function GeneralizedSmolin() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.multipartite import generalized_smolin
+        <CodeBlock>{`from bound_entangled.multipartite import generalized_smolin
 
-rho = generalized_smolin(systems=6)`}
-        />
+rho = generalized_smolin(systems=6)`}</CodeBlock>
       </div>
 
       <div className="doc-section">

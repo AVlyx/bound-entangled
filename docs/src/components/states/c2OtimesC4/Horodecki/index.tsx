@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Slider from "../../../Slider";
 import { horodecki2By4 } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationBlock from "../../../Equations/EquationBlock";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -50,11 +52,10 @@ function Horodecki2by4() {
           with <span className="math-var">b</span>, <span className="math-var">c</span> defined
           below.
         </p>
-        <div className="equation">
-          <span className="math-var">b</span> = (1 + <span className="math-var">a</span>) / 2,
-          &nbsp;&nbsp; <span className="math-var">c</span> = √(1 −{" "}
-          <span className="math-var">a</span>²) / 2
-        </div>
+        <EquationBlock>
+          <EquationLine>b = (1 + a) / 2</EquationLine>
+          <EquationLine>c = √(1 − a²) / 2</EquationLine>
+        </EquationBlock>
       </div>
 
       <div className="doc-section">
@@ -69,14 +70,9 @@ function Horodecki2by4() {
         </dl>
       </div>
 
-      <div className="doc-section">
-        <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c2_otimes_c4 import horodecki
+      <CodeBlock>{`from bound_entangled.c2_otimes_c4 import horodecki
 
-rho = horodecki(0.5)  # 8x8 density matrix`}
-        />
-      </div>
+rho = horodecki(0.5)  # 8x8 density matrix`}</CodeBlock>
 
       <div className="doc-section">
         <h2>Try it</h2>

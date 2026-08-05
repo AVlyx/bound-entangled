@@ -3,7 +3,8 @@
  * from `navigation.ts`; this file holds the body of the page.
  */
 import { smolin } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -27,7 +28,7 @@ function Smolin() {
           <span className="math">AB</span>, with a copy of the same Bell pair on{" "}
           <span className="math">CD</span>:
         </p>
-        <div className="equation">ρ = ¼ Σᵢ₌₀³ |φᵢ⟩⟨φᵢ| ⊗ |φᵢ⟩⟨φᵢ|</div>
+        <EquationLine>ρ = ¼ Σᵢ₌₀³ |φᵢ⟩⟨φᵢ| ⊗ |φᵢ⟩⟨φᵢ|</EquationLine>
         <p>
           Equivalently, it is the <span className="math-var">systems = 4</span> instance of the
           generalized Smolin construction: <code>smolin()</code> matches{" "}
@@ -37,11 +38,9 @@ function Smolin() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.multipartite import smolin
+        <CodeBlock>{`from bound_entangled.multipartite import smolin
 
-rho = smolin()`}
-        />
+rho = smolin()`}</CodeBlock>
       </div>
 
       <div className="doc-section">

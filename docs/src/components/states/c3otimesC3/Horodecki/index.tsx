@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Slider from "../../../Slider";
 import { horodecki3By3 } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationBlock from "../../../Equations/EquationBlock";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -31,6 +33,7 @@ function Horodecki3by3() {
           ordered as <span className="math">|00⟩, |01⟩, |02⟩, |10⟩, ..., |22⟩</span>, the 9×9
           Horodecki density matrix is
         </p>
+
         <LatexMatrix
           value={[
             ["a", 0, 0, 0, "a", 0, 0, 0, "a"],
@@ -45,15 +48,10 @@ function Horodecki3by3() {
           ]}
           label="ρ(a) = 1/(8a + 1) ·"
         />
-        <p className="equation-caption">
-          with <span className="math-var">b</span>, <span className="math-var">c</span> defined
-          below.
-        </p>
-        <div className="equation">
-          <span className="math-var">b</span> = (1 + <span className="math-var">a</span>) / 2,
-          &nbsp;&nbsp; <span className="math-var">c</span> = √(1 −{" "}
-          <span className="math-var">a</span>²) / 2
-        </div>
+        <EquationBlock>
+          <EquationLine>b = (1 + a) / 2</EquationLine>
+          <EquationLine>c = √(1 − a²) / 2</EquationLine>
+        </EquationBlock>
         <div className="callout callout-tip">
           <span className="callout-title">Off-diagonal coherences</span>
           <p>
@@ -79,11 +77,9 @@ function Horodecki3by3() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c3_otimes_c3 import horodecki
-
-rho = horodecki(0.5)  # 9x9 density matrix`}
-        />
+        <CodeBlock>
+          {`from bound_entangled.c3_otimes_c3 \n import horodecki rho = horodecki(0.5) # 9x9 density matrix`}
+        </CodeBlock>
       </div>
 
       <div className="doc-section">

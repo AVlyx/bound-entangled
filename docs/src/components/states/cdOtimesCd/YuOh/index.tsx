@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { isValidYuOhInput, yuOh } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
@@ -38,20 +39,18 @@ function YuOh() {
           of d unit vectors θ<sub>1</sub>, …, θ<sub>d</sub> in ℝᵈ built by induction on the
           dimension, which sum to the zero vector. From these, for k = 1, …, d − 1:
         </p>
-        <div className="equation">
-          φ<sub>k</sub> = ((d − 1)<sup>3/2</sup> / (d √(d − 2))) · Σ<sub>p</sub> θ<sub>p</sub>(k) |θ
-          <sub>p</sub>⟩ ⊗ |θ<sub>p</sub>⟩
-        </div>
+        <EquationLine>
+          {"φ_k = ((d − 1)^{3/2} / (d √(d − 2))) · Σ_p θ_p(k) |θ_p⟩ ⊗ |θ_p⟩"}
+        </EquationLine>
         <p>
           φ<sub>k</sub> is symmetric under swapping the two factors. It combines with x and y into ψ
           <sub>k</sub> = x |0, k⟩ + y |k, 0⟩ + z · φ<sub>k</sub>, where z = √(1 − x² − y²). The full
           state is then
         </p>
-        <div className="equation">
-          ρ = (xy / R) |Φ<sub>d</sub>⟩⟨Φ<sub>d</sub>| + (δ / R) Σ<sub>1 ≤ j &lt; i &lt; d</sub> |ψ
-          <sub>ij</sub>⟩⟨ψ<sub>ij</sub>| + (1 / R) Σ<sub>k=1</sub>
-          <sup>d − 1</sup> |ψ<sub>k</sub>⟩⟨ψ<sub>k</sub>|
-        </div>
+        <EquationLine>
+          {"ρ = (xy / R) |Φ_d⟩⟨Φ_d| + (δ / R) Σ_{1 ≤ j < i < d} |ψ_{ij}⟩⟨ψ_{ij}|" +
+            " + (1 / R) Σ_{k=1}^{d − 1} |ψ_k⟩⟨ψ_k|"}
+        </EquationLine>
         <p>
           with |Φ<sub>d</sub>⟩ = Σᵢ |ii⟩ the unnormalized maximally entangled ket, δ = z²/(d − 2) −
           xy, and R = d · xy + (d − 1)(d − 2)δ + d − 1.
@@ -79,12 +78,10 @@ function YuOh() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.cd_otimes_cd import is_valid_yu_oh_input, yu_oh
+        <CodeBlock>{`from bound_entangled.cd_otimes_cd import is_valid_yu_oh_input, yu_oh
 
 if is_valid_yu_oh_input(full_dim=3, x=0.5, y=0.1):
-    rho = yu_oh(full_dim=3, x=0.5, y=0.1)`}
-        />
+    rho = yu_oh(full_dim=3, x=0.5, y=0.1)`}</CodeBlock>
       </div>
 
       <div className="doc-section">

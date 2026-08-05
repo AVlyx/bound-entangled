@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { generalizedGridComponent, sn3GridState } from "bound-entangled";
 import type { Hyperedge } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -85,14 +86,16 @@ function Sn3GridState() {
           minus sign, and repeating a vertex adds to it again, so a hyperedge spanning vertices{" "}
           <span className="math">v₁, …, vₖ</span> carries the unnormalized vector
         </p>
-        <div className="equation">|c⟩ = Σᵢ |vᵢ⟩</div>
+        <EquationLine>|c⟩ = Σᵢ |vᵢ⟩</EquationLine>
         <p>
           The generalized grid state is the trace-normalized sum of{" "}
           <span className="math">|c⟩⟨c|</span> over every hyperedge — not divided by the number of
           hyperedges directly, so a hyperedge spanning more vertices, or a vertex reused across
           several hyperedges, contributes more weight before the final normalization:
         </p>
-        <div className="equation">ρ = (Σ₍hyperedges₎ |c⟩⟨c|) / tr(Σ₍hyperedges₎ |c⟩⟨c|)</div>
+        <EquationLine>
+          {"ρ = (Σ_{hyperedges} |c⟩⟨c|) / tr(Σ_{hyperedges} |c⟩⟨c|)"}
+        </EquationLine>
         <p>
           <code>sn3GridState()</code> is this construction on the 5×5 grid with 13 hyperedges,
           falling into four groups:
@@ -126,11 +129,9 @@ function Sn3GridState() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c5_otimes_c5 import sn3_grid_state
+        <CodeBlock>{`from bound_entangled.c5_otimes_c5 import sn3_grid_state
 
-rho = sn3_grid_state()  # 25x25 density matrix on C⁵ ⊗ C⁵`}
-        />
+rho = sn3_grid_state()  # 25x25 density matrix on C⁵ ⊗ C⁵`}</CodeBlock>
       </div>
 
       <div className="doc-section">

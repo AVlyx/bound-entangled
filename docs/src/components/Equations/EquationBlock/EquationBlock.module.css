@@ -1,0 +1,14 @@
+/*
+ * A run of equations that belong together — a definition spread over several
+ * lines. Each line still scrolls horizontally on its own; the block owns the
+ * vertical rhythm, so its lines sit closer together than two loose equations.
+ */
+
+.block {
+  /* The gap does the spacing, so the lines give up their own margins. */
+  --equation-margin: 0;
+
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-5) 0;
+}

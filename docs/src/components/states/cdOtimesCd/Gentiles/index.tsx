@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { genTiles1 } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -33,23 +34,22 @@ function Gentiles() {
           The basis is built from a "half-filled" vector on C<span className="math-var">d</span>, a
           sum over half of the computational basis states weighted by roots of unity:
         </p>
-        <div className="equation">
-          |ω<sub>m</sub>(shift)⟩ = Σ<sub>j=0</sub>
-          <sup>d/2 − 1</sup> ω<sup>jm</sup> |(j + shift) mod d⟩, ω = exp(4πi / d)
-        </div>
+        <EquationLine>
+          {"|ω_m(shift)⟩ = Σ_{j=0}^{d/2 − 1} ω^{jm} |(j + shift) mod d⟩, ω = exp(4πi / d)"}
+        </EquationLine>
         <p>
           For m = 1, …, d/2 − 1 and k = 0, …, d − 1, two families of product vectors are formed from
           it — a "vertical" and a "horizontal" tile — together with a single "stopper" state:
         </p>
-        <div className="equation">
-          |V<sub>mk</sub>⟩ = |k⟩ ⊗ |ω<sub>m</sub>(k + 1)⟩, |H<sub>mk</sub>⟩ = |ω<sub>m</sub>(k)⟩ ⊗
-          |k⟩, |F⟩ = (1 / d) Σᵢ Σⱼ |i⟩ ⊗ |j⟩
-        </div>
+        <EquationLine>
+          {"|V_{mk}⟩ = |k⟩ ⊗ |ω_m(k + 1)⟩, |H_{mk}⟩ = |ω_m(k)⟩ ⊗ |k⟩," +
+            " |F⟩ = (1 / d) Σᵢ Σⱼ |i⟩ ⊗ |j⟩"}
+        </EquationLine>
         <p>
           Together these d² − 2d + 1 vectors form the GenTiles1 UPB (genTiles1Basis). The state is
           the uniform mixture over its orthogonal complement,
         </p>
-        <div className="equation">ρ = (I − Σᵢ |vᵢ⟩⟨vᵢ|) / (2d − 1)</div>
+        <EquationLine>ρ = (I − Σᵢ |vᵢ⟩⟨vᵢ|) / (2d − 1)</EquationLine>
         <p>
           where the sum runs over the d² − 2d + 1 basis vectors and I is the identity on Cᵈ ⊗ Cᵈ.
         </p>
@@ -68,11 +68,9 @@ function Gentiles() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.cd_otimes_cd import gen_tiles1
+        <CodeBlock>{`from bound_entangled.cd_otimes_cd import gen_tiles1
 
-rho = gen_tiles1(full_dim=4)`}
-        />
+rho = gen_tiles1(full_dim=4)`}</CodeBlock>
       </div>
 
       <div className="doc-section">

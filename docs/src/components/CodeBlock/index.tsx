@@ -1,13 +1,18 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import styles from "./CodeBlock.module.css";
+import { Prism as SynthaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import CheckIcon from "../icons/CheckIcon";
+import CopyIcon from "../icons/CopyIcon";
 
 interface CodeBlockProps {
-  /** The snippet, already formatted. Rendered verbatim. */
-  code: string;
-  /** Language tag shown in the corner. Defaults to Python, the reference implementation. */
+  children: string;
   lang?: string;
 }
 
-/** Copies through the async clipboard API, falling back to a hidden textarea. */
+/** How long the button stays in its "copied" state, in milliseconds. */
+const COPIED_FEEDBACK_MS = 1600;
+
 async function writeToClipboard(text: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);
@@ -17,40 +22,36 @@ async function writeToClipboard(text: string): Promise<boolean> {
   }
 }
 
-type Status = "idle" | "copied" | "failed";
-
-const LABEL: Record<Status, string> = {
-  idle: "Copy",
-  copied: "Copied",
-  failed: "Copy failed",
-};
-
 /** A code sample with a copy button in the corner. */
-function CodeBlock({ code, lang = "python" }: CodeBlockProps) {
-  const [status, setStatus] = useState<Status>("idle");
-  const reset = useRef<number | undefined>(undefined);
+function CodeBlock({ children, lang = "python" }: CodeBlockProps) {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-  const copy = async () => {
-    // A denied clipboard says so on the button rather than failing silently.
-    setStatus((await writeToClipboard(code)) ? "copied" : "failed");
-    window.clearTimeout(reset.current);
-    reset.current = window.setTimeout(() => setStatus("idle"), 1500);
+  // The timeout outlives a quick unmount, so clear it on the way out.
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const handleCopy = async () => {
+    if (!(await writeToClipboard(children))) return;
+
+    setCopied(true);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
   };
 
   return (
-    <div className="code-wrap">
-      <pre className="code-block" data-lang={lang}>
-        <code>{code}</code>
-      </pre>
+    <div className={styles.codeContainer}>
       <button
-        type="button"
-        className="code-copy"
-        data-status={status}
-        onClick={copy}
-        aria-label={status === "idle" ? "Copy code" : LABEL[status]}
+        onClick={handleCopy}
+        className={`${styles.copyButton} ${copied ? styles.copied : ""}`}
+        aria-label={copied ? "Copied" : "Copy code"}
+        title={copied ? "Copied" : "Copy code"}
       >
-        {LABEL[status]}
+        {copied ? <CheckIcon /> : <CopyIcon />}
       </button>
+
+      <SynthaxHighlighter language={lang} style={oneDark} wrapLongLines={true} wrapLines={true}>
+        {children}
+      </SynthaxHighlighter>
     </div>
   );
 }

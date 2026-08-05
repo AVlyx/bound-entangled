@@ -5,7 +5,8 @@
 import { useState } from "react";
 import { quasiDs } from "bound-entangled";
 import type { QuasiDsSign } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
@@ -38,10 +39,7 @@ function QuasiDs() {
           weight. The isometry <span className="math-var">V</span> maps the Dicke basis into the
           computational basis,
         </p>
-        <div className="equation">
-          V = Σ<sub>i₁…iₙ</sub> <span className="math-op">binom</span>(n, ν)<sup>−1/2</sup>{" "}
-          |i₁…iₙ⟩⟨ν|
-        </div>
+        <EquationLine>{"V = Σ_{i₁…iₙ} binom(n, ν)^{−1/2} |i₁…iₙ⟩⟨ν|"}</EquationLine>
         <p>
           with <span className="math">ν</span> the Hamming weight of the bit string{" "}
           <span className="math">i₁…iₙ</span>, and qubit <span className="math">k</span>{" "}
@@ -52,10 +50,7 @@ function QuasiDs() {
           plus a sign <span className="math-var">σ</span> placed in the two corners{" "}
           <span className="math">(0, n)</span> and <span className="math">(n, 0)</span>:
         </p>
-        <div className="equation">
-          D(z)<sub>kk</sub> = <span className="math-op">binom</span>(n, k) · f<sub>K−k</sub>(z), K =
-          ⌊n / 2⌋
-        </div>
+        <EquationLine>{"D(z)_{kk} = binom(n, k) · f_{K−k}(z), K = ⌊n / 2⌋"}</EquationLine>
         <p>
           where{" "}
           <span className="math">
@@ -68,7 +63,7 @@ function QuasiDs() {
           , <span className="math">f₀ = 1</span>, <span className="math">f₁ = 1 + z</span>. The
           normalized Dicke-basis density matrix is
         </p>
-        <div className="equation">ρ_Dicke(z, σ) = (D(z) + O(σ)) / (2 (4 + z)ᴷ)</div>
+        <EquationLine>{"ρ_{Dicke}(z, σ) = (D(z) + O(σ)) / (2 (4 + z)^K)"}</EquationLine>
         <p>
           and the computational-basis state is the conjugation{" "}
           <span className="math">ρ = V ρ_Dicke Vᵀ</span>.
@@ -92,11 +87,9 @@ function QuasiDs() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.multipartite import quasi_ds
+        <CodeBlock>{`from bound_entangled.multipartite import quasi_ds
 
-rho = quasi_ds(n=3, z=1, sigma=1)`}
-        />
+rho = quasi_ds(n=3, z=1, sigma=1)`}</CodeBlock>
       </div>
 
       <div className="doc-section">

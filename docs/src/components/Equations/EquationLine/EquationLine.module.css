@@ -1,0 +1,29 @@
+/*
+ * One display equation, centred on its own line and scrollable when it is
+ * wider than the column.
+ *
+ * A line standing on its own keeps the page's vertical rhythm. Anything that
+ * encloses it and wants to space its own contents — `EquationBlock`, or the
+ * `.equation-boxed` box in `docs.css` — sets `--equation-margin: 0`; going
+ * through an inherited property keeps that from turning into a fight over
+ * selector specificity with whichever stylesheet happens to load last.
+ */
+
+.line {
+  font-family: var(--math);
+  font-size: 1.05em;
+  line-height: 1.5;
+  color: var(--text-h);
+  text-align: center;
+  margin: var(--equation-margin, var(--space-5)) 0;
+  padding: var(--space-2) 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+/* `line-height: 0` keeps a script from stretching the line it sits on. */
+.line sub,
+.line sup {
+  font-size: 0.75em;
+  line-height: 0;
+}

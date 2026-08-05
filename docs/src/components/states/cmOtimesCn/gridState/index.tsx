@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { gridState } from "bound-entangled";
 import type { Edge } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import Citation from "../../../Citation";
 
 interface Preset {
@@ -74,22 +75,12 @@ function GridState() {
           state |<span className="math-var">i</span>, <span className="math-var">j</span>⟩. An edge
           joins two vertices and carries the normalized difference of their basis states:
         </p>
-        <div className="equation">
-          |<span className="math-var">e</span>⟩ = (|<span className="math-var">i</span>,{" "}
-          <span className="math-var">j</span>⟩ − |<span className="math-var">k</span>,{" "}
-          <span className="math-var">l</span>⟩) / √2
-        </div>
+        <EquationLine>|e⟩ = (|i, j⟩ − |k, l⟩) / √2</EquationLine>
         <p>
           The grid state is the uniform mixture over a chosen edge set{" "}
           <span className="math-var">E</span>:
         </p>
-        <div className="equation">
-          <span className="math-op">ρ</span> = (1 / |<span className="math-var">E</span>|) Σ
-          <sub>
-            <span className="math-var">e</span> ∈ <span className="math-var">E</span>
-          </sub>{" "}
-          |<span className="math-var">e</span>⟩⟨<span className="math-var">e</span>|
-        </div>
+        <EquationLine>{"ρ = (1 / |E|) Σ_{e ∈ E} |e⟩⟨e|"}</EquationLine>
       </div>
 
       <div className="doc-section">
@@ -113,16 +104,14 @@ function GridState() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.cm_otimes_cn import grid_state
+        <CodeBlock>{`from bound_entangled.cm_otimes_cn import grid_state
 
 rho = grid_state(
     (2, 3),
     ((0, 0), (0, 1)),
     ((0, 1), (0, 2)),
     ((0, 0), (1, 0)),
-)`}
-        />
+)`}</CodeBlock>
       </div>
 
       <div className="doc-section">

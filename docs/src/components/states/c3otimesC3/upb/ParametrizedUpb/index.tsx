@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { parametrizedBasis, parametrizedUpb } from "bound-entangled";
 import type { ParametrizedUpbOptions } from "bound-entangled";
-import type { Cell } from "../../../../LatexMatrix";
+import type { Cell } from "../../../../Equations/LatexMatrix";
 import CodeBlock from "../../../../CodeBlock";
-import LatexMatrix from "../../../../LatexMatrix";
+import LatexMatrix from "../../../../Equations/LatexMatrix";
+import EquationBlock from "../../../../Equations/EquationBlock";
+import EquationLine from "../../../../Equations/EquationLine";
 import Citation from "../../../../Citation";
 
 /** The angle at which both parties' gamma and theta reduce this family to the Pyramid UPB. */
@@ -112,17 +114,13 @@ function ParametrizedUpb() {
           Each party (Alice with angles γ_A, θ_A, φ_A; Bob with γ_B, θ_B, φ_B) contributes five
           vectors in ℂ³, built from the same formula with N = √(cos²γ + sin²γ cos²θ):
         </p>
-        <div className="equation">
-          |v₀⟩ = |0⟩
-          <br />
-          |v₁⟩ = |1⟩
-          <br />
-          |v₂⟩ = cosθ |0⟩ + sinθ |2⟩
-          <br />
-          |v₃⟩ = sinγ sinθ |0⟩ + cosγ e^(iφ) |1⟩ − sinγ cosθ |2⟩
-          <br />
-          |v₄⟩ = (sinγ cosθ e^(iφ)/N) |1⟩ + (cosγ/N) |2⟩
-        </div>
+        <EquationBlock>
+          <EquationLine>|v₀⟩ = |0⟩</EquationLine>
+          <EquationLine>|v₁⟩ = |1⟩</EquationLine>
+          <EquationLine>|v₂⟩ = cosθ |0⟩ + sinθ |2⟩</EquationLine>
+          <EquationLine>{"|v₃⟩ = sinγ sinθ |0⟩ + cosγ e^{iφ} |1⟩ − sinγ cosθ |2⟩"}</EquationLine>
+          <EquationLine>{"|v₄⟩ = (sinγ cosθ e^{iφ}/N) |1⟩ + (cosγ/N) |2⟩"}</EquationLine>
+        </EquationBlock>
         <p>
           Alice's and Bob's vectors are then paired in a shifted order — |ψᵢ⟩ = |aᵢ⟩ ⊗ |b_σ(i)⟩ with
           σ = (1, 3, 0, 2, 4) — rather than index by index. This mismatch is what forces the
@@ -132,8 +130,8 @@ function ParametrizedUpb() {
           UPBs, the bound entangled state is the uniform mixture over the 4-dimensional orthogonal
           complement of the five |ψᵢ⟩:
         </p>
-        <div className="equation equation-boxed">
-          ρ = (I − Σᵢ |ψᵢ⟩⟨ψᵢ|) / (9 − 5) = (I − Σᵢ |ψᵢ⟩⟨ψᵢ|) / 4
+        <div className="equation-boxed">
+          <EquationLine>ρ = (I − Σᵢ |ψᵢ⟩⟨ψᵢ|) / (9 − 5) = (I − Σᵢ |ψᵢ⟩⟨ψᵢ|) / 4</EquationLine>
         </div>
         <p>
           At φ_A = φ_B = 0 and θ_A = θ_B = γ_A = γ_B = arccos((√5 − 1)/2) this reduces to the
@@ -168,16 +166,14 @@ function ParametrizedUpb() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from math import acos, sqrt
+        <CodeBlock>{`from math import acos, sqrt
 from bound_entangled.c3_otimes_c3.upb.parametrized_UPB import parametrized_basis, parametrized_upb
 
 angle = acos((sqrt(5) - 1) / 2)  # the Pyramid UPB's angle
 angles = dict(gamma_a=angle, teta_a=angle, phi_a=0, gamma_b=angle, teta_b=angle, phi_b=0)
 
 basis = parametrized_basis(**angles)  # the five product vectors, each a column 9-vector
-rho = parametrized_upb(**angles)      # the bound entangled state on their complement`}
-        />
+rho = parametrized_upb(**angles)      # the bound entangled state on their complement`}</CodeBlock>
       </div>
 
       <div className="doc-section">

@@ -15,13 +15,11 @@ function Introduction() {
         stack you already use.
       </p>
 
-      <CodeBlock
-        code={`from bound_entangled.c3_otimes_c3 import horodecki
+      <CodeBlock>{`from bound_entangled.c3_otimes_c3 import horodecki
 from toqito.state_props import is_ppt
 
 rho = horodecki(0.4)
-is_ppt(rho, dim=[3, 3])  # True — yet the state is entangled`}
-      />
+is_ppt(rho, dim=[3, 3])  # True — yet the state is entangled`}</CodeBlock>
 
       <div className="doc-section">
         <h2>Browsing the states</h2>

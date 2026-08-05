@@ -1,6 +1,8 @@
 import { pyramidBasis, pyramidUpb } from "bound-entangled";
 import CodeBlock from "../../../../CodeBlock";
-import LatexMatrix from "../../../../LatexMatrix";
+import LatexMatrix from "../../../../Equations/LatexMatrix";
+import EquationBlock from "../../../../Equations/EquationBlock";
+import EquationLine from "../../../../Equations/EquationLine";
 import Citation from "../../../../Citation";
 
 // Floating-point residue (~1e-16) from cos/sin arithmetic would otherwise show up as
@@ -35,11 +37,10 @@ function PyramidUpb() {
           For j = 0, …, 4 and h = ½√(1 + √5), Alice's and Bob's local vectors sit at two interleaved
           sets of vertices of a regular pentagon, lifted to height h and normalised:
         </p>
-        <div className="equation">
-          |a_j⟩ ∝ (cos(2πj/5), sin(2πj/5), h)
-          <br />
-          |b_j⟩ ∝ (cos(4πj/5), sin(4πj/5), h)
-        </div>
+        <EquationBlock>
+          <EquationLine>|a_j⟩ ∝ (cos(2πj/5), sin(2πj/5), h)</EquationLine>
+          <EquationLine>|b_j⟩ ∝ (cos(4πj/5), sin(4πj/5), h)</EquationLine>
+        </EquationBlock>
         <p>
           The j-th vector of the basis is the product state |ψ_j⟩ = |a_j⟩ ⊗ |b_j⟩. The five vectors
           are pairwise orthonormal, spanning a 5-dimensional subspace of the 9-dimensional space ℂ³
@@ -47,8 +48,8 @@ function PyramidUpb() {
           the bound entangled state is the uniform mixture over that complement, via the shared{" "}
           <span className="math-op">upb</span> construction:
         </p>
-        <div className="equation equation-boxed">
-          ρ = (I − Σⱼ |ψ_j⟩⟨ψ_j|) / (9 − 5) = (I − Σⱼ |ψ_j⟩⟨ψ_j|) / 4
+        <div className="equation-boxed">
+          <EquationLine>ρ = (I − Σⱼ |ψ_j⟩⟨ψ_j|) / (9 − 5) = (I − Σⱼ |ψ_j⟩⟨ψ_j|) / 4</EquationLine>
         </div>
         <p className="equation-caption">
           each |ψ_j⟩⟨ψ_j| is a rank-1 product-state projector, so ρ inherits a positive partial
@@ -58,12 +59,10 @@ function PyramidUpb() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c3_otimes_c3.upb.pyramid_UPB import pyramid_basis, pyramid_upb
+        <CodeBlock>{`from bound_entangled.c3_otimes_c3.upb.pyramid_UPB import pyramid_basis, pyramid_upb
 
 basis = pyramid_basis()  # the five product vectors, each a column 9-vector
-rho = pyramid_upb()      # the bound entangled state on their complement`}
-        />
+rho = pyramid_upb()      # the bound entangled state on their complement`}</CodeBlock>
       </div>
 
       <div className="doc-section">

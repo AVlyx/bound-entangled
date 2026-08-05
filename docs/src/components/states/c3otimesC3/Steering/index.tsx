@@ -5,7 +5,9 @@
 import { useState } from "react";
 import { steeringState } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationBlock from "../../../Equations/EquationBlock";
+import EquationLine from "../../../Equations/EquationLine";
 import Slider from "../../../Slider";
 import Citation from "../../../Citation";
 
@@ -28,17 +30,19 @@ function Steering() {
           in terms of two free parameters <span className="math-var">m1</span>,{" "}
           <span className="math-var">m2</span> and
         </p>
-        <div className="equation">m3 = √((1 − m1² − m2²) / 2)</div>
-        <div className="equation">|ψ₁⟩ = (1/√2)(|12⟩ + |21⟩)</div>
-        <div className="equation">|ψ₂⟩ = (1/√3)(|00⟩ + |11⟩ − |22⟩)</div>
-        <div className="equation">|ψ₃⟩ = m1|01⟩ + m2|10⟩ + m3|11⟩ + m3|22⟩</div>
-        <div className="equation">|ψ̃₃⟩ = m1|02⟩ − m2|20⟩ + m3|21⟩ − m3|12⟩</div>
+        <EquationBlock>
+          <EquationLine>m3 = √((1 − m1² − m2²) / 2)</EquationLine>
+          <EquationLine>|ψ₁⟩ = (1/√2)(|12⟩ + |21⟩)</EquationLine>
+          <EquationLine>|ψ₂⟩ = (1/√3)(|00⟩ + |11⟩ − |22⟩)</EquationLine>
+          <EquationLine>|ψ₃⟩ = m1|01⟩ + m2|10⟩ + m3|11⟩ + m3|22⟩</EquationLine>
+          <EquationLine>|ψ̃₃⟩ = m1|02⟩ − m2|20⟩ + m3|21⟩ − m3|12⟩</EquationLine>
+        </EquationBlock>
         <p>combined as</p>
-        <div className="equation">ρ = λ1 |ψ₁⟩⟨ψ₁| + λ2 |ψ₂⟩⟨ψ₂| + λ3 (|ψ₃⟩⟨ψ₃| + |ψ̃₃⟩⟨ψ̃₃|)</div>
+        <EquationLine>ρ = λ1 |ψ₁⟩⟨ψ₁| + λ2 |ψ₂⟩⟨ψ₂| + λ3 (|ψ₃⟩⟨ψ₃| + |ψ̃₃⟩⟨ψ̃₃|)</EquationLine>
         <p>
           with <span className="math">D = 4 − 2m1² + m1·m2 − 2m2²</span> and
         </p>
-        <div className="equation">λ1 = 1 − (2 + 3·m1·m2) / D, λ3 = 1 / D, λ2 = 1 − λ1 − 2λ3</div>
+        <EquationLine>λ1 = 1 − (2 + 3·m1·m2) / D, λ3 = 1 / D, λ2 = 1 − λ1 − 2λ3</EquationLine>
       </div>
 
       <div className="doc-section">
@@ -53,11 +57,9 @@ function Steering() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c3_otimes_c3 import steering_state
+        <CodeBlock>{`from bound_entangled.c3_otimes_c3 import steering_state
 
-rho = steering_state(0.5, 0.5)`}
-        />
+rho = steering_state(0.5, 0.5)`}</CodeBlock>
       </div>
 
       <div className="doc-section">

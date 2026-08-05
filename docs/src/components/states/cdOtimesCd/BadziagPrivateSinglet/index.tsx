@@ -4,7 +4,9 @@
  */
 import { useState } from "react";
 import { badziagPrivateSinglet } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationBlock from "../../../Equations/EquationBlock";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -43,9 +45,10 @@ function BadziagPrivateSinglet() {
           <span className="math-var">k</span>⟩<sub>A′</sub> ⊗ |<span className="math-var">l</span>⟩
           <sub>B′</sub>, the state mixes two branches with weights
         </p>
-        <div className="equation">
-          p<sub>1</sub> = √d / (1 + √d), &nbsp;&nbsp; p<sub>2</sub> = 1 − p<sub>1</sub>
-        </div>
+        <EquationBlock>
+          <EquationLine>p_1 = √d / (1 + √d)</EquationLine>
+          <EquationLine>p_2 = 1 − p_1</EquationLine>
+        </EquationBlock>
         <p>
           The p<sub>1</sub> branch is supported on the |00, <span className="math-var">ij</span>⟩
           and |11, <span className="math-var">ij</span>⟩ basis states, with diagonal populations
@@ -53,19 +56,19 @@ function BadziagPrivateSinglet() {
           <span className="math-var">d</span> discrete Fourier matrix U (U<sub>ij</sub> = ω
           <sup>ij</sup>/√d, ω = e<sup>2πi/d</sup>):
         </p>
-        <div className="equation">
-          Σ<sub>ij</sub> (1/2d²)( |00, ij⟩⟨00, ij| + |11, ij⟩⟨11, ij| ) + (1/2d√d)( U<sub>ij</sub>{" "}
-          |00, ij⟩⟨11, ji| + h.c. )
-        </div>
+        <EquationLine>
+          {"Σ_{ij} (1/2d²)( |00, ij⟩⟨00, ij| + |11, ij⟩⟨11, ij| )" +
+            " + (1/2d√d)( U_{ij} |00, ij⟩⟨11, ji| + h.c. )"}
+        </EquationLine>
         <p>
           The p<sub>2</sub> branch is supported on |01, <span className="math-var">ii</span>⟩ and
           |10, <span className="math-var">ii</span>⟩, again a diagonal part plus Fourier-weighted
           coherences:
         </p>
-        <div className="equation">
-          Σ<sub>i</sub> (1/2d)( |01, ii⟩⟨01, ii| + |10, ii⟩⟨10, ii| ) + Σ<sub>ij</sub> (1/2d)( U
-          <sub>ij</sub> |01, ii⟩⟨10, jj| + h.c. )
-        </div>
+        <EquationLine>
+          {"Σ_i (1/2d)( |01, ii⟩⟨01, ii| + |10, ii⟩⟨10, ii| )" +
+            " + Σ_{ij} (1/2d)( U_{ij} |01, ii⟩⟨10, jj| + h.c. )"}
+        </EquationLine>
         <p className="doc-muted">
           ρ = p<sub>1</sub> · (p<sub>1</sub> branch, normalised) + p<sub>2</sub> · (p<sub>2</sub>{" "}
           branch, normalised). The returned matrix is in ABA′B′ ordering; testing the physical Alice
@@ -95,12 +98,10 @@ function BadziagPrivateSinglet() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.cd_otimes_cd import badziag_private_singlet
+        <CodeBlock>{`from bound_entangled.cd_otimes_cd import badziag_private_singlet
 
 rho = badziag_private_singlet(shield_dim=2)
-# rho is a 16 x 16 density matrix on C^2 ⊗ C^2 ⊗ C^2 ⊗ C^2`}
-        />
+# rho is a 16 x 16 density matrix on C^2 ⊗ C^2 ⊗ C^2 ⊗ C^2`}</CodeBlock>
       </div>
 
       <div className="doc-section">

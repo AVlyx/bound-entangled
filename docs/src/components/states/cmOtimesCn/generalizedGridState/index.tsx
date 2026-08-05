@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { generalizedGridState } from "bound-entangled";
 import type { Hyperedge } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import Citation from "../../../Citation";
 
 interface Preset {
@@ -70,29 +71,12 @@ function GeneralizedGridState() {
           Its component is the sum of the corresponding basis states — a vertex listed twice
           contributes twice, and there is no relative minus sign between terms:
         </p>
-        <div className="equation">
-          |<span className="math-var">h</span>⟩ = Σ
-          <sub>
-            [<span className="math-var">i</span>, <span className="math-var">j</span>] ∈{" "}
-            <span className="math-var">h</span>
-          </sub>{" "}
-          |<span className="math-var">i</span>, <span className="math-var">j</span>⟩
-        </div>
+        <EquationLine>{"|h⟩ = Σ_{[i, j] ∈ h} |i, j⟩"}</EquationLine>
         <p>
           The generalized grid state is the trace-normalized mixture over a chosen set of hyperedges{" "}
           <span className="math-var">H</span>:
         </p>
-        <div className="equation">
-          <span className="math-op">ρ</span> = (Σ
-          <sub>
-            <span className="math-var">h</span> ∈ <span className="math-var">H</span>
-          </sub>{" "}
-          |<span className="math-var">h</span>⟩⟨<span className="math-var">h</span>|) / Tr(Σ
-          <sub>
-            <span className="math-var">h</span> ∈ <span className="math-var">H</span>
-          </sub>{" "}
-          |<span className="math-var">h</span>⟩⟨<span className="math-var">h</span>|)
-        </div>
+        <EquationLine>{"ρ = (Σ_{h ∈ H} |h⟩⟨h|) / Tr(Σ_{h ∈ H} |h⟩⟨h|)"}</EquationLine>
       </div>
 
       <div className="doc-section">
@@ -117,15 +101,13 @@ function GeneralizedGridState() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.cm_otimes_cn import generalized_grid_state
+        <CodeBlock>{`from bound_entangled.cm_otimes_cn import generalized_grid_state
 
 rho = generalized_grid_state(
     (3, 3),
     [(0, 0), (1, 1)],
     [(0, 1), (2, 2)],
-)`}
-        />
+)`}</CodeBlock>
       </div>
 
       <div className="doc-section">

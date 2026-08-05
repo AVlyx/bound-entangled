@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { pianni, projectorIj } from "bound-entangled";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 
@@ -46,7 +47,7 @@ function Pianni() {
           <span className="math-var">i</span>, <span className="math-var">j</span> ∈{" "}
           {"{0, 1, 2, 3}"} (0 = I, 1 = X, 2 = Y, 3 = Z), the generalized Bell state
         </p>
-        <div className="equation">|Ψᵢⱼ⟩ = (𝟙 ⊗ σᵢ ⊗ σⱼ) |Ψ⁺₄⟩</div>
+        <EquationLine>|Ψᵢⱼ⟩ = (𝟙 ⊗ σᵢ ⊗ σⱼ) |Ψ⁺₄⟩</EquationLine>
         <p>
           is obtained by applying <span className="math-var">σᵢ</span> ⊗{" "}
           <span className="math-var">σⱼ</span> to the second C⁴ factor of{" "}
@@ -55,7 +56,7 @@ function Pianni() {
           <code>projectorIj(i, j)</code> computes, and is itself part of the construction: the
           Pianni state is the uniform mixture of six such projectors,
         </p>
-        <div className="equation">ρ₀ = (1/6) Σ Pᵢⱼ</div>
+        <EquationLine>ρ₀ = (1/6) Σ Pᵢⱼ</EquationLine>
         <p>over the six pairs</p>
         <div className="scroll-x">
           <table className="doc-table">
@@ -84,7 +85,7 @@ function Pianni() {
           qubits, the second — the one the Pauli operators acted on — split into the other two), the
           Pianni state reorders those four qubits with the permutation [0, 2, 1, 3]:
         </p>
-        <div className="equation">ρ = permuteSystems(ρ₀, [0, 2, 1, 3], [2, 2, 2, 2])</div>
+        <EquationLine>ρ = permuteSystems(ρ₀, [0, 2, 1, 3], [2, 2, 2, 2])</EquationLine>
         <p className="equation-caption">
           Regrouping the qubits this way — described in the source as recombining them into the
           bipartition AA′|BB′ — is what makes ρ positive under the resulting [4, 4] partial
@@ -95,11 +96,9 @@ function Pianni() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c4_otimes_c4 import pianni
+        <CodeBlock>{`from bound_entangled.c4_otimes_c4 import pianni
 
-rho = pianni()  # 16x16 density matrix on C⁴ ⊗ C⁴`}
-        />
+rho = pianni()  # 16x16 density matrix on C⁴ ⊗ C⁴`}</CodeBlock>
       </div>
 
       <div className="doc-section">

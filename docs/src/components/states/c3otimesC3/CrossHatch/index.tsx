@@ -4,7 +4,8 @@
  */
 import { crossHatch } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import Citation from "../../../Citation";
 
 function CrossHatch() {
@@ -29,13 +30,13 @@ function CrossHatch() {
           and whose edges pair up vertices. An edge joining <span className="math">(i, j)</span> and{" "}
           <span className="math">(k, l)</span> carries the pure state
         </p>
-        <div className="equation">|e⟩ = (|ij⟩ − |kl⟩) / √2</div>
+        <EquationLine>|e⟩ = (|ij⟩ − |kl⟩) / √2</EquationLine>
         <p>and the grid state is the uniform mixture of the states carried by every edge:</p>
-        <div className="equation">ρ = (1 / |E|) Σₑ |e⟩⟨e|</div>
+        <EquationLine>ρ = (1 / |E|) Σₑ |e⟩⟨e|</EquationLine>
         <p>The cross-hatch state is this construction on the 3×3 grid, with the four edges</p>
-        <div className="equation">
+        <EquationLine>
           {"{(0,0), (1,2)},  {(1,0), (2,2)},  {(0,1), (2,0)},  {(0,2), (2,1)}"}
-        </div>
+        </EquationLine>
         <span className="equation-caption">
           Every vertex used is distinct, so the four edge states are mutually orthogonal.
         </span>
@@ -43,11 +44,9 @@ function CrossHatch() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c3_otimes_c3 import cross_hatch
+        <CodeBlock>{`from bound_entangled.c3_otimes_c3 import cross_hatch
 
-rho = cross_hatch()`}
-        />
+rho = cross_hatch()`}</CodeBlock>
       </div>
 
       <div className="doc-section">

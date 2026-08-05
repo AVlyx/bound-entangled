@@ -326,39 +326,8 @@
   color: var(--text-h);
 }
 
-/* Display equation: centred, on its own line, scrollable when too wide. */
-.equation {
-  font-family: var(--math);
-  font-size: 1.05em;
-  line-height: 1.5;
-  color: var(--text-h);
-  text-align: center;
-  margin: var(--space-5) 0;
-  padding: var(--space-2) 0;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-}
-
-/* Numbered equation: put the tag in `data-number`, e.g. data-number="1". */
-.equation-numbered {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
-  align-items: center;
-  gap: var(--space-4);
-  overflow: visible;
-
-  &::after {
-    content: "(" attr(data-number) ")";
-    font-family: var(--math);
-    color: var(--text);
-  }
-
-  /* The equation body still scrolls on its own inside the grid. */
-  > * {
-    min-width: 0;
-    overflow-x: auto;
-  }
-}
+/* Display equations are components: see `components/Equations/EquationLine`
+   for a single line and `EquationBlock` for a group of them. */
 
 /* Caption under an equation or a rendered matrix. */
 .equation-caption {
@@ -370,12 +339,16 @@
   margin-top: var(--space-2);
 }
 
-/* Boxed result — the punchline equation of a section. */
+/* Boxed result — the punchline equation of a section. Wraps an `EquationLine`. */
 .equation-boxed {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--code-bg);
   padding: var(--space-4) var(--space-5);
+  margin: var(--space-5) 0;
+
+  /* The equation inside gives up its own margins; here the box owns them. */
+  --equation-margin: 0;
 }
 
 /* ------------------------------------------------------------------ *
@@ -395,82 +368,6 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   tab-size: 2;
-
-  /* `code` inside `pre` must not inherit the inline chip styling. */
-  code {
-    display: block;
-    padding: 0;
-    background: none;
-    font-size: inherit;
-    line-height: inherit;
-  }
-}
-
-/* Language tag shown above a block: <pre data-lang="ts">. */
-.code-block {
-  position: relative;
-
-  &[data-lang]::before {
-    content: attr(data-lang);
-    position: absolute;
-    top: var(--space-2);
-    right: var(--space-3);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text);
-    opacity: 0.6;
-  }
-}
-
-/* Code sample with a copy button — see components/CodeBlock. The button sits in
-   the top right corner, so the language tag shifts left to make room. */
-.code-wrap {
-  position: relative;
-  margin: 0 0 var(--space-4);
-
-  .code-block {
-    margin-bottom: 0;
-    padding-top: var(--space-6);
-  }
-
-  .code-block[data-lang]::before {
-    top: var(--space-3);
-    right: 5.5rem;
-  }
-}
-
-.code-copy {
-  position: absolute;
-  top: var(--space-2);
-  right: var(--space-2);
-  font-family: var(--sans);
-  font-size: 12px;
-  line-height: 1;
-  color: var(--text);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 5px 10px;
-  cursor: pointer;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
-
-  &:hover {
-    color: var(--text-h);
-    border-color: var(--accent-border);
-  }
-
-  &[data-status="copied"] {
-    color: var(--accent);
-    border-color: var(--accent-border);
-  }
-
-  &[data-status="failed"] {
-    color: var(--danger);
-    border-color: var(--danger);
-  }
 }
 
 /* A function signature set apart from the prose. */

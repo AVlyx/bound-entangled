@@ -5,7 +5,8 @@
 import { useState } from "react";
 import { genTiles2, genTiles2Basis } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationLine from "../../../Equations/EquationLine";
 import Citation from "../../../Citation";
 
 const DIM_OPTIONS: readonly [number, number][] = [
@@ -36,36 +37,20 @@ function GenTiles() {
           families of product vectors (DiVincenzo, Mor, Shor, Smolin, Terhal, Section V B, Eqs.
           5.9–5.11):
         </p>
-        <div className="equation">
-          |<span className="math-var">S</span>
-          <sub>j</sub>⟩ = (|<span className="math-var">j</span>⟩ − |
-          <span className="math-var">j</span>
-          +1 mod <span className="math-var">m</span>⟩) / √2 ⊗ |<span className="math-var">j</span>
-          ⟩, &nbsp; <span className="math-var">j</span> = 0, …, <span className="math-var">m</span>{" "}
-          − 1
-        </div>
+        <EquationLine>
+          {"|S_j⟩ = (|j⟩ − |j+1 mod m⟩) / √2 ⊗ |j⟩,  j = 0, …, m − 1"}
+        </EquationLine>
         <p className="equation-caption">m "short" tile states.</p>
-        <div className="equation">
-          |<span className="math-var">L</span>
-          <sub>jk</sub>⟩ = |<span className="math-var">j</span>⟩ ⊗ (normalized combination of |
-          <span className="math-var">j</span>+<span className="math-var">i</span>+1 mod{" "}
-          <span className="math-var">m</span>⟩ and |<span className="math-var">i</span>+2⟩, weighted
-          by roots of unity <span className="math-var">ω</span>
-          <sup>ik</sup>, ω = e<sup>2πi/(n−2)</sup>)
-        </div>
+        <EquationLine>
+          {"|L_{jk}⟩ = |j⟩ ⊗ (normalized combination of |j+i+1 mod m⟩ and |i+2⟩," +
+            " weighted by roots of unity ω^{ik}, ω = e^{2πi/(n−2)})"}
+        </EquationLine>
         <p className="equation-caption">
           m(n − 3) "long" tile states, <span className="math-var">j</span> = 0, …,{" "}
           <span className="math-var">m</span> − 1, <span className="math-var">k</span> = 1, …,{" "}
           <span className="math-var">n</span> − 3.
         </p>
-        <div className="equation">
-          |<span className="math-var">F</span>⟩ = (Σ
-          <sub>
-            <span className="math-var">i</span>,<span className="math-var">j</span>
-          </sub>{" "}
-          |<span className="math-var">i</span>⟩ ⊗ |<span className="math-var">j</span>⟩) / √(
-          <span className="math-var">mn</span>)
-        </div>
+        <EquationLine>{"|F⟩ = (Σ_{i,j} |i⟩ ⊗ |j⟩) / √(mn)"}</EquationLine>
         <p className="equation-caption">one "stopper" state, for a total of mn − 2m + 1 vectors.</p>
         <p>
           Given the basis <span className="math-var">v</span>
@@ -73,13 +58,7 @@ function GenTiles() {
           <sub>N</sub> (with <span className="math-var">N</span> = mn − 2m + 1), the state is the
           uniform mixture over the orthogonal complement of their span:
         </p>
-        <div className="equation">
-          <span className="math-op">ρ</span> = (<span className="math-op">I</span> − Σ<sub>i</sub> |
-          <span className="math-var">v</span>
-          <sub>i</sub>⟩⟨<span className="math-var">v</span>
-          <sub>i</sub>|) / (<span className="math-var">mn</span> −{" "}
-          <span className="math-var">N</span>)
-        </div>
+        <EquationLine>{"ρ = (I − Σ_i |v_i⟩⟨v_i|) / (mn − N)"}</EquationLine>
       </div>
 
       <div className="doc-section">
@@ -98,11 +77,9 @@ function GenTiles() {
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.cm_otimes_cn import gen_tiles2
+        <CodeBlock>{`from bound_entangled.cm_otimes_cn import gen_tiles2
 
-rho = gen_tiles2((3, 4))`}
-        />
+rho = gen_tiles2((3, 4))`}</CodeBlock>
       </div>
 
       <div className="doc-section">

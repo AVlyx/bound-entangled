@@ -4,7 +4,9 @@
  */
 import { ncomms6297 } from "bound-entangled";
 import CodeBlock from "../../../CodeBlock";
-import LatexMatrix from "../../../LatexMatrix";
+import LatexMatrix from "../../../Equations/LatexMatrix";
+import EquationBlock from "../../../Equations/EquationBlock";
+import EquationLine from "../../../Equations/EquationLine";
 import Citation from "../../../Citation";
 
 function Ncomms6297() {
@@ -26,21 +28,21 @@ function Ncomms6297() {
           <span className="math">|ij⟩ = |i⟩ ⊗ |j⟩</span> of C³ ⊗ C³, with{" "}
           <span className="math">a = √(131/2)</span>:
         </p>
-        <div className="equation">|ψ₁⟩ = (1/√2)(|00⟩ + |11⟩)</div>
-        <div className="equation">|ψ₂⟩ = (a/12)(|01⟩ + |10⟩) + (1/60)|02⟩ − (3/10)|21⟩</div>
-        <div className="equation">|ψ₃⟩ = (a/12)(|00⟩ − |11⟩) + (1/60)|12⟩ + (3/10)|20⟩</div>
-        <div className="equation">|ψ₄⟩ = (1/√3)(−|01⟩ + |10⟩ + |22⟩)</div>
+        <EquationBlock>
+          <EquationLine>|ψ₁⟩ = (1/√2)(|00⟩ + |11⟩)</EquationLine>
+          <EquationLine>|ψ₂⟩ = (a/12)(|01⟩ + |10⟩) + (1/60)|02⟩ − (3/10)|21⟩</EquationLine>
+          <EquationLine>|ψ₃⟩ = (a/12)(|00⟩ − |11⟩) + (1/60)|12⟩ + (3/10)|20⟩</EquationLine>
+          <EquationLine>|ψ₄⟩ = (1/√3)(−|01⟩ + |10⟩ + |22⟩)</EquationLine>
+        </EquationBlock>
         <p>with eigenvalues</p>
-        <div className="equation">λ = (3257/6884, 450/1721, 450/1721, 27/6884)</div>
+        <EquationLine>λ = (3257/6884, 450/1721, 450/1721, 27/6884)</EquationLine>
       </div>
 
       <div className="doc-section">
         <h2>Usage</h2>
-        <CodeBlock
-          code={`from bound_entangled.c3_otimes_c3 import ncomms6297
+        <CodeBlock>{`from bound_entangled.c3_otimes_c3 import ncomms6297
 
-rho = ncomms6297()`}
-        />
+rho = ncomms6297()`}</CodeBlock>
       </div>
 
       <div className="doc-section">
