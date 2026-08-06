@@ -41,7 +41,7 @@ function Example() {
         </div>
       </div>
       <div className="example-output">
-        <LatexMatrix value={rho} precision={2} label="ρ =" />
+        <LatexMatrix value={rho} precision={2} label="\rho =" />
       </div>
       <p className="figure-caption">
         <span className="math">z</span> is restricted to <span className="math">[0, 1]</span> here

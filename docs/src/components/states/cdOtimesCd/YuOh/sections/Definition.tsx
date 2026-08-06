@@ -10,7 +10,7 @@ function Definition() {
         dimension, which sum to the zero vector. From these, for k = 1, …, d − 1:
       </p>
       <EquationLine>
-        {"φ_k = ((d − 1)^{3/2} / (d √(d − 2))) · Σ_p θ_p(k) |θ_p⟩ ⊗ |θ_p⟩"}
+        {"\\varphi_k = \\tfrac{(d-1)^{3/2}}{d\\sqrt{d-2}} \\cdot \\sum_p \\theta_p(k)\\, |\\theta_p\\rangle \\otimes |\\theta_p\\rangle"}
       </EquationLine>
       <p>
         φ<sub>k</sub> is symmetric under swapping the two factors. It combines with x and y into ψ
@@ -18,8 +18,8 @@ function Definition() {
         state is then
       </p>
       <EquationLine>
-        {"ρ = (xy / R) |Φ_d⟩⟨Φ_d| + (δ / R) Σ_{1 ≤ j < i < d} |ψ_{ij}⟩⟨ψ_{ij}|" +
-          " + (1 / R) Σ_{k=1}^{d − 1} |ψ_k⟩⟨ψ_k|"}
+        {"\\rho = \\tfrac{xy}{R} |\\Phi_d\\rangle\\langle\\Phi_d| + \\tfrac{\\delta}{R} \\sum_{1 \\le j < i < d} |\\psi_{ij}\\rangle\\langle\\psi_{ij}|" +
+          " + \\tfrac{1}{R} \\sum_{k=1}^{d-1} |\\psi_k\\rangle\\langle\\psi_k|"}
       </EquationLine>
       <p>
         with |Φ<sub>d</sub>⟩ = Σᵢ |ii⟩ the unnormalized maximally entangled ket, δ = z²/(d − 2) −

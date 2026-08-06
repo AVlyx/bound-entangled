@@ -17,7 +17,7 @@ function Example() {
         </div>
       </div>
       <div className="example-output">
-        <LatexMatrix value={horodecki3By3({ aParam })} precision={2} label="ρ =" />
+        <LatexMatrix value={horodecki3By3({ aParam })} precision={2} label="\rho =" />
       </div>
     </ExampleSection>
   );

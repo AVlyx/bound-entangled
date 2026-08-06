@@ -18,7 +18,7 @@ function Example() {
         <span className="control-value">{aParam.toFixed(2)}</span>
       </div>
       <div className="example-output">
-        <LatexMatrix value={mat} precision={3} label="ρ =" />
+        <LatexMatrix value={mat} precision={3} label="\rho =" />
       </div>
     </ExampleSection>
   );

@@ -19,14 +19,16 @@ function Definition() {
         minus sign, and repeating a vertex adds to it again, so a hyperedge spanning vertices{" "}
         <span className="math">v₁, …, vₖ</span> carries the unnormalized vector
       </p>
-      <EquationLine>|c⟩ = Σᵢ |vᵢ⟩</EquationLine>
+      <EquationLine>{"|c\\rangle = \\sum_i |v_i\\rangle"}</EquationLine>
       <p>
         The generalized grid state is the trace-normalized sum of{" "}
         <span className="math">|c⟩⟨c|</span> over every hyperedge — not divided by the number of
         hyperedges directly, so a hyperedge spanning more vertices, or a vertex reused across
         several hyperedges, contributes more weight before the final normalization:
       </p>
-      <EquationLine>{"ρ = (Σ_{hyperedges} |c⟩⟨c|) / tr(Σ_{hyperedges} |c⟩⟨c|)"}</EquationLine>
+      <EquationLine>
+        {"\\rho = \\tfrac{\\sum_{\\text{hyperedges}} |c\\rangle\\langle c|}{\\operatorname{tr}(\\sum_{\\text{hyperedges}} |c\\rangle\\langle c|)}"}
+      </EquationLine>
       <p>
         <code>sn3GridState()</code> is this construction on the 5×5 grid with 13 hyperedges,
         falling into four groups:

@@ -9,11 +9,13 @@ function Definition() {
         Writing {"{"}|0⟩, |1⟩, |2⟩{"}"} for the computational basis of ℂ³, the five vectors are:
       </p>
       <EquationBlock>
-        <EquationLine>|ψ₀⟩ = |0⟩ ⊗ (|0⟩ − |1⟩)/√2</EquationLine>
-        <EquationLine>|ψ₁⟩ = (|0⟩ − |1⟩) ⊗ |2⟩/√2</EquationLine>
-        <EquationLine>|ψ₂⟩ = |2⟩ ⊗ (|1⟩ − |2⟩)/√2</EquationLine>
-        <EquationLine>|ψ₃⟩ = (|1⟩ − |2⟩) ⊗ |0⟩/√2</EquationLine>
-        <EquationLine>|ψ₄⟩ = (|0⟩ + |1⟩ + |2⟩) ⊗ (|0⟩ + |1⟩ + |2⟩)/3</EquationLine>
+        <EquationLine>{"|\\psi_0\\rangle = |0\\rangle \\otimes (|0\\rangle - |1\\rangle)/\\sqrt2"}</EquationLine>
+        <EquationLine>{"|\\psi_1\\rangle = (|0\\rangle - |1\\rangle) \\otimes |2\\rangle/\\sqrt2"}</EquationLine>
+        <EquationLine>{"|\\psi_2\\rangle = |2\\rangle \\otimes (|1\\rangle - |2\\rangle)/\\sqrt2"}</EquationLine>
+        <EquationLine>{"|\\psi_3\\rangle = (|1\\rangle - |2\\rangle) \\otimes |0\\rangle/\\sqrt2"}</EquationLine>
+        <EquationLine>
+          {"|\\psi_4\\rangle = (|0\\rangle + |1\\rangle + |2\\rangle) \\otimes (|0\\rangle + |1\\rangle + |2\\rangle)/3"}
+        </EquationLine>
       </EquationBlock>
       <p>
         The five vectors are pairwise orthonormal, so they span a 5-dimensional subspace of the
@@ -22,7 +24,9 @@ function Definition() {
         <span className="math-op">upb</span> construction:
       </p>
       <div className="equation-boxed">
-        <EquationLine>ρ = (I − Σᵢ |ψᵢ⟩⟨ψᵢ|) / (9 − 5) = (I − Σᵢ |ψᵢ⟩⟨ψᵢ|) / 4</EquationLine>
+        <EquationLine>
+          {"\\rho = \\tfrac{I - \\sum_i |\\psi_i\\rangle\\langle\\psi_i|}{9-5} = \\tfrac{I - \\sum_i |\\psi_i\\rangle\\langle\\psi_i|}{4}"}
+        </EquationLine>
       </div>
       <p className="equation-caption">
         each |ψᵢ⟩⟨ψᵢ| is a rank-1 product-state projector, so ρ inherits a positive partial

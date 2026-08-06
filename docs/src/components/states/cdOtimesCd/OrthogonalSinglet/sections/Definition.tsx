@@ -14,8 +14,8 @@ function Definition() {
         weights
       </p>
       <EquationBlock>
-        <EquationLine>p_1 = √d / (1 + √d)</EquationLine>
-        <EquationLine>p_2 = 1 − p_1</EquationLine>
+        <EquationLine>{"p_1 = \\tfrac{\\sqrt d}{1+\\sqrt d}"}</EquationLine>
+        <EquationLine>{"p_2 = 1 - p_1"}</EquationLine>
       </EquationBlock>
       <p>
         The construction uses a family of <span className="math-var">d</span> real orthogonal{" "}
@@ -23,8 +23,8 @@ function Definition() {
         <sup>k</sup> (Appendix G of the source):
       </p>
       <EquationLine>
-        {"ρ = (p_1/d²) Σ_{ij} |z_{ij}⟩⟨z_{ij}| + (p_2/2d) Σ_k |01⟩⟨01|_{AB} ⊗ |s_k⟩⟨s_k|_{A′B′}" +
-          " + (p_2/2d) Σ_i |10, ii⟩⟨10, ii|"}
+        {"\\rho = \\tfrac{p_1}{d^2} \\sum_{ij} |z_{ij}\\rangle\\langle z_{ij}| + \\tfrac{p_2}{2d} \\sum_k |01\\rangle\\langle01|_{AB} \\otimes |s_k\\rangle\\langle s_k|_{A'B'}" +
+          " + \\tfrac{p_2}{2d} \\sum_i |10,ii\\rangle\\langle10,ii|"}
       </EquationLine>
       <p>
         where |z<sub>ij</sub>⟩ = (1/√2)( |00, ij⟩ + Σ<sub>k</sub> Q<sup>j</sup>
@@ -32,7 +32,9 @@ function Definition() {
         <span className="math-var">d</span> = 3 the Q<sup>k</sup> are rotations by φ = 2π(k+1)/3
         in the first two coordinates,
       </p>
-      <EquationLine>{"Q^k = [[cos φ, sin φ, 0], [sin φ, −cos φ, 0], [0, 0, 1]]"}</EquationLine>
+      <EquationLine>
+        {"Q^k = \\begin{bmatrix} \\cos\\varphi & \\sin\\varphi & 0 \\\\ \\sin\\varphi & -\\cos\\varphi & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}"}
+      </EquationLine>
       <p>
         and the |s<sub>k</sub>⟩ are hard-coded as |s<sub>0</sub>⟩ = (|00⟩ + |11⟩)/√2, |s
         <sub>1</sub>⟩ = (|01⟩ − |10⟩)/√2, |s<sub>2</sub>⟩ = |22⟩. For{" "}

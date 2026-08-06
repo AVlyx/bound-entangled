@@ -37,13 +37,13 @@ function Example() {
         </div>
       </div>
       <div className="example-output">
-        <LatexMatrix value={projectorIj(i, j)} precision={2} dimZeros label="Pᵢⱼ =" />
+        <LatexMatrix value={projectorIj(i, j)} precision={2} dimZeros label="P_{ij} =" />
       </div>
       <p className="equation-caption">
         The full state ρ = pianni(), the (1/6)-weighted, permuted sum of the six Pᵢⱼ listed above:
       </p>
       <div className="scroll-x">
-        <LatexMatrix value={pianni()} precision={2} dimZeros label="ρ =" />
+        <LatexMatrix value={pianni()} precision={2} dimZeros label="\rho =" />
       </div>
     </ExampleSection>
   );

@@ -71,14 +71,14 @@ function Example() {
         </div>
       </div>
       <div className="example-output">
-        <LatexMatrix value={component.map((x) => [x])} precision={2} dimZeros label="|c⟩ =" />
+        <LatexMatrix value={component.map((x) => [x])} precision={2} dimZeros label="|c\rangle =" />
       </div>
       <p className="equation-caption">
         The full state ρ = sn3GridState(), the trace-normalized sum of |c⟩⟨c| over all 13
         hyperedges above:
       </p>
       <div className="scroll-x">
-        <LatexMatrix value={sn3GridState()} precision={2} dimZeros label="ρ =" />
+        <LatexMatrix value={sn3GridState()} precision={2} dimZeros label="\rho =" />
       </div>
     </ExampleSection>
   );

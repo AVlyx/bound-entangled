@@ -11,7 +11,9 @@ function Definition() {
         <span className="math">AB</span>, with a copy of the same Bell pair on{" "}
         <span className="math">CD</span>:
       </p>
-      <EquationLine>ρ = ¼ Σᵢ₌₀³ |φᵢ⟩⟨φᵢ| ⊗ |φᵢ⟩⟨φᵢ|</EquationLine>
+      <EquationLine>
+        {"\\rho = \\tfrac14 \\sum_{i=0}^{3} |\\varphi_i\\rangle\\langle\\varphi_i| \\otimes |\\varphi_i\\rangle\\langle\\varphi_i|"}
+      </EquationLine>
       <p>
         Equivalently, it is the <span className="math-var">systems = 4</span> instance of the
         generalized Smolin construction: <code>smolin()</code> matches{" "}

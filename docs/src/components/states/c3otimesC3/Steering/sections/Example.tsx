@@ -25,7 +25,7 @@ function Example() {
       </div>
       {valid ? (
         <div className="example-output">
-          <LatexMatrix value={steeringState({ m1, m2 })} precision={2} label="ρ =" />
+          <LatexMatrix value={steeringState({ m1, m2 })} precision={2} label="\rho =" />
         </div>
       ) : (
         <div className="callout callout-warn">

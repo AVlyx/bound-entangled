@@ -8,7 +8,9 @@ function Definition() {
         For <span className="math">systems = 2n</span> qubits, the generalized Smolin (GSS) state
         is
       </p>
-      <EquationLine>{"ρ = (I + (−1)ⁿ Σ_{i∈{X,Y,Z}} σᵢ^{⊗2n}) / 2^{2n}"}</EquationLine>
+      <EquationLine>
+        {"\\rho = \\tfrac{I + (-1)^n \\sum_{i \\in \\{X,Y,Z\\}} \\sigma_i^{\\otimes 2n}}{2^{2n}}"}
+      </EquationLine>
       <p>
         where{" "}
         <span className="math">

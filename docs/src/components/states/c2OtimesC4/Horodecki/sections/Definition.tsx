@@ -24,15 +24,15 @@ function Definition() {
           [0, "a", 0, 0, 0, 0, "a", 0],
           [0, 0, "a", 0, "c", 0, 0, "b"],
         ]}
-        label="ρ(a) = 1/(7a + 1) ·"
+        label="\rho(a) = \tfrac{1}{7a+1}\cdot"
       />
       <p className="equation-caption">
         with <span className="math-var">b</span>, <span className="math-var">c</span> defined
         below.
       </p>
       <EquationBlock>
-        <EquationLine>b = (1 + a) / 2</EquationLine>
-        <EquationLine>c = √(1 − a²) / 2</EquationLine>
+        <EquationLine>{"b = \\tfrac{1+a}{2}"}</EquationLine>
+        <EquationLine>{"c = \\tfrac{\\sqrt{1-a^2}}{2}"}</EquationLine>
       </EquationBlock>
     </DefinitionSection>
   );

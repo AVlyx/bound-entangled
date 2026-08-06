@@ -14,7 +14,9 @@ function Definition() {
         weight. The isometry <span className="math-var">V</span> maps the Dicke basis into the
         computational basis,
       </p>
-      <EquationLine>{"V = Σ_{i₁…iₙ} binom(n, ν)^{−1/2} |i₁…iₙ⟩⟨ν|"}</EquationLine>
+      <EquationLine>
+        {"V = \\sum_{i_1\\ldots i_n} \\binom{n}{\\nu}^{-1/2} |i_1\\ldots i_n\\rangle\\langle\\nu|"}
+      </EquationLine>
       <p>
         with <span className="math">ν</span> the Hamming weight of the bit string{" "}
         <span className="math">i₁…iₙ</span>, and qubit <span className="math">k</span>{" "}
@@ -25,7 +27,9 @@ function Definition() {
         plus a sign <span className="math-var">σ</span> placed in the two corners{" "}
         <span className="math">(0, n)</span> and <span className="math">(n, 0)</span>:
       </p>
-      <EquationLine>{"D(z)_{kk} = binom(n, k) · f_{K−k}(z), K = ⌊n / 2⌋"}</EquationLine>
+      <EquationLine>
+        {"D(z)_{kk} = \\binom{n}{k} \\cdot f_{K-k}(z),\\ K = \\lfloor n/2 \\rfloor"}
+      </EquationLine>
       <p>
         where{" "}
         <span className="math">
@@ -38,7 +42,9 @@ function Definition() {
         , <span className="math">f₀ = 1</span>, <span className="math">f₁ = 1 + z</span>. The
         normalized Dicke-basis density matrix is
       </p>
-      <EquationLine>{"ρ_{Dicke}(z, σ) = (D(z) + O(σ)) / (2 (4 + z)^K)"}</EquationLine>
+      <EquationLine>
+        {"\\rho_{\\text{Dicke}}(z,\\sigma) = \\tfrac{D(z) + O(\\sigma)}{2(4+z)^K}"}
+      </EquationLine>
       <p>
         and the computational-basis state is the conjugation{" "}
         <span className="math">ρ = V ρ_Dicke Vᵀ</span>.

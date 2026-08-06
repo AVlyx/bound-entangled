@@ -27,7 +27,7 @@ function Example() {
         <span className="control-value">{basisSize} basis vectors</span>
       </div>
       <div className="example-output">
-        <LatexMatrix value={rho} precision={2} label="ρ =" />
+        <LatexMatrix value={rho} precision={2} label="\rho =" />
       </div>
     </ExampleSection>
   );

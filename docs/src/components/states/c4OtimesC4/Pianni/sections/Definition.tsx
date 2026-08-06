@@ -21,7 +21,9 @@ function Definition() {
         <span className="math-var">i</span>, <span className="math-var">j</span> ∈{" "}
         {"{0, 1, 2, 3}"} (0 = I, 1 = X, 2 = Y, 3 = Z), the generalized Bell state
       </p>
-      <EquationLine>|Ψᵢⱼ⟩ = (𝟙 ⊗ σᵢ ⊗ σⱼ) |Ψ⁺₄⟩</EquationLine>
+      <EquationLine>
+        {"|\\Psi_{ij}\\rangle = (\\mathbb{1} \\otimes \\sigma_i \\otimes \\sigma_j) |\\Psi^+_4\\rangle"}
+      </EquationLine>
       <p>
         is obtained by applying <span className="math-var">σᵢ</span> ⊗{" "}
         <span className="math-var">σⱼ</span> to the second C⁴ factor of{" "}
@@ -30,7 +32,7 @@ function Definition() {
         <code>projectorIj(i, j)</code> computes, and is itself part of the construction: the
         Pianni state is the uniform mixture of six such projectors,
       </p>
-      <EquationLine>ρ₀ = (1/6) Σ Pᵢⱼ</EquationLine>
+      <EquationLine>{"\\rho_0 = \\tfrac16 \\sum P_{ij}"}</EquationLine>
       <p>over the six pairs</p>
       <div className="scroll-x">
         <table className="doc-table">
@@ -59,7 +61,9 @@ function Definition() {
         qubits, the second — the one the Pauli operators acted on — split into the other two), the
         Pianni state reorders those four qubits with the permutation [0, 2, 1, 3]:
       </p>
-      <EquationLine>ρ = permuteSystems(ρ₀, [0, 2, 1, 3], [2, 2, 2, 2])</EquationLine>
+      <EquationLine>
+        {"\\rho = \\text{permuteSystems}(\\rho_0,\\ [0,2,1,3],\\ [2,2,2,2])"}
+      </EquationLine>
       <p className="equation-caption">
         Regrouping the qubits this way — described in the source as recombining them into the
         bipartition AA′|BB′ — is what makes ρ positive under the resulting [4, 4] partial

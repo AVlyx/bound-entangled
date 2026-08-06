@@ -10,7 +10,6 @@
  */
 
 .line {
-  font-family: var(--math);
   font-size: 1.05em;
   line-height: 1.5;
   color: var(--text-h);
@@ -19,11 +18,4 @@
   padding: var(--space-2) 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-}
-
-/* `line-height: 0` keeps a script from stretching the line it sits on. */
-.line sub,
-.line sup {
-  font-size: 0.75em;
-  line-height: 0;
 }

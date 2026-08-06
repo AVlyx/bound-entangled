@@ -44,7 +44,7 @@ function Example() {
       </div>
       {valid ? (
         <div className="example-output">
-          <LatexMatrix value={yuOh(options)} precision={2} label="ρ =" />
+          <LatexMatrix value={yuOh(options)} precision={2} label="\rho =" />
         </div>
       ) : (
         <div className="callout callout-warn">

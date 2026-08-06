@@ -114,13 +114,13 @@ function Example() {
       {valid && basisColumns && rho ? (
         <>
           <div className="example-output">
-            <LatexMatrix value={basisColumns} precision={3} label="[|ψ₀⟩ ⋯ |ψ₄⟩] =" />
+            <LatexMatrix value={basisColumns} precision={3} label="[|\psi_0\rangle \cdots |\psi_4\rangle] =" />
           </div>
           <p className="equation-caption">
             the five basis vectors as columns, each a flat 9-vector of ℂ³ ⊗ ℂ³.
           </p>
           <div className="example-output">
-            <LatexMatrix value={rho} precision={2} label="ρ =" />
+            <LatexMatrix value={rho} precision={2} label="\rho =" />
           </div>
           <p className="equation-caption">the resulting 9×9 bound entangled state.</p>
         </>

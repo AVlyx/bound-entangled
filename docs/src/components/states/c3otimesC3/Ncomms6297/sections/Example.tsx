@@ -8,7 +8,7 @@ function Example() {
   return (
     <ExampleSection title="The state">
       <div className="example-output">
-        <LatexMatrix value={rho} precision={3} label="ρ =" />
+        <LatexMatrix value={rho} precision={3} label="\rho =" />
       </div>
     </ExampleSection>
   );
