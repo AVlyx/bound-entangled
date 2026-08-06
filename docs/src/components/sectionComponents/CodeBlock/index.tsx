@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
 import styles from "./CodeBlock.module.css";
 import { Prism as SynthaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import CopyButton from "../CopyButton";
+import CopyButton from "@/components/CopyButton";
 
 interface CodeBlockProps {
   children: string;

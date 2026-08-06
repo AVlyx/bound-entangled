@@ -1,5 +1,3 @@
-import { psiIj } from "bound-entangled";
-
 export function formatNumber(x: number, precision: number): string {
   if (Number.isNaN(x)) return "NaN";
   if (!Number.isFinite(x)) return x > 0 ? "∞" : "−∞";

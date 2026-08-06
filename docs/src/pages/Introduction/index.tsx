@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CodeBlock from "../../components/CodeBlock";
+import CodeBlock from "@/components/sectionComponents/CodeBlock";
 
 /**
  * Landing page of the documentation. The header comes from `navigation.ts`;
