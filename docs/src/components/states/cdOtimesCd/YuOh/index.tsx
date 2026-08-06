@@ -5,6 +5,8 @@ import EquationLine from "../../../Equations/EquationLine";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 /** The three smallest valid local dimensions. */
 const DIMENSIONS = [3, 4, 5];
@@ -57,24 +59,18 @@ function YuOh() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>fullDim</dt>
-          <dd>
-            The local dimension <span className="math-var">d</span> shared by both parties. Must be
-            an integer ≥ 3.
-          </dd>
-          <dt>x</dt>
-          <dd>First free real parameter.</dd>
-          <dt>y</dt>
-          <dd>Second free real parameter.</dd>
-        </dl>
-        <p>
-          (x, y) must jointly satisfy x² + y² ≤ 1 and δ = z²/(d − 2) − xy &gt; 0, where z = √(1 − x²
-          − y²) — checked by isValidYuOhInput.
-        </p>
-      </div>
+      <Parameters>
+        <Parameter paramName="fullDim">
+          The local dimension <span className="math-var">d</span> shared by both parties. Must be
+          an integer ≥ 3.
+        </Parameter>
+        <Parameter paramName="x">First free real parameter.</Parameter>
+        <Parameter paramName="y">Second free real parameter.</Parameter>
+      </Parameters>
+      <p>
+        (x, y) must jointly satisfy x² + y² ≤ 1 and δ = z²/(d − 2) − xy &gt; 0, where z = √(1 − x² −
+        y²) — checked by isValidYuOhInput.
+      </p>
 
       <div className="doc-section">
         <h2>Usage</h2>

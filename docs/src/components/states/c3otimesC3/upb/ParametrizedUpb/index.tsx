@@ -7,6 +7,8 @@ import LatexMatrix from "../../../../Equations/LatexMatrix";
 import EquationBlock from "../../../../Equations/EquationBlock";
 import EquationLine from "../../../../Equations/EquationLine";
 import Citation from "../../../../Citation";
+import Parameters from "../../../../Parameters";
+import Parameter from "../../../../Parameters/Parameter";
 
 /** The angle at which both parties' gamma and theta reduce this family to the Pyramid UPB. */
 const PYRAMID_ANGLE = Math.acos((Math.sqrt(5) - 1) / 2);
@@ -140,29 +142,20 @@ function ParametrizedUpb() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>gammaA</dt>
-          <dd>
-            Alice's γ angle. Any real value with cos γ_A ≠ 0 and sin γ_A ≠ 0 — multiples of π/2 are
-            excluded.
-          </dd>
-          <dt>thetaA</dt>
-          <dd>
-            Alice's θ angle. Any real value with cos θ_A ≠ 0 and sin θ_A ≠ 0, the same restriction
-            as gammaA.
-          </dd>
-          <dt>phiA</dt>
-          <dd>Alice's phase angle, entering as e^(iφ_A). Unrestricted.</dd>
-          <dt>gammaB</dt>
-          <dd>Bob's γ angle, subject to the same restriction as gammaA.</dd>
-          <dt>thetaB</dt>
-          <dd>Bob's θ angle, subject to the same restriction as thetaA.</dd>
-          <dt>phiB</dt>
-          <dd>Bob's phase angle, entering as e^(iφ_B). Unrestricted.</dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="gammaA">
+          Alice's γ angle. Any real value with cos γ_A ≠ 0 and sin γ_A ≠ 0 — multiples of π/2 are
+          excluded.
+        </Parameter>
+        <Parameter paramName="thetaA">
+          Alice's θ angle. Any real value with cos θ_A ≠ 0 and sin θ_A ≠ 0, the same restriction as
+          gammaA.
+        </Parameter>
+        <Parameter paramName="phiA">Alice's phase angle, entering as e^(iφ_A). Unrestricted.</Parameter>
+        <Parameter paramName="gammaB">Bob's γ angle, subject to the same restriction as gammaA.</Parameter>
+        <Parameter paramName="thetaB">Bob's θ angle, subject to the same restriction as thetaA.</Parameter>
+        <Parameter paramName="phiB">Bob's phase angle, entering as e^(iφ_B). Unrestricted.</Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

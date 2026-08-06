@@ -10,6 +10,8 @@ import CodeBlock from "../../../CodeBlock";
 import LatexMatrix from "../../../Equations/LatexMatrix";
 import EquationLine from "../../../Equations/EquationLine";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 interface Preset {
   label: string;
@@ -83,24 +85,19 @@ function GridState() {
         <EquationLine>{"ρ = (1 / |E|) Σ_{e ∈ E} |e⟩⟨e|"}</EquationLine>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>dims</dt>
-          <dd>
-            The grid dimensions <span className="math-var">[m, n]</span>; the state lives on C
-            <sup>m</sup> ⊗ C<sup>n</sup>.
-          </dd>
-          <dt>edges</dt>
-          <dd>
-            A non-empty array of <code>Edge</code>s. Each <code>Edge</code> is a pair of{" "}
-            <code>Vertex</code>, and each <code>Vertex</code> is a pair{" "}
-            <span className="math-var">[i, j]</span> with 0 ≤ <span className="math-var">i</span>{" "}
-            &lt; <span className="math-var">m</span> and 0 ≤ <span className="math-var">j</span>{" "}
-            &lt; <span className="math-var">n</span>. An empty edge set is rejected.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="dims">
+          The grid dimensions <span className="math-var">[m, n]</span>; the state lives on C
+          <sup>m</sup> ⊗ C<sup>n</sup>.
+        </Parameter>
+        <Parameter paramName="edges">
+          A non-empty array of <code>Edge</code>s. Each <code>Edge</code> is a pair of{" "}
+          <code>Vertex</code>, and each <code>Vertex</code> is a pair{" "}
+          <span className="math-var">[i, j]</span> with 0 ≤ <span className="math-var">i</span>{" "}
+          &lt; <span className="math-var">m</span> and 0 ≤ <span className="math-var">j</span>{" "}
+          &lt; <span className="math-var">n</span>. An empty edge set is rejected.
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

@@ -6,6 +6,8 @@ import EquationBlock from "../../../Equations/EquationBlock";
 import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 /**
  * Documentation page for the 2 x 4 Horodecki state. The header (title, Hilbert
@@ -57,18 +59,13 @@ function Horodecki2by4() {
           <EquationLine>c = √(1 − a²) / 2</EquationLine>
         </EquationBlock>
       </div>
-
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>aParam</dt>
-          <dd>
-            The free real parameter, in [0, 1]. The state is PPT for every value in this range, and
-            separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
-            <span className="math-var">a</span> = 1. Values outside [0, 1] are rejected.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="aParam">
+          The free real parameter, in [0, 1]. The state is PPT for every value in this range, and
+          separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
+          <span className="math-var">a</span> = 1. Values outside [0, 1] are rejected.
+        </Parameter>
+      </Parameters>
 
       <CodeBlock>{`from bound_entangled.c2_otimes_c4 import horodecki
 

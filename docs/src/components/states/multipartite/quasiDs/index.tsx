@@ -10,6 +10,8 @@ import EquationLine from "../../../Equations/EquationLine";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 function QuasiDs() {
   const [n, setN] = useState<number>(3);
@@ -70,20 +72,16 @@ function QuasiDs() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>n</dt>
-          <dd>Number of qubits. Must be a positive odd integer, at least 3.</dd>
-          <dt>z</dt>
-          <dd>Real parameter controlling the state's mixing. Must be a finite real number.</dd>
-          <dt>sigma</dt>
-          <dd>
-            Sign parameter, either <span className="math">+1</span> or{" "}
-            <span className="math">−1</span>; flips only the two off-diagonal corner entries.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="n">Number of qubits. Must be a positive odd integer, at least 3.</Parameter>
+        <Parameter paramName="z">
+          Real parameter controlling the state's mixing. Must be a finite real number.
+        </Parameter>
+        <Parameter paramName="sigma">
+          Sign parameter, either <span className="math">+1</span> or{" "}
+          <span className="math">−1</span>; flips only the two off-diagonal corner entries.
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

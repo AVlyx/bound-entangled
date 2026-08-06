@@ -9,6 +9,8 @@ import EquationBlock from "../../../Equations/EquationBlock";
 import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 /** Shield dimensions that are both valid (3 or a power of two) and small enough to render. */
 const SHIELD_DIMS = [2, 3] as const;
@@ -76,17 +78,13 @@ function OrthogonalSinglet() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>shieldDim</dt>
-          <dd>
-            The shield subsystem dimension <span className="math-var">d</span>. Must be 3 or a power
-            of two, so the total local dimension 2<span className="math-var">d</span> is one of 4,
-            6, 8, 16, … Other values throw.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="shieldDim">
+          The shield subsystem dimension <span className="math-var">d</span>. Must be 3 or a power
+          of two, so the total local dimension 2<span className="math-var">d</span> is one of 4, 6,
+          8, 16, … Other values throw.
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

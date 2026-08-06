@@ -6,6 +6,8 @@ import EquationBlock from "../../../Equations/EquationBlock";
 import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 /**
  * Documentation page for the 3 x 3 Horodecki state. The header (title, Hilbert
@@ -63,17 +65,13 @@ function Horodecki3by3() {
         </div>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>aParam</dt>
-          <dd>
-            The free real parameter, in [0, 1]. The state is PPT for every value in this range, and
-            separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
-            <span className="math-var">a</span> = 1. Values outside [0, 1] are rejected.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="aParam">
+          The free real parameter, in [0, 1]. The state is PPT for every value in this range, and
+          separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
+          <span className="math-var">a</span> = 1. Values outside [0, 1] are rejected.
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

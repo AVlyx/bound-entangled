@@ -4,6 +4,8 @@ import LatexMatrix from "../../../Equations/LatexMatrix";
 import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 /** The two smallest valid dimensions; d = 8 would already render a 64x64 matrix. */
 const DIMENSIONS = [4, 6];
@@ -55,16 +57,12 @@ function Gentiles() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>fullDim</dt>
-          <dd>
-            The local dimension <span className="math-var">d</span> shared by both parties. Must be
-            even and ≥ 4.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="fullDim">
+          The local dimension <span className="math-var">d</span> shared by both parties. Must be
+          even and ≥ 4.
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

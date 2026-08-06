@@ -10,6 +10,8 @@ import EquationBlock from "../../../Equations/EquationBlock";
 import EquationLine from "../../../Equations/EquationLine";
 import Slider from "../../../Slider";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 function Steering() {
   const [m1, setM1] = useState<number>(0.5);
@@ -45,15 +47,10 @@ function Steering() {
         <EquationLine>λ1 = 1 − (2 + 3·m1·m2) / D, λ3 = 1 / D, λ2 = 1 − λ1 − 2λ3</EquationLine>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>m1</dt>
-          <dd>First free real parameter, with m1² + m2² ≤ 1.</dd>
-          <dt>m2</dt>
-          <dd>Second free real parameter, with m1² + m2² ≤ 1.</dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="m1">First free real parameter, with m1² + m2² ≤ 1.</Parameter>
+        <Parameter paramName="m2">Second free real parameter, with m1² + m2² ≤ 1.</Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

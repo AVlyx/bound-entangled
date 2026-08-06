@@ -5,6 +5,8 @@ import EquationLine from "../../../Equations/EquationLine";
 import Slider from "../../../Slider";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 /** The few smallest valid second dimensions, keeping the rendered matrix small. */
 const DIMENSIONS = [2, 3, 4, 5];
@@ -52,21 +54,16 @@ function Horodecki2OtimesDGeneralized() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>secondDimD</dt>
-          <dd>
-            The second local dimension <span className="math-var">d</span> of C² ⊗ Cᵈ. Must be an
-            integer ≥ 2; the full system has dimension 2d.
-          </dd>
-          <dt>b</dt>
-          <dd>
-            The free real parameter weighing the entangled component against the product state.
-            Since φ_b needs √(1 − b) and √(1 + b) to stay real, b must lie in [−1, 1].
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="secondDimD">
+          The second local dimension <span className="math-var">d</span> of C² ⊗ Cᵈ. Must be an
+          integer ≥ 2; the full system has dimension 2d.
+        </Parameter>
+        <Parameter paramName="b">
+          The free real parameter weighing the entangled component against the product state.
+          Since φ_b needs √(1 − b) and √(1 + b) to stay real, b must lie in [−1, 1].
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

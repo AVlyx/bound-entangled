@@ -8,6 +8,8 @@ import LatexMatrix from "../../../Equations/LatexMatrix";
 import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 function GeneralizedSmolin() {
   const [n, setN] = useState<number>(2);
@@ -52,16 +54,12 @@ function GeneralizedSmolin() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>systems</dt>
-          <dd>
-            Total number of qubits, <span className="math">2n</span>. Must be an even integer{" "}
-            <span className="math">≥ 2</span>.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="systems">
+          Total number of qubits, <span className="math">2n</span>. Must be an even integer{" "}
+          <span className="math">≥ 2</span>.
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>

@@ -9,6 +9,8 @@ import EquationBlock from "../../../Equations/EquationBlock";
 import EquationLine from "../../../Equations/EquationLine";
 import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
+import Parameters from "../../../Parameters";
+import Parameter from "../../../Parameters/Parameter";
 
 /** Shield dimensions small enough to render as a matrix on this page. */
 const SHIELD_DIMS = [2, 3] as const;
@@ -81,20 +83,16 @@ function BadziagPrivateSinglet() {
         </p>
       </div>
 
-      <div className="doc-section">
-        <h2>Parameters</h2>
-        <dl className="doc-dl">
-          <dt>shieldDim</dt>
-          <dd>
-            The shield subsystem dimension <span className="math-var">d</span>, an integer ≥ 2. The
-            full state lives on{" "}
-            <span className="math">
-              C<sup>2</sup> ⊗ C<sup>2</sup> ⊗ C<sup>d</sup> ⊗ C<sup>d</sup>
-            </span>
-            , i.e. a (4d²) × (4d²) density matrix. Values below 2, or non-integers, throw.
-          </dd>
-        </dl>
-      </div>
+      <Parameters>
+        <Parameter paramName="shieldDim">
+          The shield subsystem dimension <span className="math-var">d</span>, an integer ≥ 2. The
+          full state lives on{" "}
+          <span className="math">
+            C<sup>2</sup> ⊗ C<sup>2</sup> ⊗ C<sup>d</sup> ⊗ C<sup>d</sup>
+          </span>
+          , i.e. a (4d²) × (4d²) density matrix. Values below 2, or non-integers, throw.
+        </Parameter>
+      </Parameters>
 
       <div className="doc-section">
         <h2>Usage</h2>
