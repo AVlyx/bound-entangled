@@ -1,6 +1,5 @@
 import { Children, isValidElement, type ReactElement } from "react";
 import type { ParameterProps } from "./Parameter";
-import Parameter from "./Parameter";
 
 interface ParametersProps {
   children: ReactElement<ParameterProps> | ReactElement<ParameterProps>[];

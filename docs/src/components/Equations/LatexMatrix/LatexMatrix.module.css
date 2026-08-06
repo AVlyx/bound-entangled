@@ -2,13 +2,14 @@
   max-width: 100%;
   overflow-x: auto;
   padding: 2px 0;
+  position: relative;
 }
 
 .matrix {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  font-family: 'Latin Modern Math', 'STIX Two Math', 'Cambria Math', 'Times New Roman', serif;
+  font-family: "Latin Modern Math", "STIX Two Math", "Cambria Math", "Times New Roman", serif;
   font-size: 0.95em;
   line-height: 1.2;
   font-variant-numeric: tabular-nums;

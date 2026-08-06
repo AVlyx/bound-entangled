@@ -8,6 +8,7 @@ import CodeBlock from "../../../CodeBlock";
 import Citation from "../../../Citation";
 import Parameters from "../../../Parameters";
 import Parameter from "../../../Parameters/Parameter";
+import CopyButton from "../../../CopyButton";
 
 /**
  * Documentation page for the 2 x 4 Horodecki state. The header (title, Hilbert
@@ -15,6 +16,7 @@ import Parameter from "../../../Parameters/Parameter";
  */
 function Horodecki2by4() {
   const [aParam, setAParam] = useState<number>(0.4);
+  const mat = horodecki2By4({ aParam });
 
   return (
     <>
@@ -74,15 +76,14 @@ rho = horodecki(0.5)  # 8x8 density matrix`}</CodeBlock>
       <div className="doc-section">
         <h2>Try it</h2>
         <div className="example">
+          {/* <CopyButton /> */}
           <div className="controls">
-            <div className="control">
-              <span className="control-label">a</span>
-              <Slider min={0} max={1} value={aParam} setValue={setAParam} />
-              <span className="control-value">{aParam.toFixed(2)}</span>
-            </div>
+            <span className="control-label">a</span>
+            <Slider min={0} max={1} value={aParam} setValue={setAParam} />
+            <span className="control-value">{aParam.toFixed(2)}</span>
           </div>
           <div className="example-output">
-            <LatexMatrix value={horodecki2By4({ aParam })} precision={2} label="ρ =" />
+            <LatexMatrix value={mat} precision={3} label="ρ =" />
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@
   cursor: pointer;
 
   /* Stays out of the way until the block is hovered or the button is focused. */
-  opacity: 0;
+  opacity: 1;
   transition:
     opacity 0.15s ease,
     color 0.15s ease,
