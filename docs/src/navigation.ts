@@ -2,33 +2,33 @@ import type { ComponentType } from "react";
 
 import Introduction from "./pages/Introduction";
 
-import Horodecki2by4 from "./components/states/c2OtimesC4/Horodecki";
+import Horodecki2by4 from "./states/c2OtimesC4/Horodecki";
 
-import Horodecki3by3 from "./components/states/c3otimesC3/Horodecki";
-import CrossHatch from "./components/states/c3otimesC3/CrossHatch";
-import Ncomms6297 from "./components/states/c3otimesC3/Ncomms6297";
-import Steering from "./components/states/c3otimesC3/Steering";
-import TilesUpb from "./components/states/c3otimesC3/upb/TilesUpb";
-import PyramidUpb from "./components/states/c3otimesC3/upb/PyramidUpb";
-import ParametrizedUpb from "./components/states/c3otimesC3/upb/ParametrizedUpb";
+import Horodecki3by3 from "./states/c3otimesC3/Horodecki";
+import CrossHatch from "./states/c3otimesC3/CrossHatch";
+import Ncomms6297 from "./states/c3otimesC3/Ncomms6297";
+import Steering from "./states/c3otimesC3/Steering";
+import TilesUpb from "./states/c3otimesC3/upb/TilesUpb";
+import PyramidUpb from "./states/c3otimesC3/upb/PyramidUpb";
+import ParametrizedUpb from "./states/c3otimesC3/upb/ParametrizedUpb";
 
-import Piani from "./components/states/c4OtimesC4/Piani";
+import Piani from "./states/c4OtimesC4/Piani";
 
-import Sn3GridState from "./components/states/c5OtimesC5/Sn3GridState";
+import Sn3GridState from "./states/c5OtimesC5/Sn3GridState";
 
-import Horodecki2OtimesDGeneralized from "./components/states/cdOtimesCd/Horodecki2OtimesDGeneralized";
-import Gentiles from "./components/states/cdOtimesCd/Gentiles";
-import YuOh from "./components/states/cdOtimesCd/YuOh";
-import BadziagPrivateSinglet from "./components/states/cdOtimesCd/BadziagPrivateSinglet";
-import OrthogonalSinglet from "./components/states/cdOtimesCd/OrthogonalSinglet";
+import Horodecki2OtimesDGeneralized from "./states/cdOtimesCd/Horodecki2OtimesDGeneralized";
+import Gentiles from "./states/cdOtimesCd/Gentiles";
+import YuOh from "./states/cdOtimesCd/YuOh";
+import BadziagPrivateSinglet from "./states/cdOtimesCd/BadziagPrivateSinglet";
+import OrthogonalSinglet from "./states/cdOtimesCd/OrthogonalSinglet";
 
-import GridState from "./components/states/cmOtimesCn/gridState";
-import GeneralizedGridState from "./components/states/cmOtimesCn/generalizedGridState";
-import GenTiles from "./components/states/cmOtimesCn/genTiles";
+import GridState from "./states/cmOtimesCn/gridState";
+import GeneralizedGridState from "./states/cmOtimesCn/generalizedGridState";
+import GenTiles from "./states/cmOtimesCn/genTiles";
 
-import Smolin from "./components/states/multipartite/smolin";
-import GeneralizedSmolin from "./components/states/multipartite/generalizedSmolin";
-import QuasiDs from "./components/states/multipartite/quasiDs";
+import Smolin from "./states/multipartite/smolin";
+import GeneralizedSmolin from "./states/multipartite/generalizedSmolin";
+import QuasiDs from "./states/multipartite/quasiDs";
 
 /** One documentation page: a sidebar entry and the component rendered beside it. */
 export interface NavItem {
