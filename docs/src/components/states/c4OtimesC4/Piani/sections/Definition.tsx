@@ -16,21 +16,23 @@ function Definition() {
   return (
     <DefinitionSection>
       <p>
-        Write <span className="math">|Ψ⁺₄⟩</span> for the (normalized) maximally entangled state
-        of <span className="math">C⁴ ⊗ C⁴</span>. For Pauli indices{" "}
-        <span className="math-var">i</span>, <span className="math-var">j</span> ∈{" "}
-        {"{0, 1, 2, 3}"} (0 = I, 1 = X, 2 = Y, 3 = Z), the generalized Bell state
+        Write <span className="math">|Ψ⁺₄⟩</span> for the (normalized) maximally entangled state of{" "}
+        <span className="math">C⁴ ⊗ C⁴</span>. For Pauli indices <span className="math-var">i</span>
+        , <span className="math-var">j</span> ∈ {"{0, 1, 2, 3}"} (0 = I, 1 = X, 2 = Y, 3 = Z), the
+        generalized Bell state
       </p>
       <EquationLine>
-        {"|\\Psi_{ij}\\rangle = (\\mathbb{1} \\otimes \\sigma_i \\otimes \\sigma_j) |\\Psi^+_4\\rangle"}
+        {
+          "|\\Psi_{ij}\\rangle = (\\mathbb{1} \\otimes \\sigma_i \\otimes \\sigma_j) |\\Psi^+_4\\rangle"
+        }
       </EquationLine>
       <p>
         is obtained by applying <span className="math-var">σᵢ</span> ⊗{" "}
         <span className="math-var">σⱼ</span> to the second C⁴ factor of{" "}
         <span className="math">|Ψ⁺₄⟩</span>, viewed as two qubits. Its rank-1 projector{" "}
         <span className="math">Pᵢⱼ = |Ψᵢⱼ⟩⟨Ψᵢⱼ|</span> is exactly what the exported{" "}
-        <code>projectorIj(i, j)</code> computes, and is itself part of the construction: the
-        Pianni state is the uniform mixture of six such projectors,
+        <code>projectorIj(i, j)</code> computes, and is itself part of the construction: the Piani
+        state is the uniform mixture of six such projectors,
       </p>
       <EquationLine>{"\\rho_0 = \\tfrac16 \\sum P_{ij}"}</EquationLine>
       <p>over the six pairs</p>
@@ -59,16 +61,16 @@ function Definition() {
       <p>
         Finally, regarding the 16 dimensions as four qubits (the first C⁴ factor split into two
         qubits, the second — the one the Pauli operators acted on — split into the other two), the
-        Pianni state reorders those four qubits with the permutation [0, 2, 1, 3]:
+        Piani state reorders those four qubits with the permutation [0, 2, 1, 3]:
       </p>
       <EquationLine>
         {"\\rho = \\text{permuteSystems}(\\rho_0,\\ [0,2,1,3],\\ [2,2,2,2])"}
       </EquationLine>
       <p className="equation-caption">
         Regrouping the qubits this way — described in the source as recombining them into the
-        bipartition AA′|BB′ — is what makes ρ positive under the resulting [4, 4] partial
-        transpose; the unpermuted mixture ρ₀ is already PPT, so the permutation changes which
-        split the state is entangled across, not merely how it is written.
+        bipartition AA′|BB′ — is what makes ρ positive under the resulting [4, 4] partial transpose;
+        the unpermuted mixture ρ₀ is already PPT, so the permutation changes which split the state
+        is entangled across, not merely how it is written.
       </p>
     </DefinitionSection>
   );

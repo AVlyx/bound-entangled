@@ -3,7 +3,8 @@ import Definition from "./sections/Definition";
 import Usage from "./sections/Usage";
 import Example from "./sections/Example";
 import Properties from "./sections/Properties";
-import Citation from "./sections/Citation";
+import Citation from "@/components/sectionComponents/Citation";
+import { CITATIONS } from "@/constants/Citations";
 
 /**
  * Documentation page for the Pyramid UPB. The header (title and Hilbert space) comes
@@ -17,7 +18,7 @@ function PyramidUpb() {
       <Usage />
       <Example />
       <Properties />
-      <Citation />
+      <Citation citations={CITATIONS.upbTilesPyramid} />
     </>
   );
 }

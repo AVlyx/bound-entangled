@@ -8,7 +8,8 @@ import Parameters from "./sections/Parameters";
 import Usage from "./sections/Usage";
 import Example from "./sections/Example";
 import Properties from "./sections/Properties";
-import Citation from "./sections/Citation";
+import Citation from "@/components/sectionComponents/Citation";
+import { CITATIONS } from "@/constants/Citations";
 
 function GenTiles() {
   return (
@@ -19,7 +20,7 @@ function GenTiles() {
       <Usage />
       <Example />
       <Properties />
-      <Citation />
+      <Citation citations={CITATIONS.genTiles} />
     </>
   );
 }

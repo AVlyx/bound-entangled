@@ -12,7 +12,7 @@ import TilesUpb from "./components/states/c3otimesC3/upb/TilesUpb";
 import PyramidUpb from "./components/states/c3otimesC3/upb/PyramidUpb";
 import ParametrizedUpb from "./components/states/c3otimesC3/upb/ParametrizedUpb";
 
-import Pianni from "./components/states/c4OtimesC4/Pianni";
+import Piani from "./components/states/c4OtimesC4/Piani";
 
 import Sn3GridState from "./components/states/c5OtimesC5/Sn3GridState";
 
@@ -94,8 +94,7 @@ export const navigation: NavSection[] = [
         title: "Horodecki 3 ⊗ 3",
         fn: "horodecki3By3",
         space: "C³ ⊗ C³",
-        summary:
-          "The 3 ⊗ 3 member of the Horodecki family, bound entangled for every a in (0, 1).",
+        summary: "The 3 ⊗ 3 member of the Horodecki family, bound entangled for every a in (0, 1).",
         Component: Horodecki3by3,
       },
       {
@@ -153,11 +152,11 @@ export const navigation: NavSection[] = [
     title: "C⁴ ⊗ C⁴",
     items: [
       {
-        path: "/states/c4-c4/pianni",
-        title: "Pianni",
-        fn: "pianni",
+        path: "/states/c4-c4/piani",
+        title: "Piani",
+        fn: "piani",
         space: "C⁴ ⊗ C⁴",
-        Component: Pianni,
+        Component: Piani,
       },
     ],
   },

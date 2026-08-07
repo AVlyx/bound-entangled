@@ -8,11 +8,11 @@
  * https://arxiv.org/abs/2010.08372 (Appendix C5).
  */
 
-import { identity, multiply } from 'mathjs';
-import type { Matrix } from 'mathjs';
-import { ketbra, maxEntangled, pauli, permuteSystems, tensor } from '../utils/index.js';
-import type { PauliIndex } from '../utils/index.js';
-import { sumMatrices } from '../utils/internal.js';
+import { identity, multiply } from "mathjs";
+import type { Matrix } from "mathjs";
+import { ketbra, maxEntangled, pauli, permuteSystems, tensor } from "../utils/index.js";
+import type { PauliIndex } from "../utils/index.js";
+import { sumMatrices } from "../utils/internal.js";
 
 /** The six Pauli index pairs whose generalized Bell projectors make up the state. */
 const PAIRS: readonly (readonly [PauliIndex, PauliIndex])[] = [
@@ -32,7 +32,7 @@ const PAIRS: readonly (readonly [PauliIndex, PauliIndex])[] = [
  * @returns the rank-1 projector P_ij on C⁴ ⊗ C⁴, as a 16x16 matrix.
  */
 export function projectorIj(i: PauliIndex, j: PauliIndex): Matrix {
-  const sigmaIj = tensor(identity(4, 'dense') as Matrix, pauli([i, j]));
+  const sigmaIj = tensor(identity(4, "dense") as Matrix, pauli([i, j]));
   const ketIj = multiply(sigmaIj, maxEntangled(4));
   return ketbra(ketIj);
 }
@@ -46,7 +46,7 @@ export function projectorIj(i: PauliIndex, j: PauliIndex): Matrix {
  *
  * @returns the 16x16 bound entangled density matrix.
  */
-export function pianni(): Matrix {
+export function piani(): Matrix {
   const mixture = multiply(1 / 6, sumMatrices(PAIRS.map(([i, j]) => projectorIj(i, j)))) as Matrix;
   return permuteSystems(mixture, [0, 2, 1, 3], [2, 2, 2, 2]);
 }

@@ -1,7 +1,5 @@
 import DefinitionSection from "@/components/sectionComponents/Definition";
 import LatexMatrix from "@/components/Equations/LatexMatrix";
-import EquationBlock from "@/components/Equations/EquationBlock";
-import EquationLine from "@/components/Equations/EquationLine";
 import Latex from "@/components/Equations/Latex";
 
 function Definition() {

@@ -4,7 +4,8 @@ import Parameters from "./sections/Parameters";
 import Usage from "./sections/Usage";
 import Example from "./sections/Example";
 // import Properties from "./sections/Properties";
-import Citation from "./sections/Citation";
+import Citation from "@/components/sectionComponents/Citation";
+import { CITATIONS } from "@/constants/Citations";
 
 /**
  * Documentation page for the 3 x 3 Horodecki state. The header (title, Hilbert
@@ -19,7 +20,7 @@ function Horodecki3by3() {
       <Usage />
       <Example />
       {/* <Properties /> */}
-      <Citation />
+      <Citation citations={CITATIONS.horodecki} />
     </>
   );
 }

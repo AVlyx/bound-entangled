@@ -3,13 +3,14 @@ import Definition from "./sections/Definition";
 import Usage from "./sections/Usage";
 import Example from "./sections/Example";
 import Properties from "./sections/Properties";
-import Citation from "./sections/Citation";
+import Citation from "@/components/sectionComponents/Citation";
+import { CITATIONS } from "@/constants/Citations";
 
 /**
- * Documentation page for the Pianni state. The header (title and Hilbert space) comes
+ * Documentation page for the Piani state. The header (title and Hilbert space) comes
  * from `navigation.ts`; this file holds the body of the page.
  */
-function Pianni() {
+function Piani() {
   return (
     <>
       <Introduction />
@@ -17,9 +18,9 @@ function Pianni() {
       <Usage />
       <Example />
       <Properties />
-      <Citation />
+      <Citation citations={CITATIONS.piani} />
     </>
   );
 }
 
-export default Pianni;
+export default Piani;

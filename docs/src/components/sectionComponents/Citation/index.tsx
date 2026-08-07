@@ -1,15 +1,20 @@
-import type { ReactNode } from "react";
 import styles from "./Citation.module.css";
+import BibTex from "@/components/BibTex";
 
 interface CitationProps {
-  children: ReactNode;
+  bibTex: string;
+}
+interface CitationsProps {
+  citations: CitationProps[];
 }
 
-function Citation({ children }: CitationProps) {
+function Citation({ citations }: CitationsProps) {
   return (
     <div className={styles.citation}>
       <h2>References</h2>
-      {children}
+      {citations.map(({ bibTex }) => (
+        <BibTex>{bibTex}</BibTex>
+      ))}
     </div>
   );
 }

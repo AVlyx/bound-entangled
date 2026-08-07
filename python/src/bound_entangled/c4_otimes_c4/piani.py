@@ -29,7 +29,7 @@ def P_ij(i: int, j: int):
     return ketbra(ket_ij)
 
 
-def pianni():
+def piani():
     """The 4x4 bound entangled "Piani" state.
 
     Uniform mixture of the six projections P_ij for (i, j) in

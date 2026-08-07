@@ -41,51 +41,49 @@ rho = yu_oh(full_dim=3, x=0.5, y=0.5)  # Yu-Oh nonlocal bound entangled state
 
 ### `c3_otimes_c3` — C³ ⊗ C³
 
-| Factory | State | Reference |
-|---|---|---|
-| `chessboard`, `chessboard_extremal_PPT` | Bruß–Peres chessboard states | [quant-ph/9911056](https://arxiv.org/abs/quant-ph/9911056) |
-| `cross_hatch` | 3×3 "cross-hatch" grid state (CCNR-detected) | [1705.09261](https://arxiv.org/abs/1705.09261) |
-| `steering_state` | Steerable bound entangled state (counterexample to the stronger Peres conjecture) | [1405.0262](https://arxiv.org/abs/1405.0262) |
-| `tiles_upb`, `pyramid_upb` | States from the Tiles / Pyramid unextendible product bases | [quant-ph/9808030](https://arxiv.org/abs/quant-ph/9808030) |
-| `parametrized_upb` | Six-parameter family of UPBs generalizing Tiles / Pyramid | [quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070) |
-| `horodecki` | 3x3 Horodecki bound entangled state | [quant-ph/9703004](https://arxiv.org/abs/quant-ph/9703004) |
-
+| Factory                                 | State                                                                             | Reference                                                  |
+| --------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `chessboard`, `chessboard_extremal_PPT` | Bruß–Peres chessboard states                                                      | [quant-ph/9911056](https://arxiv.org/abs/quant-ph/9911056) |
+| `cross_hatch`                           | 3×3 "cross-hatch" grid state (CCNR-detected)                                      | [1705.09261](https://arxiv.org/abs/1705.09261)             |
+| `steering_state`                        | Steerable bound entangled state (counterexample to the stronger Peres conjecture) | [1405.0262](https://arxiv.org/abs/1405.0262)               |
+| `tiles_upb`, `pyramid_upb`              | States from the Tiles / Pyramid unextendible product bases                        | [quant-ph/9808030](https://arxiv.org/abs/quant-ph/9808030) |
+| `parametrized_upb`                      | Six-parameter family of UPBs generalizing Tiles / Pyramid                         | [quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070) |
+| `horodecki`                             | 3x3 Horodecki bound entangled state                                               | [quant-ph/9703004](https://arxiv.org/abs/quant-ph/9703004) |
 
 ### `c4_otimes_c4` — C⁴ ⊗ C⁴
 
-| Factory | State | Reference |
-|---|---|---|
+| Factory  | State                                                           | Reference                                                  |
+| -------- | --------------------------------------------------------------- | ---------------------------------------------------------- |
 | `breuer` | Breuer bound-entangled state (PPT, detected by anti-linear map) | [quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036) |
-| `smolin` | Smolin four-party unlockable bound entangled state | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
-| `pianni` | 4×4 Benatti–Floreanini–Piani state | [quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095) |
+| `smolin` | Smolin four-party unlockable bound entangled state              | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
+| `piani`  | 4×4 Benatti–Floreanini–Piani state                              | [quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095) |
 
 ### `c5_otimes_c5` — C⁵ ⊗ C⁵
 
-| Factory | State | Reference |
-|---|---|---|
+| Factory          | State                                                     | Reference                                      |
+| ---------------- | --------------------------------------------------------- | ---------------------------------------------- |
 | `sn3_grid_state` | Smallest known Schmidt-number-3 PPT bound entangled state | [2402.12966](https://arxiv.org/abs/2402.12966) |
 
 ### `cd_otimes_cd` — C^d ⊗ C^d
 
-| Factory | State | Reference |
-|---|---|---|
-| `yu_oh`, `is_valid_yu_oh_input` | Yu–Oh family of nonlocal bound entangled states | [1509.08991](https://arxiv.org/abs/1509.08991) |
-| `gen_tiles1` | GenTiles1 UPB generalizing Tiles to d⊗d, even d≥4 | [quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070) |
+| Factory                         | State                                             | Reference                                                  |
+| ------------------------------- | ------------------------------------------------- | ---------------------------------------------------------- |
+| `yu_oh`, `is_valid_yu_oh_input` | Yu–Oh family of nonlocal bound entangled states   | [1509.08991](https://arxiv.org/abs/1509.08991)             |
+| `gen_tiles1`                    | GenTiles1 UPB generalizing Tiles to d⊗d, even d≥4 | [quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070) |
 
 ### `cm_otimes_cn` — C^m ⊗ C^n (parametric constructions)
 
-| Factory | State | Reference |
-|---|---|---|
-| `grid_state` | Quantum grid states from graph edges | [1705.09261](https://arxiv.org/abs/1705.09261) |
-| `generalized_grid_state` | Grid states generalized to hyperedges | [2402.12966](https://arxiv.org/abs/2402.12966) |
-| `random_NPT`, `random_PPT`, `random_PPT_close_to_the_PPT_edge` | Random density matrices by PPT class (rejection sampling) | — |
-| `gen_tiles2` | GenTiles2 UPB generalizing Tiles to m⊗n, n>3, m≥3, n≥m | [quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070) |
-
+| Factory                                                        | State                                                     | Reference                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------- |
+| `grid_state`                                                   | Quantum grid states from graph edges                      | [1705.09261](https://arxiv.org/abs/1705.09261)             |
+| `generalized_grid_state`                                       | Grid states generalized to hyperedges                     | [2402.12966](https://arxiv.org/abs/2402.12966)             |
+| `random_NPT`, `random_PPT`, `random_PPT_close_to_the_PPT_edge` | Random density matrices by PPT class (rejection sampling) | —                                                          |
+| `gen_tiles2`                                                   | GenTiles2 UPB generalizing Tiles to m⊗n, n>3, m≥3, n≥m    | [quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070) |
 
 ### `multipartite` — multipartite systems
 
-| Factory | State | Reference |
-|---|---|---|
+| Factory              | State                                                                      | Reference                                                  |
+| -------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | `generalized_smolin` | Generalized Smolin state on 2n qubits (bound entangled for all even n ≥ 2) | [quant-ph/0411142](https://arxiv.org/abs/quant-ph/0411142) |
 
 ## License

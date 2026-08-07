@@ -1,1 +1,1 @@
-export { pianni, projectorIj } from './pianni.js';
+export { piani, projectorIj } from "./piani.js";

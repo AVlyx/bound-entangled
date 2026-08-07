@@ -3,13 +3,9 @@ import Definition from "./sections/Definition";
 import Parameters from "./sections/Parameters";
 import Usage from "./sections/Usage";
 import Example from "./sections/Example";
-// import Properties from "./sections/Properties";
-import Citation from "./sections/Citation";
+import Citation from "@/components/sectionComponents/Citation";
+import { CITATIONS } from "@/constants/Citations";
 
-/**
- * Documentation page for the 2 x 4 Horodecki state. The header (title, Hilbert
- * space, signature) comes from `navigation.ts`; this file holds the body.
- */
 function Horodecki2by4() {
   return (
     <>
@@ -19,7 +15,7 @@ function Horodecki2by4() {
       <Usage />
       <Example />
       {/* <Properties /> */}
-      <Citation />
+      <Citation citations={CITATIONS.horodecki} />
     </>
   );
 }
