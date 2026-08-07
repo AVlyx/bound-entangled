@@ -13,7 +13,7 @@ function Example() {
   const rho = horodecki2ByDGeneralized({ secondDimD: d, b });
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">d</span>

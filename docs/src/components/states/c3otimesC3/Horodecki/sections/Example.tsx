@@ -6,9 +6,10 @@ import ExampleSection from "@/components/sectionComponents/Example";
 
 function Example() {
   const [aParam, setAParam] = useState<number>(0.4);
+  const rho = horodecki3By3({ aParam });
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">a</span>
@@ -17,7 +18,7 @@ function Example() {
         </div>
       </div>
       <div className="example-output">
-        <LatexMatrix value={horodecki3By3({ aParam })} precision={2} label="\rho =" />
+        <LatexMatrix value={rho} precision={2} label="\rho =" />
       </div>
     </ExampleSection>
   );

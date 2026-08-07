@@ -48,7 +48,7 @@ function Example() {
   const rho = generalizedGridState({ dims: preset.dims, hyperedges: preset.hyperedges });
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">hyperedges</span>

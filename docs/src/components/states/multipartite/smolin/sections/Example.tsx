@@ -6,7 +6,7 @@ function Example() {
   const rho = smolin();
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="example-output">
         <LatexMatrix value={rho} precision={2} label="\rho =" />
       </div>

@@ -1,17 +1,36 @@
+import BibTex from "@/components/BibTex";
 import CitationSection from "@/components/sectionComponents/Citation";
 
 function Citation() {
   return (
     <CitationSection>
-      <p>
-        P. Horodecki, "Separability criterion and inseparable mixed states with positive partial
-        transposition", Phys. Lett. A 232, 333 (1997), Section 4.1.{" "}
-        <a href="https://arxiv.org/abs/quant-ph/9703004">arXiv:quant-ph/9703004</a>
-      </p>
-      <p>
-        D. Chruściński, A. Kossakowski, "Circulant states with positive partial transpose",{" "}
-        <a href="https://arxiv.org/abs/1108.2233">arXiv:1108.2233</a>, Eq. (1).
-      </p>
+      <BibTex>
+        {`@article{Horodecki_1997,
+          title={Separability criterion and inseparable mixed states with positive partial transposition},
+          volume={232},
+          ISSN={0375-9601},
+          url={http://dx.doi.org/10.1016/S0375-9601(97)00416-7},
+          DOI={10.1016/s0375-9601(97)00416-7},
+          number={5},
+          journal={Physics Letters A},
+          publisher={Elsevier BV},
+          author={Horodecki, Pawel},
+          year={1997},
+          month=Aug, pages={333–339} }`}
+      </BibTex>
+
+      <BibTex>
+        {`
+        @misc{chruściński2011exposedpositivemapsrobertson,
+        title={On exposed positive maps: Robertson and Breuer-Hall maps}, 
+        author={Dariusz Chruściński},
+        year={2011},
+        eprint={1108.2233},
+        archivePrefix={arXiv},
+        primaryClass={quant-ph},
+        url={https://arxiv.org/abs/1108.2233}, 
+        }`}
+      </BibTex>
     </CitationSection>
   );
 }

@@ -1,16 +1,12 @@
 import DefinitionSection from "@/components/sectionComponents/Definition";
 import LatexMatrix from "@/components/Equations/LatexMatrix";
-import EquationBlock from "@/components/Equations/EquationBlock";
-import EquationLine from "@/components/Equations/EquationLine";
+import Latex from "@/components/Equations/Latex";
 
 function Definition() {
   return (
     <DefinitionSection>
       <p>
-        In the product basis <span className="math">|i⟩⊗|j⟩</span>, with{" "}
-        <span className="math-var">i</span>, <span className="math-var">j</span> ∈ {"{0, 1, 2}"},
-        ordered as <span className="math">|00⟩, |01⟩, |02⟩, |10⟩, ..., |22⟩</span>, the 9×9
-        Horodecki density matrix is
+        The <Latex>{`\\mathbb{C}^3 \\otimes \\mathbb{C}^3`}</Latex> is defined as
       </p>
 
       <LatexMatrix
@@ -21,25 +17,16 @@ function Definition() {
           [0, 0, 0, "a", 0, 0, 0, 0, 0],
           ["a", 0, 0, 0, "a", 0, 0, 0, "a"],
           [0, 0, 0, 0, 0, "a", 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, "b", 0, "c"],
+          [0, 0, 0, 0, 0, 0, "\\tfrac{1+a}{2}", 0, "\\tfrac{\\sqrt{1-a^2}}{2}"],
           [0, 0, 0, 0, 0, 0, 0, "a", 0],
-          ["a", 0, 0, 0, "a", 0, "c", 0, "b"],
+          ["a", 0, 0, 0, "a", 0, "\\tfrac{\\sqrt{1-a^2}}{2}", 0, "\\tfrac{1+a}{2}"],
         ]}
         label="\rho(a) = \tfrac{1}{8a+1}\cdot"
       />
-      <EquationBlock>
-        <EquationLine>{"b = \\tfrac{1+a}{2}"}</EquationLine>
-        <EquationLine>{"c = \\tfrac{\\sqrt{1-a^2}}{2}"}</EquationLine>
-      </EquationBlock>
-      <div className="callout callout-tip">
-        <span className="callout-title">Off-diagonal coherences</span>
-        <p>
-          The <span className="math">|00⟩, |11⟩, |22⟩</span> coherences — the entries linking
-          rows/columns 0, 4, and 8 above — are essential: without them the state would be
-          separable. This implementation includes them (matching toqito's construction) even
-          though some published presentations of the matrix omit them.
-        </p>
-      </div>
+      <p>
+        for <Latex>a</Latex> in [0,1]. It is separable for <Latex>a=0</Latex> and <Latex>a=1</Latex>{" "}
+        and entangled on the rest of the range
+      </p>
     </DefinitionSection>
   );
 }

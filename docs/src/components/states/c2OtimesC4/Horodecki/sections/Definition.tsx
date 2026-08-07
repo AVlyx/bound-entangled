@@ -2,16 +2,13 @@ import DefinitionSection from "@/components/sectionComponents/Definition";
 import LatexMatrix from "@/components/Equations/LatexMatrix";
 import EquationBlock from "@/components/Equations/EquationBlock";
 import EquationLine from "@/components/Equations/EquationLine";
+import Latex from "@/components/Equations/Latex";
 
 function Definition() {
   return (
     <DefinitionSection>
       <p>
-        In the product basis <span className="math">|i⟩⊗|j⟩</span>, with{" "}
-        <span className="math-var">i</span> ∈ {"{0, 1}"} and <span className="math-var">j</span> ∈{" "}
-        {"{0, 1, 2, 3}"}, ordered as{" "}
-        <span className="math">|00⟩, |01⟩, |02⟩, |03⟩, |10⟩, |11⟩, |12⟩, |13⟩</span>, the 8×8
-        Horodecki density matrix is
+        The <Latex>{`\\mathbb{C}^2 \\otimes \\mathbb{C}^4`}</Latex> is defined as
       </p>
       <LatexMatrix
         value={[
@@ -19,21 +16,17 @@ function Definition() {
           [0, "a", 0, 0, 0, 0, "a", 0],
           [0, 0, "a", 0, 0, 0, 0, "a"],
           [0, 0, 0, "a", 0, 0, 0, 0],
-          [0, 0, 0, 0, "b", 0, 0, "c"],
+          [0, 0, 0, 0, "\\tfrac{1+a}{2}", 0, 0, "\\tfrac{\\sqrt{1-a^2}}{2}"],
           ["a", 0, 0, 0, 0, "a", 0, 0],
           [0, "a", 0, 0, 0, 0, "a", 0],
-          [0, 0, "a", 0, "c", 0, 0, "b"],
+          [0, 0, "a", 0, "\\tfrac{\\sqrt{1-a^2}}{2}", 0, 0, "\\tfrac{1+a}{2}"],
         ]}
         label="\rho(a) = \tfrac{1}{7a+1}\cdot"
       />
-      <p className="equation-caption">
-        with <span className="math-var">b</span>, <span className="math-var">c</span> defined
-        below.
+      <p>
+        for <Latex>a</Latex> in [0,1]. It is separable for <Latex>a=0</Latex> and <Latex>a=1</Latex>{" "}
+        and entangled on the rest of the range
       </p>
-      <EquationBlock>
-        <EquationLine>{"b = \\tfrac{1+a}{2}"}</EquationLine>
-        <EquationLine>{"c = \\tfrac{\\sqrt{1-a^2}}{2}"}</EquationLine>
-      </EquationBlock>
     </DefinitionSection>
   );
 }

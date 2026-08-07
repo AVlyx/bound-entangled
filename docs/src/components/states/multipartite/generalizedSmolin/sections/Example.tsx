@@ -9,7 +9,7 @@ function Example() {
   const rho = generalizedSmolin({ systems });
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">n</span>

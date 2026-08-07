@@ -13,13 +13,14 @@ function Example() {
   const [y, setY] = useState(0.1);
   const options = { fullDim: d, x, y };
   const valid = isValidYuOhInput(options);
+  const rho = valid ? yuOh(options) : undefined;
 
   const sumSq = x ** 2 + y ** 2;
   const z = sumSq <= 1 ? Math.sqrt(1 - sumSq) : NaN;
   const delta = sumSq <= 1 ? z ** 2 / (d - 2) - x * y : NaN;
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">d</span>
@@ -42,9 +43,9 @@ function Example() {
           <span className="control-value">{y.toFixed(2)}</span>
         </div>
       </div>
-      {valid ? (
+      {rho ? (
         <div className="example-output">
-          <LatexMatrix value={yuOh(options)} precision={2} label="\rho =" />
+          <LatexMatrix value={rho} precision={2} label="\rho =" />
         </div>
       ) : (
         <div className="callout callout-warn">

@@ -1,13 +1,16 @@
+import Latex from "@/components/Equations/Latex";
+import { Link } from "react-router-dom";
+
 function Introduction() {
   return (
     <p>
-      The <span className="math-var">C² ⊗ C⁴</span> Horodecki state was one of the first examples
-      of a state that is positive under partial transpose (PPT) yet entangled. For every{" "}
-      <span className="math-var">a</span> in [0, 1] it is PPT; for every{" "}
-      <span className="math-var">a</span> in the open interval (0, 1) it is entangled, so no pure
-      entanglement can be distilled from it by local operations and classical communication. It is
-      separable only at the endpoints <span className="math-var">a</span> = 0 and{" "}
-      <span className="math-var">a</span> = 1.
+      The <Latex>{`\\mathbb{C}^2 \\otimes \\mathbb{C}^4`}</Latex> Horodecki state was the first
+      example found of an entangled PPT state as well as the first example of a bound entangled
+      state. Also <Latex>{`\\mathbb{C}^2 \\otimes \\mathbb{C}^4`}</Latex> is the smallest dimension
+      that admits bound entanglement. See also{" "}
+      <Link to="/states/c3-c3/horodecki">
+        Horodecki <Latex>{`\\mathbb{C}^3 \\otimes \\mathbb{C}^3`}</Latex>
+      </Link>
     </p>
   );
 }

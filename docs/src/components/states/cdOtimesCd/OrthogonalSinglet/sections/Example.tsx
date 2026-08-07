@@ -12,7 +12,7 @@ function Example() {
   const totalDim = 2 * shieldDim;
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">d</span>

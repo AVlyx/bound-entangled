@@ -93,7 +93,7 @@ function Example() {
   }
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="callout callout-tip">
         <span className="callout-title">Tip</span>
         <p>

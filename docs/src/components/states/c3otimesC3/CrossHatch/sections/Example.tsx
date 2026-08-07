@@ -6,7 +6,7 @@ function Example() {
   const rho = crossHatch();
 
   return (
-    <ExampleSection title="The state">
+    <ExampleSection title="The state" copyValue={rho}>
       <div className="example-output">
         <LatexMatrix value={rho} precision={2} label="\rho =" />
       </div>

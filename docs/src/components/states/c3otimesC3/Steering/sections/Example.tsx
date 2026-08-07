@@ -8,9 +8,10 @@ function Example() {
   const [m1, setM1] = useState<number>(0.5);
   const [m2, setM2] = useState<number>(0.5);
   const valid = m1 ** 2 + m2 ** 2 <= 1;
+  const rho = valid ? steeringState({ m1, m2 }) : undefined;
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">m1</span>
@@ -23,9 +24,9 @@ function Example() {
           <span className="control-value">{m2.toFixed(2)}</span>
         </div>
       </div>
-      {valid ? (
+      {rho ? (
         <div className="example-output">
-          <LatexMatrix value={steeringState({ m1, m2 })} precision={2} label="\rho =" />
+          <LatexMatrix value={rho} precision={2} label="\rho =" />
         </div>
       ) : (
         <div className="callout callout-warn">

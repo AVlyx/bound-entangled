@@ -14,9 +14,10 @@ const cleanMatrix = (m: { toArray(): unknown }): number[][] =>
 function Example() {
   const basisArrays = tilesBasis().map(cleanVector);
   const basisColumns = basisArrays[0].map((_, row) => basisArrays.map((v) => v[row]));
+  const rho = cleanMatrix(tilesUpb());
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="example-output">
         <LatexMatrix value={basisColumns} precision={3} label="[|\psi_0\rangle \cdots |\psi_4\rangle] =" />
       </div>
@@ -24,7 +25,7 @@ function Example() {
         the five basis vectors as columns, each a flat 9-vector of ℂ³ ⊗ ℂ³.
       </p>
       <div className="example-output">
-        <LatexMatrix value={cleanMatrix(tilesUpb())} precision={2} label="\rho =" />
+        <LatexMatrix value={rho} precision={2} label="\rho =" />
       </div>
       <p className="equation-caption">the resulting 9×9 bound entangled state.</p>
     </ExampleSection>

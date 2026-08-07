@@ -16,7 +16,7 @@ function Example() {
   const basisSize = genTiles2Basis({ dims }).length;
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">dims [m, n]</span>

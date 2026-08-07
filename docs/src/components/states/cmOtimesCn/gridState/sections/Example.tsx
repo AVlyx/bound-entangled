@@ -47,7 +47,7 @@ function Example() {
   const rho = gridState({ dims: preset.dims, edges: preset.edges });
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">edge set</span>

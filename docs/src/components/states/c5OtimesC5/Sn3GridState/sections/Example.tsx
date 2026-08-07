@@ -51,9 +51,10 @@ function Example() {
   const [selected, setSelected] = useState<number>(0);
   const vertices = HYPEREDGES[selected].vertices;
   const component = generalizedGridComponent(DIMS, vertices).toArray() as number[];
+  const rho = sn3GridState();
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <p>
         <code>sn3GridState()</code> has no free parameter; instead, pick one of its 13 hyperedges
         to see the (unnormalized) component vector it contributes to the mixture.
@@ -78,7 +79,7 @@ function Example() {
         hyperedges above:
       </p>
       <div className="scroll-x">
-        <LatexMatrix value={sn3GridState()} precision={2} dimZeros label="\rho =" />
+        <LatexMatrix value={rho} precision={2} dimZeros label="\rho =" />
       </div>
     </ExampleSection>
   );

@@ -6,7 +6,7 @@ function Example() {
   const rho = ncomms6297();
 
   return (
-    <ExampleSection title="The state">
+    <ExampleSection title="The state" copyValue={rho}>
       <div className="example-output">
         <LatexMatrix value={rho} precision={3} label="\rho =" />
       </div>

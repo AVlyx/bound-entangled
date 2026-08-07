@@ -2,7 +2,6 @@ import { useState } from "react";
 import { horodecki2By4 } from "bound-entangled";
 import LatexMatrix from "@/components/Equations/LatexMatrix";
 import Slider from "@/components/Slider";
-import CopyButton from "@/components/CopyButton";
 import ExampleSection from "@/components/sectionComponents/Example";
 
 function Example() {
@@ -10,8 +9,7 @@ function Example() {
   const mat = horodecki2By4({ aParam });
 
   return (
-    <ExampleSection>
-      {/* <CopyButton /> */}
+    <ExampleSection copyValue={mat}>
       <div className="controls">
         <span className="control-label">a</span>
         <Slider min={0} max={1} value={aParam} setValue={setAParam} />

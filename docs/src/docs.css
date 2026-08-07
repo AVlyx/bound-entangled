@@ -520,6 +520,15 @@
   }
 }
 
+/* Right-aligned strip above the example content, holding the copy-as button. Its own
+   row rather than an absolutely positioned corner, so it can never land on top of a
+   wide controls row. */
+.example-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-3);
+}
+
 .example-output {
   display: flex;
   justify-content: center;

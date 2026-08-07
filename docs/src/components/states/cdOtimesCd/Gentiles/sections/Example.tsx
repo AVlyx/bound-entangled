@@ -12,7 +12,7 @@ function Example() {
   const rho = genTiles1({ fullDim: d });
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <div className="controls">
         <div className="control">
           <span className="control-label">d</span>

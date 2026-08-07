@@ -7,9 +7,10 @@ import { PAULI_NAMES, type PauliDigit } from "../shared";
 function Example() {
   const [i, setI] = useState<PauliDigit>(1);
   const [j, setJ] = useState<PauliDigit>(1);
+  const rho = pianni();
 
   return (
-    <ExampleSection>
+    <ExampleSection copyValue={rho}>
       <p>
         The 16×16 Pianni state itself has no free parameter; instead, explore the building block{" "}
         <span className="math">Pᵢⱼ = projectorIj(i, j)</span> that the mixture is made from.
@@ -43,7 +44,7 @@ function Example() {
         The full state ρ = pianni(), the (1/6)-weighted, permuted sum of the six Pᵢⱼ listed above:
       </p>
       <div className="scroll-x">
-        <LatexMatrix value={pianni()} precision={2} dimZeros label="\rho =" />
+        <LatexMatrix value={rho} precision={2} dimZeros label="\rho =" />
       </div>
     </ExampleSection>
   );
