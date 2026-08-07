@@ -58,18 +58,20 @@ export const CITATIONS = {
   ],
   ncomms6297: [
     {
-      bibTex: `@article{Vertesi2014,
-  author  = {V{\'e}rtesi, Tam{\'a}s and Brunner, Nicolas},
-  title   = {Disproving the Peres conjecture by showing Bell nonlocality from bound entanglement},
-  journal = {Nature Communications},
-  year    = {2014},
-  volume  = {5},
-  number  = {1},
-  pages   = {5297},
-  doi     = {10.1038/ncomms6297},
-  url     = {https://doi.org/10.1038/ncomms6297}
-}`,
-      arxivLink: "https://www.nature.com/articles/ncomms6297",
+      bibTex: `@article{V_rtesi_2014,
+   title={Disproving the Peres conjecture by showing Bell nonlocality from bound entanglement},
+   volume={5},
+   ISSN={2041-1723},
+   url={http://dx.doi.org/10.1038/ncomms6297},
+   DOI={10.1038/ncomms6297},
+   number={1},
+   journal={Nature Communications},
+   publisher={Springer Science and Business Media LLC},
+   author={Vértesi, Tamás and Brunner, Nicolas},
+   year={2014},
+   month=Nov }
+`,
+      arxivLink: "https://arxiv.org/abs/1405.4502",
     },
   ], // ( ╯°□°）╯︵ ┻━┻)
   steering: [
@@ -261,7 +263,7 @@ export const CITATIONS = {
     {
       bibTex: `@article{PhysRevResearch.3.023101,
   title = {Bound entangled singlet-like states for quantum metrology},
-  author = {P\'al, K\'aroly F. and T\'oth, G\'eza and Bene, Erika and V\'ertesi, Tam\'as},
+  author = {P\\'al, K\\'aroly F. and T\\'oth, G\\'eza and Bene, Erika and V\\'ertesi, Tam\\'as},
   journal = {Phys. Rev. Res.},
   volume = {3},
   issue = {2},
@@ -375,18 +377,20 @@ export const CITATIONS = {
   ],
   quasiDs: [
     {
-      bibTex: `@article{Vertesi2014,
-  author  = {V{\'e}rtesi, Tam{\'a}s and Brunner, Nicolas},
-  title   = {Disproving the Peres conjecture by showing Bell nonlocality from bound entanglement},
-  journal = {Nature Communications},
-  year    = {2014},
-  volume  = {5},
-  number  = {1},
-  pages   = {5297},
-  doi     = {10.1038/ncomms6297},
-  url     = {https://doi.org/10.1038/ncomms6297}
-}`,
-      arxivLink: "https://www.nature.com/articles/ncomms6297",
+      bibTex: `@article{V_rtesi_2014,
+   title={Disproving the Peres conjecture by showing Bell nonlocality from bound entanglement},
+   volume={5},
+   ISSN={2041-1723},
+   url={http://dx.doi.org/10.1038/ncomms6297},
+   DOI={10.1038/ncomms6297},
+   number={1},
+   journal={Nature Communications},
+   publisher={Springer Science and Business Media LLC},
+   author={Vértesi, Tamás and Brunner, Nicolas},
+   year={2014},
+   month=Nov }
+`,
+      arxivLink: "https://arxiv.org/abs/1405.4502",
     },
   ], // ( ╯°□°）╯︵ ┻━┻)
 };

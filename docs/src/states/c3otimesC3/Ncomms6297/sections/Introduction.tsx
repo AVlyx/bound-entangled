@@ -1,9 +1,10 @@
 function Introduction() {
   return (
     <p>
-      A rank-4 PPT entangled state on C³ ⊗ C³, given explicitly by its spectral decomposition:
-      four eigenvectors and their eigenvalues, taken directly from Nature Communications 5, 6297
-      (2014).
+      &ldquo;In 1999, Peres conjectured that Bell nonlocality is equivalent to distillability of
+      entanglement&rdquo; <a href="#ref-1">[1]</a>, which would imply that a bound entangled states
+      cannot violate a Bell inequality. Tamás Vértesi and Nicolas Brunner disproved this using the
+      two-qutrit state constructed below.
     </p>
   );
 }

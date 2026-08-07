@@ -14,7 +14,6 @@ function Horodecki2by4() {
       <Parameters />
       <Usage />
       <Example />
-      {/* <Properties /> */}
       <Citation citations={CITATIONS.horodecki} />
     </>
   );

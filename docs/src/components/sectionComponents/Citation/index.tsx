@@ -1,8 +1,9 @@
+import { BibTex } from "react-bibtex";
 import styles from "./Citation.module.css";
-import BibTex from "@/components/BibTex";
 
 interface CitationProps {
   bibTex: string;
+  arxivLink: string;
 }
 interface CitationsProps {
   citations: CitationProps[];
@@ -12,8 +13,12 @@ function Citation({ citations }: CitationsProps) {
   return (
     <div className={styles.citation}>
       <h2>References</h2>
-      {citations.map(({ bibTex }) => (
-        <BibTex>{bibTex}</BibTex>
+      {citations.map(({ bibTex, arxivLink }) => (
+        <>
+          <BibTex>{bibTex}</BibTex>
+          <a href={arxivLink}>Link to arxiv</a>
+          <br />
+        </>
       ))}
     </div>
   );

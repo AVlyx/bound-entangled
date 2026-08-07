@@ -7,7 +7,6 @@ import Definition from "./sections/Definition";
 import Parameters from "./sections/Parameters";
 import Usage from "./sections/Usage";
 import Example from "./sections/Example";
-import Properties from "./sections/Properties";
 import Citation from "@/components/sectionComponents/Citation";
 import { CITATIONS } from "@/constants/Citations";
 
@@ -19,7 +18,6 @@ function BadziagPrivateSinglet() {
       <Parameters />
       <Usage />
       <Example />
-      <Properties />
       <Citation citations={CITATIONS.singlet} />
     </>
   );

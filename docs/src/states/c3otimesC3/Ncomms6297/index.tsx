@@ -6,7 +6,6 @@ import Introduction from "./sections/Introduction";
 import Definition from "./sections/Definition";
 import Usage from "./sections/Usage";
 import Example from "./sections/Example";
-import Properties from "./sections/Properties";
 import Citation from "@/components/sectionComponents/Citation";
 import { CITATIONS } from "@/constants/Citations";
 
@@ -17,7 +16,6 @@ function Ncomms6297() {
       <Definition />
       <Usage />
       <Example />
-      <Properties />
       <Citation citations={CITATIONS.ncomms6297} />
     </>
   );
