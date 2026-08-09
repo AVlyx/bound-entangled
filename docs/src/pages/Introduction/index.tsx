@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import CodeBlock from "@/components/sectionComponents/CodeBlock";
-import Citation from "@/components/sectionComponents/Citation";
 import EquationLine from "@/components/Equations/EquationLine";
 import Latex from "@/components/Equations/Latex";
 import { CITATIONS } from "@/constants/Citations";
