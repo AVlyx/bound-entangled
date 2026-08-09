@@ -1,6 +1,12 @@
 .scroll {
   max-width: 100%;
   overflow-x: auto;
+  /* The box is sized to the *scaled* matrix, but a scale is paint only, so the
+     content's layout box keeps its full natural height. Left at `visible` this
+     computes to `auto` (a non-visible overflow-x forces the other axis), and
+     the browser hangs a vertical scrollbar over what is only empty space —
+     which also quietly eats ~15px of the width the matrix is measured against. */
+  overflow-y: hidden;
   overscroll-behavior-x: contain;
   /* Horizontal buffer, not just visual breathing room: this container sizes to
      its content (it's a flex item in `.example-output`), and KaTeX's rendered

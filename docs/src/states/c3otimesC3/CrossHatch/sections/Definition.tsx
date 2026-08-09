@@ -1,5 +1,6 @@
 import DefinitionSection from "@/components/sectionComponents/Definition";
 import EquationLine from "@/components/Equations/EquationLine";
+import Latex from "@/components/Equations/Latex";
 
 function Definition() {
   return (
@@ -7,11 +8,10 @@ function Definition() {
       <p>
         A grid state is built from a graph whose vertices are the product basis states{" "}
         <span className="math">|i⟩ ⊗ |j⟩</span> of{" "}
-        <span className="math">
-          <span className="math-var">C</span>ᵐ ⊗ <span className="math-var">C</span>ⁿ
-        </span>{" "}
-        and whose edges pair up vertices. An edge joining <span className="math">(i, j)</span> and{" "}
-        <span className="math">(k, l)</span> carries the pure state
+        <Latex>{`\\mathbb{C}^m \\otimes \\mathbb{C}^n`}</Latex>
+        and whose edges pair up vertices. An edge joining <span className="math">
+          (i, j)
+        </span> and <span className="math">(k, l)</span> carries the pure state
       </p>
       <EquationLine>{"|e\\rangle = (|ij\\rangle - |kl\\rangle) / \\sqrt{2}"}</EquationLine>
       <p>and the grid state is the uniform mixture of the states carried by every edge:</p>

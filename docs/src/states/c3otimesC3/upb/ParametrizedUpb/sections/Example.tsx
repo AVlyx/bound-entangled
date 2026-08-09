@@ -4,6 +4,7 @@ import type { ParametrizedUpbOptions } from "bound-entangled";
 import type { Cell } from "@/components/Equations/LatexMatrix";
 import LatexMatrix from "@/components/Equations/LatexMatrix";
 import ExampleSection from "@/components/sectionComponents/Example";
+import Latex from "@/components/Equations/Latex";
 
 /** The angle at which both parties' gamma and theta reduce this family to the Pyramid UPB. */
 const PYRAMID_ANGLE = Math.acos((Math.sqrt(5) - 1) / 2);
@@ -114,10 +115,15 @@ function Example() {
       {valid && basisColumns && rho ? (
         <>
           <div className="example-output">
-            <LatexMatrix value={basisColumns} precision={3} label="[|\psi_0\rangle \cdots |\psi_4\rangle] =" />
+            <LatexMatrix
+              value={basisColumns}
+              precision={3}
+              label="[|\psi_0\rangle \cdots |\psi_4\rangle] ="
+            />
           </div>
           <p className="equation-caption">
-            the five basis vectors as columns, each a flat 9-vector of ℂ³ ⊗ ℂ³.
+            the five basis vectors as columns, each a flat 9-vector of{" "}
+            <Latex>{`\\mathbb{C}^3 \\otimes \\mathbb{C}^3`}</Latex>.
           </p>
           <div className="example-output">
             <LatexMatrix value={rho} precision={2} label="\rho =" />
@@ -128,9 +134,9 @@ function Example() {
         <div className="callout callout-warn">
           <span className="callout-title">Invalid parameters</span>
           <p>
-            cos γ and cos θ cannot both vanish for the same party: this configuration is too
-            close to γ = π/2 with θ = π/2 (or the equivalent points), where the construction
-            divides by zero. Move one of the sliders away from that corner.
+            cos γ and cos θ cannot both vanish for the same party: this configuration is too close
+            to γ = π/2 with θ = π/2 (or the equivalent points), where the construction divides by
+            zero. Move one of the sliders away from that corner.
           </p>
         </div>
       )}

@@ -69,8 +69,11 @@ interface Box {
   width: number;
   height: number;
   scale: number;
-  /** True once shrinking has bottomed out at `MIN_SCALE` and the matrix still
-   *  doesn't fit — the remaining overflow needs a real scrollbar, not clipping. */
+  /** True when fitting would need to shrink past `MIN_SCALE`. `scale` is then
+   *  left at 1 and the box scrolls: a scale is paint only, so the scrollable
+   *  extent tracks the matrix's full unscaled width either way — scaling as
+   *  well would just strand the difference as empty space at the end of the
+   *  scroll, on top of making the digits illegible. */
   stillOverflows: boolean;
 }
 
@@ -94,15 +97,33 @@ function useShrinkToFit(source: string) {
     let cancelled = false;
     const recompute = () => {
       if (cancelled) return;
-      // Measure the content at its natural size, ignoring any scale from a
-      // previous pass, against the space its container actually offers.
-      inner.style.transform = "none";
+      // Measure the content against the space its container actually offers.
+      // `scrollWidth`/`scrollHeight` are layout metrics and a scale is paint
+      // only, so these already report the natural, unscaled size — the scale
+      // from a previous pass must NOT be cleared first. Writing to
+      // `inner.style` here would desynchronise the DOM from the `style` prop
+      // React last committed, and React diffs styles against that prop rather
+      // than against the DOM: the next recompute that lands on the same scale
+      // would produce no style change, so React would skip the write and leave
+      // the cleared transform in place — an unscaled matrix inside a box sized
+      // for a scaled one, clipped with no scrollbar.
       const width = inner.scrollWidth;
       const height = inner.scrollHeight;
-      const available = outer.parentElement?.clientWidth ?? width;
-      const scale =
-        width > available ? Math.max((available * FIT_MARGIN) / width, MIN_SCALE) : 1;
-      setBox({ width, height, scale, stillOverflows: width * scale > available });
+      // The width set below is a content width (no `box-sizing: border-box`
+      // here), so the scroll box's own horizontal padding sits outside it and
+      // `max-width: 100%` clamps the sum. Discount that gutter, or a matrix
+      // landing within it of the container's width counts as fitting and then
+      // gets clipped by exactly the overshoot, with no scrollbar to recover it.
+      const outerStyle = getComputedStyle(outer);
+      const gutter =
+        parseFloat(outerStyle.paddingLeft) +
+        parseFloat(outerStyle.paddingRight) +
+        parseFloat(outerStyle.borderLeftWidth) +
+        parseFloat(outerStyle.borderRightWidth);
+      const available = (outer.parentElement?.clientWidth ?? width + gutter) - gutter;
+      const fitted = width > available ? (available * FIT_MARGIN) / width : 1;
+      const stillOverflows = fitted < MIN_SCALE;
+      setBox({ width, height, scale: stillOverflows ? 1 : fitted, stillOverflows });
     };
 
     recompute();

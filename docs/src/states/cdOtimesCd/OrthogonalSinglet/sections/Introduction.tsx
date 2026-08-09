@@ -5,10 +5,9 @@ function Introduction() {
       <span className="math">
         C<sup>2d</sup> ⊗ C<sup>2d</sup>
       </span>
-      , built with the same two-branch weighting as the Bądziąg private singlet but with the
-      Fourier phases replaced by a family of real orthogonal matrices. It is presented as ρ
-      <sub>F2</sub> in Phys. Rev. Research 3, 023101 (2021), reverse-engineered from Tóth &
-      Vértesi's construction of PPT states useful for metrology.
+      , built with the same two-branch weighting as the Bądziąg private singlet but with the Fourier
+      phases replaced by a family of real orthogonal matrices. Export of BES_metro.m from
+      QUBIT4MATLAB
     </p>
   );
 }

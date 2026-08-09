@@ -4,6 +4,25 @@
 // }
 
 export const CITATIONS = {
+  /** General reference on bound entanglement, cited from the landing page. */
+  boundEntanglement: [
+    {
+      bibTex: `@article{Hiesmayr_2025,
+   title={Bipartite bound entanglement},
+   volume={23},
+   ISSN={1793-6918},
+   url={http://dx.doi.org/10.1142/S0219749925300037},
+   DOI={10.1142/s0219749925300037},
+   number={05},
+   journal={International Journal of Quantum Information},
+   publisher={World Scientific Pub Co Pte Ltd},
+   author={Hiesmayr, Beatrix C. and Popp, Christopher and Sutter, Tobias C.},
+   year={2025},
+   month=July }
+`,
+      arxivLink: "https://arxiv.org/abs/2406.13491",
+    },
+  ],
   horodecki: [
     {
       bibTex: `@article{Horodecki_1997,

@@ -5,6 +5,8 @@ import babel from '@rolldown/plugin-babel'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Set to "/<repo>/" by the GitHub Pages workflow; "/" for local dev.
+  base: process.env.VITE_BASE ?? '/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] })

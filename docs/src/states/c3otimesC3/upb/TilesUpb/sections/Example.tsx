@@ -1,6 +1,7 @@
 import { tilesBasis, tilesUpb } from "bound-entangled";
 import LatexMatrix from "@/components/Equations/LatexMatrix";
 import ExampleSection from "@/components/sectionComponents/Example";
+import Latex from "@/components/Equations/Latex";
 
 // Floating-point residue (~1e-16) from cos/sin arithmetic would otherwise show up as
 // e.g. "2.6e-17" instead of a clean zero; snap anything this small down to exactly 0.
@@ -19,10 +20,15 @@ function Example() {
   return (
     <ExampleSection copyValue={rho}>
       <div className="example-output">
-        <LatexMatrix value={basisColumns} precision={3} label="[|\psi_0\rangle \cdots |\psi_4\rangle] =" />
+        <LatexMatrix
+          value={basisColumns}
+          precision={3}
+          label="[|\psi_0\rangle \cdots |\psi_4\rangle] ="
+        />
       </div>
       <p className="equation-caption">
-        the five basis vectors as columns, each a flat 9-vector of ℂ³ ⊗ ℂ³.
+        the five basis vectors as columns, each a flat 9-vector of{" "}
+        <Latex>{`\\mathbb{C}^3 \\otimes \\mathbb{C}^3`}</Latex>.
       </p>
       <div className="example-output">
         <LatexMatrix value={rho} precision={2} label="\rho =" />

@@ -1,0 +1,16 @@
+.citation {
+  margin-top: var(--space-7);
+  scroll-margin-top: var(--space-6);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.citation p {
+  display: block;
+  font-size: 0.82em;
+  line-height: 145%;
+  color: var(--text);
+  opacity: 0.85;
+}

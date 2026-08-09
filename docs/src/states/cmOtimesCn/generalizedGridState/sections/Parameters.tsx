@@ -1,3 +1,4 @@
+import Latex from "@/components/Equations/Latex";
 import ParametersSection from "@/components/sectionComponents/Parameters";
 import Parameter from "@/components/sectionComponents/Parameters/Parameter";
 
@@ -5,8 +6,8 @@ function Parameters() {
   return (
     <ParametersSection>
       <Parameter paramName="dims">
-        The grid dimensions <span className="math-var">[m, n]</span>; the state lives on C
-        <sup>m</sup> ⊗ C<sup>n</sup>.
+        The grid dimensions <span className="math-var">[m, n]</span>; the state lives on{" "}
+        <Latex>{`\\mathbb{C}^m \\otimes \\mathbb{C}^n`}</Latex>
       </Parameter>
       <Parameter paramName="hyperedges">
         A non-empty array of <code>Hyperedge</code>. Each <code>Hyperedge</code> is a non-empty

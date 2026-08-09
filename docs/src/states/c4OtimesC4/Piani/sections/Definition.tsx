@@ -1,6 +1,7 @@
 import DefinitionSection from "@/components/sectionComponents/Definition";
 import EquationLine from "@/components/Equations/EquationLine";
 import { PAULI_NAMES, type PauliDigit } from "../shared";
+import Latex from "@/components/Equations/Latex";
 
 /** The six Pauli index pairs whose generalized Bell projectors make up the mixture. */
 const MIXTURE_PAIRS: ReadonlyArray<readonly [PauliDigit, PauliDigit]> = [
@@ -17,9 +18,12 @@ function Definition() {
     <DefinitionSection>
       <p>
         Write <span className="math">|Ψ⁺₄⟩</span> for the (normalized) maximally entangled state of{" "}
-        <span className="math">C⁴ ⊗ C⁴</span>. For Pauli indices <span className="math-var">i</span>
-        , <span className="math-var">j</span> ∈ {"{0, 1, 2, 3}"} (0 = I, 1 = X, 2 = Y, 3 = Z), the
-        generalized Bell state
+        <span className="math">
+          {" "}
+          <Latex>{`\\mathbb{C}^4 \\otimes \\mathbb{C}^4`}</Latex>
+        </span>
+        . For Pauli indices <span className="math-var">i</span>, <span className="math-var">j</span>{" "}
+        ∈ {"{0, 1, 2, 3}"} (0 = I, 1 = X, 2 = Y, 3 = Z), the generalized Bell state
       </p>
       <EquationLine>
         {
