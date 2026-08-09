@@ -8,6 +8,9 @@ so no pure entanglement can be distilled from it. This library collects
 constructions that are otherwise scattered across papers into a single, tested
 package, each factory returning the density matrix `rho` of the state.
 
+📖 **[Documentation](https://avlyx.github.io/bound-entangled/)** — one page per
+state, with the construction written out and what is known about it.
+
 This is the TypeScript port of the Python package of the same name. A handful of
 states are still to come — see [TODO.md](TODO.md).
 

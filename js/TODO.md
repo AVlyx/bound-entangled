@@ -46,4 +46,3 @@ toqito sources and match bit-for-bit.
   if larger states are ever needed.
 - No npm publish job in [.github/workflows/publish.yml](../.github/workflows/publish.yml)
   yet; it needs an `NPM_TOKEN` secret or npm trusted publishing configured.
-- The root [README.md](../README.md) still describes only the Python package.
