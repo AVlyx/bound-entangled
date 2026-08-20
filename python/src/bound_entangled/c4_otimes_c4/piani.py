@@ -43,4 +43,4 @@ def piani():
     for i, j in [(0, 2), (1, 1), (2, 3), (3, 1), (3, 2), (3, 3)]:
         rho += P_ij(i, j)
     rho /= 6
-    return permute_systems(rho, [0, 2, 1, 3])
+    return rho

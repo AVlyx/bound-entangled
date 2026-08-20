@@ -47,6 +47,5 @@ export function projectorIj(i: PauliIndex, j: PauliIndex): Matrix {
  * @returns the 16x16 bound entangled density matrix.
  */
 export function piani(): Matrix {
-  const mixture = multiply(1 / 6, sumMatrices(PAIRS.map(([i, j]) => projectorIj(i, j)))) as Matrix;
-  return permuteSystems(mixture, [0, 2, 1, 3], [2, 2, 2, 2]);
+  return multiply(1 / 6, sumMatrices(PAIRS.map(([i, j]) => projectorIj(i, j)))) as Matrix;
 }
