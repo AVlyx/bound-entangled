@@ -69,5 +69,17 @@ def gen_tiles1(*, full_dim: int) -> np.ndarray:
     Returns:
         np.ndarray: the bound entangled state on the orthogonal complement of
         the GenTiles1 unextendible product basis.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = gen_tiles1(full_dim=4)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[4, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[4, 4])
+        >>> sep
+        False
     """
     return upb(gen_tiles1_basis(full_dim))

@@ -37,10 +37,10 @@ def phi_b(d: int, b: float) -> np.ndarray:
 
 
 def horodecki_2_by_d_generalized(*, second_dim_d: int, b: float) -> np.ndarray:
-    """Generalization of the C^2 ⊗ C^4 horodecki state
-    for d = 4, it is equivalent to the C^2 ⊗ C^4 horodecki state from toqito up to an anti-diagonal transpose
+    """Generalization of the C^2 ⊗ C^4 horodecki state.
 
-    assert np.allclose(horodecki_2_by_d_generalized(second_dim_d=4, b=b), np.flip(horodecki(b)).T)
+    For d = 4 it is equivalent to the C^2 ⊗ C^4 horodecki state from toqito up
+    to an anti-diagonal transpose.
 
     Args:
         second_dim_d (int): second dimension d. The full dimension of the system is 2*d
@@ -48,5 +48,36 @@ def horodecki_2_by_d_generalized(*, second_dim_d: int, b: float) -> np.ndarray:
 
     Returns:
         np.ndarray: the generalized horodecki state
+
+    Examples:
+        No sufficient separability criterion settles a 2xd PPT state for d >= 4,
+        so ``is_separable`` falls through to the DPS symmetric-extension SDP and
+        takes roughly ten seconds here.
+
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = horodecki_2_by_d_generalized(second_dim_d=4, b=0.5)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[2, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[2, 4])
+        >>> sep
+        False
+
+        At d = 4 the state matches toqito's C^2 (x) C^4 Horodecki state under an
+        anti-diagonal transpose:
+
+        >>> import numpy as np
+        >>> from bound_entangled.c2_otimes_c4.horodecki import horodecki
+        >>> bool(np.allclose(state, np.flip(horodecki(0.5)).T))
+        True
+
+        At d = 3 the total dimension is 6, where PPT already implies separable
+        (Horodecki 1996), so the state is not bound entangled:
+
+        >>> sep, _ = is_separable(horodecki_2_by_d_generalized(second_dim_d=3, b=0.5), dim=[2, 3])
+        >>> sep
+        True
     """
     return ((2 * second_dim_d - 1) * b * rho_insep_d(second_dim_d) + ketbra(phi_b(second_dim_d, b))) / ((2 * second_dim_d - 1) * b + 1)

@@ -88,6 +88,24 @@ def orthogonal_singlet(*, shield_dim: int) -> np.ndarray:
 
     Raises:
         ValueError: If shield_dim is not 3 or a power of 2.
+
+    Examples:
+        The ABA'B' ordering has to be permuted to AA'BB' before the Alice|Bob
+        cut of dimension 2d x 2d means anything.
+
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.perms import permute_systems
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = permute_systems(
+        ...     orthogonal_singlet(shield_dim=2), [0, 2, 1, 3], dim=[2, 2, 2, 2]
+        ... )
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[4, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[4, 4])
+        >>> sep
+        False
     """
     d = shield_dim
     p1 = sqrt(d) / (1 + sqrt(d))

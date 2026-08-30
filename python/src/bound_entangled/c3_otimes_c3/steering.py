@@ -22,6 +22,18 @@ def steering_state(m1: float, m2: float) -> np.ndarray:
 
     Returns:
         np.ndarray: the steerable bound entangled state.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = steering_state(0.5, 0.5)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     m3 = sqrt((1 - m1**2 - m2**2) / 2)
 

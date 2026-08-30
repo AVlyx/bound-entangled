@@ -25,7 +25,6 @@ The Python package wraps toqito for these, so the TS port needs real
 implementations rather than a wrapper:
 
 - `chessboard`, `chessboardExtremalPPT` (C³ ⊗ C³) — [quant-ph/9911056](https://arxiv.org/abs/quant-ph/9911056)
-- `breuer` (C⁴ ⊗ C⁴) — [quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036)
 
 Both Horodecki states and `tile` / `tilesUpb` have now been written from the
 toqito sources and match bit-for-bit.

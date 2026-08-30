@@ -73,10 +73,9 @@ package; see [js/TODO.md](js/TODO.md).
 
 ### C⁴ ⊗ C⁴
 
-| Python   | TypeScript | State                                                           | Reference                                                  |
-| -------- | ---------- | --------------------------------------------------------------- | ---------------------------------------------------------- |
-| `breuer` | —          | Breuer bound-entangled state (PPT, detected by anti-linear map) | [quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036) |
-| `piani`  | `piani`    | 4×4 Benatti–Floreanini–Piani state                              | [quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095) |
+| Python  | TypeScript | State                              | Reference                                                  |
+| ------- | ---------- | ---------------------------------- | ---------------------------------------------------------- |
+| `piani` | `piani`    | 4×4 Benatti–Floreanini–Piani state | [quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095) |
 
 ### C⁵ ⊗ C⁵
 

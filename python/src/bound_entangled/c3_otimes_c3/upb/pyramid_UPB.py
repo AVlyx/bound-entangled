@@ -33,5 +33,17 @@ def pyramid_upb() -> np.ndarray:
     Returns:
         np.ndarray: the bound entangled state on the orthogonal complement of
         the Pyramid UPB.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = pyramid_upb()
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     return upb(pyramid_basis())

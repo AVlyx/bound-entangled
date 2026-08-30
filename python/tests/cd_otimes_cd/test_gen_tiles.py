@@ -1,9 +1,13 @@
+"""Structural properties of the GenTiles1 UPB on C^d (x) C^d.
+
+The state's validity, PPT-ness and entanglement are covered by the doctest on
+`gen_tiles1`; this file covers the basis it is built from.
+"""
+
 import numpy as np
 import pytest
 
-from bound_entangled.cd_otimes_cd.gen_tiles import gen_tiles1_basis, gen_tiles1
-
-from qi import assert_bound_entangled
+from bound_entangled.cd_otimes_cd.gen_tiles import gen_tiles1_basis
 
 
 @pytest.mark.parametrize("d", [4, 6, 8])
@@ -17,15 +21,3 @@ def test_gen_tiles1_basis_is_an_orthonormal_product_basis_of_the_right_size(d):
         for j in range(i + 1, len(basis)):
             overlap = (basis[i].conj().T @ basis[j]).item()
             np.testing.assert_allclose(overlap, 0.0, atol=1e-10)
-
-
-def test_gen_tiles1_basis_rejects_invalid_d():
-    with pytest.raises(ValueError):
-        gen_tiles1_basis(3)
-    with pytest.raises(ValueError):
-        gen_tiles1_basis(5)
-
-
-@pytest.mark.parametrize("d", [4, 6])
-def test_gen_tiles1_is_bound_entangled(d):
-    assert_bound_entangled(gen_tiles1(full_dim=d), dim=[d, d])

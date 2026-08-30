@@ -15,6 +15,18 @@ def cross_hatch():
 
     Returns:
         np.ndarray: the cross-hatch grid state.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = cross_hatch()
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     return grid_state(
         (3, 3),

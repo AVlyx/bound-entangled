@@ -16,5 +16,17 @@ def tiles_upb() -> np.ndarray:
     Returns:
         np.ndarray: the bound entangled state on the orthogonal complement of
         the Tiles unextendible product basis (`toqito.states.tile`).
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = tiles_upb()
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     return upb([tile(i) for i in range(5)])

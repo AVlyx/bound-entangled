@@ -17,5 +17,21 @@ def horodecki(a: float) -> np.ndarray:
 
     Returns:
         np.ndarray: 8×8 density matrix of the 2×4 Horodecki state.
+
+    Examples:
+        No sufficient separability criterion settles a 2x4 PPT state, so
+        ``is_separable`` falls through to the DPS symmetric-extension SDP and
+        takes roughly ten seconds here.
+
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = horodecki(0.5)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[2, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[2, 4])
+        >>> sep
+        False
     """
     return horodecki_toqito(a, dim=[2, 4])  # type: ignore

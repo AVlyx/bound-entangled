@@ -28,6 +28,18 @@ def chessboard(
 
     Returns:
         np.ndarray: a chessboard quantum state.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = chessboard(1, 2, 3, 4, 5, 6)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     return chessboard_toqito([a, b, c, d, m, n], s, t)  # type: ignore
 
@@ -41,6 +53,18 @@ def chessboard_extremal_PPT() -> np.ndarray:
 
     Returns:
         np.ndarray: the extremal PPT chessboard state.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = chessboard_extremal_PPT()
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     return chessboard(
         # m = n = b = -3/5

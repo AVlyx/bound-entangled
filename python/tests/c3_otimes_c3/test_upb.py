@@ -1,10 +1,14 @@
+"""Structural properties of the C^3 (x) C^3 unextendible product bases.
+
+That the resulting *states* are valid, PPT and entangled is asserted by the
+doctests on the factories themselves; what those cannot see is whether the
+basis feeding them is a genuine UPB. These tests cover that.
+"""
+
 import numpy as np
 
-from bound_entangled.c3_otimes_c3.upb.pyramid_UPB import pyramid_basis, pyramid_upb
-from bound_entangled.c3_otimes_c3.upb.tiles_UPB import tiles_upb
-from bound_entangled.c3_otimes_c3.upb.parametrized_UPB import parametrized_basis, parametrized_upb
-
-from qi import assert_bound_entangled
+from bound_entangled.c3_otimes_c3.upb.pyramid_UPB import pyramid_basis
+from bound_entangled.c3_otimes_c3.upb.parametrized_UPB import parametrized_basis
 
 
 def test_pyramid_basis_has_five_normalized_distinct_vectors():
@@ -19,14 +23,6 @@ def test_pyramid_basis_has_five_normalized_distinct_vectors():
             assert not np.allclose(basis[i], basis[j])
 
 
-def test_pyramid_upb_is_bound_entangled():
-    assert_bound_entangled(pyramid_upb(), dim=[3, 3])
-
-
-def test_tiles_upb_is_bound_entangled():
-    assert_bound_entangled(tiles_upb(), dim=[3, 3])
-
-
 def test_parametrized_basis_has_five_normalized_distinct_vectors():
     basis = parametrized_basis(0.7, 0.6, 0.3, 1.1, 0.5, 1.4)
     assert len(basis) == 5
@@ -36,10 +32,6 @@ def test_parametrized_basis_has_five_normalized_distinct_vectors():
     for i in range(len(basis)):
         for j in range(i + 1, len(basis)):
             assert not np.allclose(basis[i], basis[j])
-
-
-def test_parametrized_upb_is_bound_entangled():
-    assert_bound_entangled(parametrized_upb(0.7, 0.6, 0.3, 1.1, 0.5, 1.4), dim=[3, 3])
 
 
 def test_parametrized_basis_has_the_upb_orthogonality_graph():

@@ -9,7 +9,6 @@ https://arxiv.org/abs/2010.08372 (Appendix C5).
 
 from toqito.matrices import pauli
 from toqito.states import max_entangled
-from toqito.perms import permute_systems
 import numpy as np
 from bound_entangled.utils import ketbra
 
@@ -34,10 +33,22 @@ def piani():
 
     Uniform mixture of the six projections P_ij for (i, j) in
     {(0,2), (1,1), (2,3), (3,1), (3,2), (3,3)}, indecomposable and PPT under
-    the bipartition AA'|BB' after regrouping the four underlying qubits.
+    the 4x4 bipartition.
 
     Returns:
         np.ndarray: the 16x16 bound entangled density matrix.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = piani()
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[4, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[4, 4])
+        >>> sep
+        False
     """
     rho = np.zeros((16, 16), dtype=np.complex128)
     for i, j in [(0, 2), (1, 1), (2, 3), (3, 1), (3, 2), (3, 3)]:

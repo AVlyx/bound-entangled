@@ -96,6 +96,22 @@ def quasi_ds(n: int, z: float, sigma: Literal[-1, 1]) -> np.ndarray:
 
     Raises:
         AssertionError: If ``n`` is even.
+
+    Examples:
+        The state is PPT across every bipartition; the 1 | n-1 cut is shown
+        here.  As for the Smolin states, its entanglement is multipartite, so a
+        bipartite separability test correctly reports the cut as separable.
+
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = quasi_ds(3, 1.0, 1)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[2, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[2, 4])
+        >>> sep
+        True
     """
     v = dicke_iso(n)
     return v @ quasi_ds_dicke_basis(n, z, sigma) @ v.T

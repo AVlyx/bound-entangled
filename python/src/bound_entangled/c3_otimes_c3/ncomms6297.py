@@ -25,6 +25,18 @@ def ncomms6297() -> np.ndarray:
 
     Returns:
         np.ndarray: 9×9 density matrix of the bound-entangled state.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = ncomms6297()
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     a = sqrt(131 / 2)
     psi_1 = 1 / sqrt(2) * (basis3(0, 0) + basis3(1, 1))

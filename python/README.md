@@ -68,10 +68,9 @@ space it lives in: `c2_otimes_c4` and `c3_otimes_c3`.
 
 ### `c4_otimes_c4` — C⁴ ⊗ C⁴
 
-| Factory  | State                                                           | Reference                                                  |
-| -------- | --------------------------------------------------------------- | ---------------------------------------------------------- |
-| `breuer` | Breuer bound-entangled state (PPT, detected by anti-linear map) | [quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036) |
-| `piani`  | 4×4 Benatti–Floreanini–Piani state                              | [quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095) |
+| Factory | State                              | Reference                                                  |
+| ------- | ---------------------------------- | ---------------------------------------------------------- |
+| `piani` | 4×4 Benatti–Floreanini–Piani state | [quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095) |
 
 ### `c5_otimes_c5` — C⁵ ⊗ C⁵
 
@@ -119,6 +118,14 @@ space it lives in: `c2_otimes_c4` and `c3_otimes_c3`.
 pip install -e ".[test]"
 pytest
 ```
+
+Most of the suite lives in the docstrings. Every state factory carries an
+`Examples` block asserting that what it returns is a valid density matrix, that
+it is PPT, and how `is_separable` classifies it — run as doctests by `pytest`,
+so the documented behaviour and the tested behaviour cannot drift apart. The
+files under `tests/` cover only what a finished state cannot show: that the
+product bases behind the UPB constructions really are orthonormal, that invalid
+parameters raise, and the index arithmetic in the grid-state helpers.
 
 ## License
 

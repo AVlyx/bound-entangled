@@ -19,5 +19,17 @@ def horodecki(a: float) -> np.ndarray:
 
     Returns:
         np.ndarray: the 3x3 Horodecki density matrix.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = horodecki(0.5)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     return horodecki_toqito(a, dim=[3, 3])  # type: ignore

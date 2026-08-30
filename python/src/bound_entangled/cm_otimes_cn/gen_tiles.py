@@ -77,5 +77,27 @@ def gen_tiles2(m_n: tuple[int, int]) -> np.ndarray:
     Returns:
         np.ndarray: the bound entangled state on the orthogonal complement of
         the GenTiles2 unextendible product basis.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = gen_tiles2((3, 4))
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 4])
+        >>> sep
+        False
+
+        Note that m = 3 only yields a bound entangled state at n = 4.  The
+        complement of the basis has dimension m*n - (m*n - 2m + 1) = 2m - 1,
+        which is 5 for m = 3, so from n = 5 on the state is PPT with rank at
+        most max(m, n) and therefore separable (Horodecki et al. 2000) — the
+        basis cannot be unextendible there:
+
+        >>> sep, _ = is_separable(gen_tiles2((3, 5)), dim=[3, 5])
+        >>> sep
+        True
     """
     return upb(gen_tiles2_basis(m_n))

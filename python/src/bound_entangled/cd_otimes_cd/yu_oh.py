@@ -101,6 +101,18 @@ def yu_oh(*, full_dim: int, x: float, y: float):
 
     Returns:
         np.ndarray: the Yu-Oh bound entangled state.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = yu_oh(full_dim=3, x=0.5, y=0.1)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     assert is_valid_yu_oh_input(full_dim, x, y)
     z = sqrt(1 - x**2 - y**2)

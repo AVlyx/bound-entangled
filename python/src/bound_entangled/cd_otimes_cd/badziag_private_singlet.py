@@ -31,6 +31,26 @@ def badziag_private_singlet(*, shield_dim: int) -> np.ndarray:
 
     Returns:
         np.ndarray: (4d²) × (4d²) density matrix of the bound-entangled state.
+
+    Examples:
+        The matrix is returned in ABA'B' ordering (two-qubit pair A,B then the
+        shield pair A',B').  The physical bipartition is Alice=(A,A') against
+        Bob=(B,B'), so it has to be permuted to AA'BB' before the Alice|Bob cut
+        of dimension 2d x 2d means anything.
+
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.perms import permute_systems
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = permute_systems(
+        ...     badziag_private_singlet(shield_dim=2), [0, 2, 1, 3], dim=[2, 2, 2, 2]
+        ... )
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[4, 4])
+        True
+        >>> sep, _ = is_separable(state, dim=[4, 4])
+        >>> sep
+        False
     """
     p1 = sqrt(shield_dim) / (1 + sqrt(shield_dim))
     p2 = 1 - p1

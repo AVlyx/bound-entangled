@@ -35,6 +35,25 @@ def generalized_smolin(systems: int) -> np.ndarray:
     ------
     AssertionError
         If ``systems`` is odd.
+
+    Examples
+    --------
+    As for `smolin`, the entanglement is multipartite: across a bipartite cut
+    the state is separable, and `is_separable` correctly says so.  Note that
+    `is_ppt` must be given the cut explicitly — with 2^systems not a perfect
+    square it otherwise guesses a bipartition that does not exist and returns
+    a meaningless answer.
+
+    >>> from toqito.matrix_props import is_density
+    >>> from toqito.state_props import is_ppt, is_separable
+    >>> state = generalized_smolin(6)
+    >>> is_density(state)
+    True
+    >>> is_ppt(state, dim=[4, 16])
+    True
+    >>> sep, _ = is_separable(state, dim=[4, 16])
+    >>> sep
+    True
     """
     assert systems % 2 == 0
     n = systems // 2

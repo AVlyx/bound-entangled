@@ -13,6 +13,18 @@ def sn3_grid_state():
 
     Returns:
         np.ndarray: the Schmidt number 3 (SN3) generalized grid state rho_5,5.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = sn3_grid_state()
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[5, 5])
+        True
+        >>> sep, _ = is_separable(state, dim=[5, 5])
+        >>> sep
+        False
     """
     return generalized_grid_state(
         (5, 5),

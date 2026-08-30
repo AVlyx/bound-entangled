@@ -155,5 +155,17 @@ def parametrized_upb(
     Returns:
         np.ndarray: the bound entangled state on the orthogonal complement of
         the parametrized unextendible product basis.
+
+    Examples:
+        >>> from toqito.matrix_props import is_density
+        >>> from toqito.state_props import is_ppt, is_separable
+        >>> state = parametrized_upb(0.7, 0.6, 0.3, 1.1, 0.5, 1.4)
+        >>> is_density(state)
+        True
+        >>> is_ppt(state, dim=[3, 3])
+        True
+        >>> sep, _ = is_separable(state, dim=[3, 3])
+        >>> sep
+        False
     """
     return upb(parametrized_basis(gamma_a, teta_a, phi_a, gamma_b, teta_b, phi_b))

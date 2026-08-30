@@ -27,10 +27,10 @@ test = ["pytest"]
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-# src: import the library the same way the source does (`from bound_entangled.utils import ...`)
-#      even without the editable install. tests: makes the shared `qi` helper
-#      module importable from every test file.
-pythonpath = ["src", "tests"]
+# src is both a testpath (every state factory carries doctests asserting it is a
+# valid density matrix, PPT, and entangled) and an import path, so the library
+# imports the same way the source does even without the editable install.
+testpaths = ["src", "tests"]
+pythonpath = ["src"]
 # importlib mode lets the two identically named `test_upb.py` modules coexist.
-addopts = "--import-mode=importlib"
+addopts = "--import-mode=importlib --doctest-modules"
