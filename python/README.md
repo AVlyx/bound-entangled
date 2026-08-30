@@ -101,9 +101,9 @@ space it lives in: `c2_otimes_c4` and `c3_otimes_c3`.
 
 | Factory              | State                                                                      | Reference                                                  |
 | -------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `smolin`             | Smolin four-party unlockable bound entangled state                         | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
-| `generalized_smolin` | Generalized Smolin state on 2n qubits (bound entangled for all even n ≥ 2) | [quant-ph/0411142](https://arxiv.org/abs/quant-ph/0411142) |
-| `quasi_ds`           | Quasi-Dicke bound entangled state on n qubits                              | [ncomms6297](https://www.nature.com/articles/ncomms6297)   |
+| `smolin`             | Smolin four-party unlockable state — separable across 2\|2 cuts, NPT across 1\|3 | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
+| `generalized_smolin` | Generalized Smolin state on 2n qubits — separable across 2\|n−2 cuts, NPT across 1\|n−1 and n/2\|n/2 | [quant-ph/0411142](https://arxiv.org/abs/quant-ph/0411142) |
+| `quasi_ds`           | Quasi-DS (diagonal symmetric) state on an odd number of qubits n ≥ 5 — PPT across every bipartition                              | [1706.09423](https://arxiv.org/abs/1706.09423)   |
 
 ### `utils`
 

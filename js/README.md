@@ -119,7 +119,7 @@ partialTranspose(bell, [2, 2]); // SWAP / 2
 | ------------------- | -------------------------------------------------- | ---------------------------------------------------------- |
 | `smolin`            | Smolin four-party unlockable bound entangled state | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
 | `generalizedSmolin` | Generalized Smolin state on 2n qubits              | [quant-ph/0411142](https://arxiv.org/abs/quant-ph/0411142) |
-| `quasiDs`           | Quasi-Dicke bound entangled state on n qubits      | [ncomms6297](https://www.nature.com/articles/ncomms6297)   |
+| `quasiDs`           | Quasi-DS (diagonal symmetric) state on an odd number of qubits n ≥ 5 — PPT across every bipartition      | [1706.09423](https://arxiv.org/abs/1706.09423)   |
 
 ## `utils`
 

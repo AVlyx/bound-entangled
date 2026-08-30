@@ -6,10 +6,12 @@ import Slider from "@/components/Slider";
 import ExampleSection from "@/components/sectionComponents/Example";
 
 function Example() {
-  const [n, setN] = useState<number>(3);
   const [z, setZ] = useState<number>(1);
   const [sigma, setSigma] = useState<QuasiDsSign>(1);
 
+  // n = 5 is the smallest valid size (n = 2K + 1 with K > 1); n = 7 would be a
+  // 128 x 128 matrix, too large to render here.
+  const n = 5;
   const rho = quasiDs({ n, z, sigma });
 
   return (
@@ -17,15 +19,11 @@ function Example() {
       <div className="controls">
         <div className="control">
           <span className="control-label">n</span>
-          <select value={n} onChange={(e) => setN(Number(e.target.value))}>
-            <option value={3}>3</option>
-            <option value={5}>5</option>
-          </select>
           <span className="control-value">{n}</span>
         </div>
         <div className="control">
           <span className="control-label">z</span>
-          <Slider min={0} max={1} value={z} setValue={setZ} />
+          <Slider min={0.05} max={1} value={z} setValue={setZ} />
           <span className="control-value">{z.toFixed(2)}</span>
         </div>
         <div className="control">
@@ -44,8 +42,10 @@ function Example() {
         <LatexMatrix value={rho} precision={2} label="\rho =" />
       </div>
       <p className="figure-caption">
-        <span className="math">z</span> is restricted to <span className="math">[0, 1]</span> here
-        for a well-behaved demo; the factory accepts any finite real value.
+        Shown at <span className="math">n = 5</span>, the smallest number of qubits for which
+        Theorem 5.1 applies. <span className="math">z</span> is restricted to{" "}
+        <span className="math">[0.05, 1]</span> here for a well-behaved demo; the factory
+        accepts any <span className="math">z &gt; 0</span>.
       </p>
     </ExampleSection>
   );

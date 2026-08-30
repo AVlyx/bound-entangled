@@ -1,4 +1,12 @@
-"""https://www.nature.com/articles/ncomms6297"""
+"""https://arxiv.org/abs/1706.09423
+
+J. Tura, A. Aloy, R. Quesada, M. Lewenstein, A. Sanpera,
+"Separability of diagonal symmetric states: a quadratic conic optimization
+problem", Quantum 2, 45 (2018).
+Theorem 5.1 introduces a uni-parametric class of N-qubit PPT-entangled
+symmetric states for an odd number of qubits N = 2K + 1, K > 1: a PPT diagonal
+symmetric (DS) state carrying slight GHZ coherences, hence "quasi-DS".
+"""
 
 import numpy as np
 from math import comb, sqrt
@@ -70,7 +78,8 @@ def o_sigma(n: int, sigma: Literal[-1] | Literal[1]):
 
 
 def quasi_ds_dicke_basis(n, z, sigma: Literal[-1] | Literal[1]):
-    assert n % 2 == 1
+    assert n % 2 == 1 and n >= 5, "n must be an odd integer >= 5 (n = 2K + 1, K > 1)"
+    assert z > 0, "z must lie in the open interval (0, inf)"
     K = n // 2
 
     rho = dz(n, z) + o_sigma(n, sigma)
@@ -79,39 +88,53 @@ def quasi_ds_dicke_basis(n, z, sigma: Literal[-1] | Literal[1]):
 
 
 def quasi_ds(n: int, z: float, sigma: Literal[-1, 1]) -> np.ndarray:
-    """Construct the quasi-Dicke bound-entangled state on n qubits (Nature Commun. 5, 6297).
+    """Construct the quasi-DS bound-entangled state on n qubits (arXiv:1706.09423, Thm. 5.1).
 
     Builds the state in the computational basis by conjugating the Dicke-basis
     density matrix with the isometry ``V`` that maps Dicke states to the
-    computational basis.  The state is PPT across every bipartition and bound
-    entangled for all valid parameters.
+    computational basis.  The state is PPT across every bipartition and, for
+    ``n = 2K + 1`` with ``K > 1``, extreme in the PPT set and therefore
+    entangled.
 
     Args:
-        n: number of qubits.  Must be a positive odd integer.
-        z: real parameter controlling the state's mixing.
+        n: number of qubits.  Must be an odd integer ``>= 5``: Theorem 5.1 is
+            stated for ``n = 2K + 1`` with ``K > 1``, and at ``n = 3`` (K = 1)
+            the construction still yields a valid PPT state but no longer an
+            entangled one.
+        z: real parameter controlling the state's mixing.  Must lie in the open
+            interval (0, inf).
         sigma: sign parameter, either +1 or -1.
 
     Returns:
-        np.ndarray: (2^n) × (2^n) density matrix of the quasi-Dicke state.
+        np.ndarray: (2^n) × (2^n) density matrix of the quasi-DS state.
 
     Raises:
-        AssertionError: If ``n`` is even.
+        AssertionError: If ``n`` is not an odd integer ``>= 5``, or ``z <= 0``.
 
     Examples:
-        The state is PPT across every bipartition; the 1 | n-1 cut is shown
-        here.  As for the Smolin states, its entanglement is multipartite, so a
-        bipartite separability test correctly reports the cut as separable.
+        The defining property is that the state is PPT across *every*
+        bipartition — both cuts are shown here for the smallest valid size,
+        n = 5.
 
         >>> from toqito.matrix_props import is_density
-        >>> from toqito.state_props import is_ppt, is_separable
-        >>> state = quasi_ds(3, 1.0, 1)
+        >>> from toqito.state_props import is_ppt
+        >>> state = quasi_ds(5, 1.0, 1)
         >>> is_density(state)
         True
-        >>> is_ppt(state, dim=[2, 4])
+        >>> is_ppt(state, dim=[2, 16])
         True
-        >>> sep, _ = is_separable(state, dim=[2, 4])
-        >>> sep
+        >>> is_ppt(state, dim=[4, 8])
         True
+
+        There is deliberately no separability assertion here.  What Theorem 5.1
+        proves is that the state is extreme in the PPT set and therefore *not
+        fully separable*; it makes no claim that any individual bipartite cut
+        is entangled, and indeed every cut is separable (PPT with rank
+        ``<= max(dA, dB)``).  A bipartite `is_separable` call would return
+        ``True`` and say nothing about the property that makes this state
+        interesting.
     """
+    assert n % 2 == 1 and n >= 5, "n must be an odd integer >= 5 (n = 2K + 1, K > 1)"
+    assert z > 0, "z must lie in the open interval (0, inf)"
     v = dicke_iso(n)
     return v @ quasi_ds_dicke_basis(n, z, sigma) @ v.T

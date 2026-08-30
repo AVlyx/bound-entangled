@@ -1,4 +1,3 @@
 from bound_entangled.multipartite.generalized_smolin import generalized_smolin
 from bound_entangled.multipartite.smolin import smolin
 from bound_entangled.multipartite.quasi_ds import quasi_ds
-from bound_entangled.multipartite.quasi_ds import quasi_ds

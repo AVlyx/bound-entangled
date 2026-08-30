@@ -396,20 +396,20 @@ export const CITATIONS = {
   ],
   quasiDs: [
     {
-      bibTex: `@article{V_rtesi_2014,
-   title={Disproving the Peres conjecture by showing Bell nonlocality from bound entanglement},
-   volume={5},
-   ISSN={2041-1723},
-   url={http://dx.doi.org/10.1038/ncomms6297},
-   DOI={10.1038/ncomms6297},
-   number={1},
-   journal={Nature Communications},
-   publisher={Springer Science and Business Media LLC},
-   author={Vértesi, Tamás and Brunner, Nicolas},
-   year={2014},
-   month=Nov }
+      bibTex: `@article{Tura2018separabilityof,
+   title={Separability of diagonal symmetric states: a quadratic conic optimization problem},
+   volume={2},
+   ISSN={2521-327X},
+   url={https://doi.org/10.22331/q-2018-01-12-45},
+   DOI={10.22331/q-2018-01-12-45},
+   pages={45},
+   journal={Quantum},
+   publisher={Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften},
+   author={Tura, Jordi and Aloy, Albert and Quesada, Ruben and Lewenstein, Maciej and Sanpera, Anna},
+   year={2018},
+   month=jan }
 `,
-      arxivLink: "https://arxiv.org/abs/1405.4502",
+      arxivLink: "https://arxiv.org/abs/1706.09423",
     },
-  ], // ( ╯°□°）╯︵ ┻━┻)
+  ],
 };

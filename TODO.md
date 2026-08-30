@@ -100,17 +100,19 @@ link and no code. Either implement it or delete the file.
 
 ## Not bugs, but the tests cannot see what matters
 
-### `smolin`, `generalized_smolin`, `quasi_ds` — multipartite
+### `quasi_ds` — multipartite ([1706.09423](https://arxiv.org/abs/1706.09423))
 
-All three are **separable across the bipartite cut**, correctly and rigorously
-(PPT + rank ≤ max(dA, dB)). Their bound entanglement is genuinely multipartite,
-so `is_separable` on a cut cannot see the property that makes them interesting;
-their doctests assert `True` and say why.
+Separable across every cut checked — `n=5` at both 1|4 and 2|3 — each certified
+rigorously by PPT + rank ≤ max(dA, dB). This is expected rather than suspicious:
+Theorem 5.1 proves the state is extreme in the PPT set and therefore *not fully
+separable*, which is a claim about the n-party split, not about any bipartite
+cut. So unlike `smolin` and `generalized_smolin`, no bipartite cut distinguishes
+it, and nothing currently tests the property that actually makes it interesting.
 
-Nothing currently tests their actual defining property. Worth adding a
-multipartite entanglement check — e.g. that `generalized_smolin(6)` is PPT
-across every bipartition but not fully separable, or that the Smolin state is
-separable across each 2|2 cut yet four-party entangled.
+Worth working out which multipartite entanglement criterion detects it — the
+paper's own route is extremality in the PPT set, via the ranks
+`(n+1, 2n, ..., 2n, 2n-1)` that Theorem 5.1 predicts and that the construction
+does reproduce.
 
 ### `grid_state`, `generalized_grid_state` — generic constructors
 

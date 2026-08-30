@@ -1,24 +1,30 @@
 /**
- * https://www.nature.com/articles/ncomms6297
+ * https://arxiv.org/abs/1706.09423
  *
- * J. Tura, R. Augusiak, P. Hyllus, M. Kuś, J. Samsonowicz, M. Lewenstein,
- * "Four-qubit entangled symmetric states with positive partial transpositions",
- * see also Nature Commun. 5, 6297 (2014). The quasi-Dicke states are
- * permutationally invariant states on an odd number `n` of qubits that are PPT
- * across every bipartition, and bound entangled for every valid parameter.
+ * J. Tura, A. Aloy, R. Quesada, M. Lewenstein, A. Sanpera,
+ * "Separability of diagonal symmetric states: a quadratic conic optimization
+ * problem", Quantum 2, 45 (2018), Theorem 5.1. The quasi-DS states are
+ * permutationally invariant states on an odd number `n = 2K + 1` of qubits —
+ * a PPT diagonal symmetric state with slight GHZ coherences — that are PPT
+ * across every bipartition and, for `K > 1`, extreme in the PPT set and hence
+ * entangled.
  */
 
 import { combinations, matrix, multiply, transpose } from 'mathjs';
 import type { Matrix } from 'mathjs';
 import { fail } from '../utils/internal.js';
 
-/** The sign parameter of the quasi-Dicke family. */
+/** The sign parameter of the quasi-DS family. */
 export type QuasiDsSign = 1 | -1;
 
 export interface QuasiDsOptions {
-  /** Number of qubits. Must be an odd integer `>= 3`. */
+  /**
+   * Number of qubits. Must be an odd integer `>= 5`: Theorem 5.1 is stated for
+   * `n = 2K + 1` with `K > 1`, and at `n = 3` (K = 1) the construction still
+   * yields a valid PPT state but no longer an entangled one.
+   */
   n: number;
-  /** Real parameter controlling the state's mixing. */
+  /** Real parameter controlling the state's mixing. Must be `> 0`. */
   z: number;
   /** Sign parameter, either `+1` or `-1`. */
   sigma: QuasiDsSign;
@@ -93,21 +99,21 @@ function oSigma(n: number, sigma: QuasiDsSign): number[][] {
 
 function validate({ n, z, sigma }: QuasiDsOptions): void {
   if (!Number.isInteger(n) || n < 1 || n % 2 !== 1) {
-    fail(`the quasi-Dicke state needs a positive odd number of qubits, got ${n}`);
+    fail(`the quasi-DS state needs a positive odd number of qubits, got ${n}`);
   }
-  if (n < 3) {
-    fail(`the quasi-Dicke state needs at least 3 qubits, got ${n}`);
+  if (n < 5) {
+    fail(`the quasi-DS state needs at least 5 qubits, got ${n}`);
   }
   if (sigma !== 1 && sigma !== -1) {
     fail(`sigma must be +1 or -1, got ${sigma as number}`);
   }
-  if (!Number.isFinite(z)) {
-    fail(`z must be a finite real number, got ${z}`);
+  if (!Number.isFinite(z) || z <= 0) {
+    fail(`z must be a finite real number > 0, got ${z}`);
   }
 }
 
 /**
- * The quasi-Dicke state written in the Dicke basis `{|D_k^n>}_{k=0..n}`.
+ * The quasi-DS state written in the Dicke basis `{|D_k^n>}_{k=0..n}`.
  *
  * `(D(z) + O(sigma)) / (2 (4 + z)^K)` with `K = floor(n / 2)`: a diagonal
  * matrix plus the two `sigma` corners, normalized to unit trace.
@@ -160,14 +166,15 @@ export function dickeIso(n: number): Matrix {
 }
 
 /**
- * The quasi-Dicke bound entangled state on `n` qubits.
+ * The quasi-DS bound entangled state on `n` qubits.
  *
  * Built in the computational basis by conjugating the Dicke-basis density
  * matrix with the isometry `V` of {@link dickeIso}: `rho = V D V^T`. The state
- * is PPT across every bipartition and bound entangled for all valid parameters.
+ * is PPT across every bipartition and, for `n = 2K + 1` with `K > 1`, extreme
+ * in the PPT set and therefore entangled.
  *
  * @param options - see {@link QuasiDsOptions}.
- * @returns the 2^n x 2^n density matrix of the quasi-Dicke state.
+ * @returns the 2^n x 2^n density matrix of the quasi-DS state.
  */
 export function quasiDs(options: QuasiDsOptions): Matrix {
   validate(options);

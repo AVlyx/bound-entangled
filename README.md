@@ -106,9 +106,14 @@ package; see [js/TODO.md](js/TODO.md).
 
 | Python               | TypeScript          | State                                                                      | Reference                                                  |
 | -------------------- | ------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `smolin`             | `smolin`            | Smolin four-party unlockable bound entangled state                         | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
-| `generalized_smolin` | `generalizedSmolin` | Generalized Smolin state on 2n qubits (bound entangled for all even n ≥ 2) | [quant-ph/0411142](https://arxiv.org/abs/quant-ph/0411142) |
-| `quasi_ds`           | `quasiDs`           | Quasi-Dicke bound entangled state on n qubits                              | [ncomms6297](https://www.nature.com/articles/ncomms6297)   |
+| `smolin`             | `smolin`            | Smolin four-party unlockable state — separable across 2\|2 cuts, NPT across 1\|3 | [quant-ph/0001001](https://arxiv.org/abs/quant-ph/0001001) |
+| `generalized_smolin` | `generalizedSmolin` | Generalized Smolin state on 2n qubits — separable across 2\|n−2 cuts, NPT across 1\|n−1 and n/2\|n/2 | [quant-ph/0411142](https://arxiv.org/abs/quant-ph/0411142) |
+| `quasi_ds`           | `quasiDs`           | Quasi-DS (diagonal symmetric) state on an odd number of qubits n ≥ 5 — PPT across every bipartition                              | [1706.09423](https://arxiv.org/abs/1706.09423)   |
+
+For the two Smolin states the bound entanglement lives in the cuts where they
+are separable: with the parties grouped that way nothing is distillable, while
+the state as a whole is multipartite entangled. The cuts listed above are
+asserted by the doctests on each factory.
 
 ## Repository layout
 

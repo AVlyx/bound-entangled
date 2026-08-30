@@ -13,36 +13,41 @@ function diagonal(m: Matrix): number[] {
 
 describe('quasiDs', () => {
   it.each([
-    [3, 1, 1],
-    [3, 1, -1],
     [5, 1, 1],
+    [5, 1, -1],
+    [7, 1, 1],
   ] as const)('is bound entangled for n=%i, z=%i, sigma=%i', (n, z, sigma) => {
     const rho = quasiDs({ n, z, sigma });
     expectBoundEntangled(rho, [2, 2 ** (n - 1)]);
   });
 
-  it('matches the explicit three-qubit state', () => {
-    // Row/column order is the computational basis |i_3 i_2 i_1> with qubit k
-    // contributing 2^k, i.e. the Dicke weight of a row is its bit count.
-    const expected = zeros(8);
-    const set = (i: number, j: number, value: number) => {
-      expected[i][j] = value;
-    };
-    set(0, 0, 0.2);
-    set(0, 7, 0.1);
-    set(7, 0, 0.1);
-    set(7, 7, 0.2);
-    for (const i of [1, 2, 4]) for (const j of [1, 2, 4]) set(i, j, 0.1);
-    for (const i of [3, 5, 6]) for (const j of [3, 5, 6]) set(i, j, 0.1);
-
-    expectMatrixClose(quasiDs({ n: 3, z: 1, sigma: 1 }), expected);
+  it('matches the explicit five-qubit state', () => {
+    // Row/column order is the computational basis |i_5 ... i_1> with qubit k
+    // contributing 2^k, i.e. the Dicke weight of a row is its bit count. The
+    // conjugation rho = V D V^T spreads each Dicke entry over its weight class:
+    // rho[i][j] = D[w(i)][w(j)] / sqrt(binom(5, w(i)) binom(5, w(j))), so a
+    // 32x32 literal would just be that formula written out. Spot-check instead,
+    // one representative per weight class plus the two corners.
+    const rho = nested(quasiDs({ n: 5, z: 1, sigma: 1 }));
+    // D = diag(5, 10, 10, 10, 10, 5) / 50 with corners +1/50.
+    expect(real(rho[0][0])).toBeCloseTo(0.1, 12); // weight 0, binom = 1
+    expect(real(rho[31][31])).toBeCloseTo(0.1, 12); // weight 5, binom = 1
+    expect(real(rho[1][1])).toBeCloseTo(0.04, 12); // weight 1, 0.2 / 5
+    expect(real(rho[1][2])).toBeCloseTo(0.04, 12); // same weight class, off diagonal
+    expect(real(rho[3][3])).toBeCloseTo(0.02, 12); // weight 2, 0.2 / 10
+    expect(real(rho[7][7])).toBeCloseTo(0.02, 12); // weight 3, 0.2 / 10
+    // The GHZ coherences, and nothing else off the weight-class blocks.
+    expect(real(rho[0][31])).toBeCloseTo(0.02, 12);
+    expect(real(rho[31][0])).toBeCloseTo(0.02, 12);
+    expect(real(rho[0][1])).toBeCloseTo(0, 12);
+    expect(real(rho[1][31])).toBeCloseTo(0, 12);
   });
 
   it('flips only the two corners when sigma flips', () => {
-    const plus = nested(quasiDs({ n: 3, z: 1, sigma: 1 }));
-    const minus = nested(quasiDs({ n: 3, z: 1, sigma: -1 }));
-    expect(real(minus[0][7])).toBeCloseTo(-real(plus[0][7]), 12);
-    expect(real(minus[7][0])).toBeCloseTo(-real(plus[7][0]), 12);
+    const plus = nested(quasiDs({ n: 5, z: 1, sigma: 1 }));
+    const minus = nested(quasiDs({ n: 5, z: 1, sigma: -1 }));
+    expect(real(minus[0][31])).toBeCloseTo(-real(plus[0][31]), 12);
+    expect(real(minus[31][0])).toBeCloseTo(-real(plus[31][0]), 12);
     expect(real(minus[0][0])).toBeCloseTo(real(plus[0][0]), 12);
   });
 
@@ -50,37 +55,45 @@ describe('quasiDs', () => {
     expect(() => quasiDs({ n: 4, z: 1, sigma: 1 })).toThrow(/positive odd number of qubits/);
     expect(() => quasiDs({ n: 3.5, z: 1, sigma: 1 })).toThrow(/positive odd number of qubits/);
     expect(() => quasiDs({ n: -3, z: 1, sigma: 1 })).toThrow(/positive odd number of qubits/);
-    expect(() => quasiDs({ n: 1, z: 1, sigma: 1 })).toThrow(/at least 3 qubits/);
+    // n = 2K + 1 with K > 1: n = 3 is the K = 1 case Theorem 5.1 excludes.
+    expect(() => quasiDs({ n: 1, z: 1, sigma: 1 })).toThrow(/at least 5 qubits/);
+    expect(() => quasiDs({ n: 3, z: 1, sigma: 1 })).toThrow(/at least 5 qubits/);
   });
 
   it('rejects a sign other than +1 or -1', () => {
-    expect(() => quasiDs({ n: 3, z: 1, sigma: 0 as 1 })).toThrow(/sigma must be/);
+    expect(() => quasiDs({ n: 5, z: 1, sigma: 0 as 1 })).toThrow(/sigma must be/);
+  });
+
+  it('rejects z outside the open interval (0, inf)', () => {
+    expect(() => quasiDs({ n: 5, z: 0, sigma: 1 })).toThrow(/z must be a finite real number > 0/);
+    expect(() => quasiDs({ n: 5, z: -1, sigma: 1 })).toThrow(/z must be a finite real number > 0/);
+    expect(() => quasiDs({ n: 5, z: Infinity, sigma: 1 })).toThrow(
+      /z must be a finite real number > 0/,
+    );
   });
 });
 
 describe('quasiDsDickeBasis', () => {
-  it('is the explicit (n + 1) x (n + 1) matrix for n = 3, z = 1', () => {
-    // D(z) = diag(binom(3,k) f_{1-k}(1)) = diag(2, 3, 3, 2), corners +-1,
-    // all over 2 (4 + z)^K = 10.
-    expectMatrixClose(quasiDsDickeBasis({ n: 3, z: 1, sigma: 1 }), [
-      [0.2, 0, 0, 0.1],
-      [0, 0.3, 0, 0],
-      [0, 0, 0.3, 0],
-      [0.1, 0, 0, 0.2],
+  it('is the explicit (n + 1) x (n + 1) matrix for n = 5, z = 1', () => {
+    // f_k(1) = 5, 2, 1, 1, 2, 5 at k = K - j for K = 2 and j = 0..5, so
+    // D(z) = diag(binom(5,j) f_{2-j}(1)) = diag(5, 10, 10, 10, 10, 5) with
+    // corners +-1, all over 2 (4 + z)^K = 50.
+    expectMatrixClose(quasiDsDickeBasis({ n: 5, z: 1, sigma: 1 }), [
+      [0.1, 0, 0, 0, 0, 0.02],
+      [0, 0.2, 0, 0, 0, 0],
+      [0, 0, 0.2, 0, 0, 0],
+      [0, 0, 0, 0.2, 0, 0],
+      [0, 0, 0, 0, 0.2, 0],
+      [0.02, 0, 0, 0, 0, 0.1],
     ]);
-    expectMatrixClose(quasiDsDickeBasis({ n: 3, z: 1, sigma: -1 }), [
-      [0.2, 0, 0, -0.1],
-      [0, 0.3, 0, 0],
-      [0, 0, 0.3, 0],
-      [-0.1, 0, 0, 0.2],
+    expectMatrixClose(quasiDsDickeBasis({ n: 5, z: 1, sigma: -1 }), [
+      [0.1, 0, 0, 0, 0, -0.02],
+      [0, 0.2, 0, 0, 0, 0],
+      [0, 0, 0.2, 0, 0, 0],
+      [0, 0, 0, 0.2, 0, 0],
+      [0, 0, 0, 0, 0.2, 0],
+      [-0.02, 0, 0, 0, 0, 0.1],
     ]);
-  });
-
-  it('reproduces binom(n, k) f_{K-k}(z) on the diagonal for n = 5', () => {
-    // f_k(1) = 1, 2, 5, 2, 1 and K = 2, so the unscaled diagonal is
-    // [1*5, 5*2, 10*1, 10*1, 5*2, 1*5]; the scale is 2 (4 + 1)^2 = 50.
-    const scaled = diagonal(quasiDsDickeBasis({ n: 5, z: 1, sigma: 1 })).map((x) => x * 50);
-    expect(scaled.map((x) => Math.round(x * 1e9) / 1e9)).toEqual([5, 10, 10, 10, 10, 5]);
   });
 
   it('reproduces binom(n, k) f_{K-k}(z) on the diagonal for n = 9', () => {
@@ -93,7 +106,7 @@ describe('quasiDsDickeBasis', () => {
   });
 
   it('has unit trace', () => {
-    for (const n of [3, 5, 7, 9]) {
+    for (const n of [5, 7, 9]) {
       const trace = diagonal(quasiDsDickeBasis({ n, z: 1, sigma: 1 })).reduce((a, b) => a + b, 0);
       expect(trace, `trace for n = ${n}`).toBeCloseTo(1, 10);
     }
