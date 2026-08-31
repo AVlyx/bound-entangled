@@ -10,7 +10,7 @@
 
 import { identity, multiply } from "mathjs";
 import type { Matrix } from "mathjs";
-import { ketbra, maxEntangled, pauli, permuteSystems, tensor } from "../utils/index.js";
+import { ketbra, maxEntangled, pauli, tensor } from "../utils/index.js";
 import type { PauliIndex } from "../utils/index.js";
 import { sumMatrices } from "../utils/internal.js";
 
