@@ -41,7 +41,7 @@ function Example() {
         <LatexMatrix value={projectorIj(i, j)} precision={2} dimZeros label="P_{ij} =" />
       </div>
       <p className="equation-caption">
-        The full state ρ = piani(), the (1/6)-weighted, permuted sum of the six Pᵢⱼ listed above:
+        The full state ρ = piani(), the (1/6)-weighted sum of the six Pᵢⱼ listed above:
       </p>
       <div className="scroll-x">
         <LatexMatrix value={rho} precision={2} dimZeros label="\rho =" />

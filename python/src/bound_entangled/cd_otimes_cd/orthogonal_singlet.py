@@ -6,6 +6,7 @@ Port of BES_metro.m from the QUBIT4MATLAB package."""
 from math import sqrt, log2
 import numpy as np
 from toqito.matrix_ops import tensor
+from toqito.perms import permute_systems
 from bound_entangled.utils import ketbra
 
 
@@ -76,29 +77,26 @@ def orthogonal_singlet(*, shield_dim: int) -> np.ndarray:
 
     Reverse-engineered from Tóth & Vértesi, PRL 120, 020506 (2018) and
     presented as ρ_F2 in Phys. Rev. Research 3, 023101 (2021).  The state is
-    bound entangled for every valid shield_dim.  The returned matrix is in
-    ABA'B' ordering (two-qubit pair AB, shield pair A'B').
+    bound entangled for every valid shield_dim.  The construction is built up
+    in ABA'B' ordering (two-qubit pair AB, shield pair A'B'), then permuted to
+    AA'BB' before being returned, so the Alice = (A, A') | Bob = (B, B') cut
+    of dimension 2d x 2d can be tested directly on the result.
 
     Args:
         shield_dim: shield subsystem dimension d.  Must be 3 or a power of 2
             (equivalently, total local dimension 2d ∈ {4, 6, 8, 16, …}).
 
     Returns:
-        np.ndarray: (4d²) × (4d²) density matrix of the ρ_F2 bound-entangled state.
+        np.ndarray: (4d²) × (4d²) density matrix of the ρ_F2 bound-entangled
+        state, in AA'BB' ordering.
 
     Raises:
         ValueError: If shield_dim is not 3 or a power of 2.
 
     Examples:
-        The ABA'B' ordering has to be permuted to AA'BB' before the Alice|Bob
-        cut of dimension 2d x 2d means anything.
-
         >>> from toqito.matrix_props import is_density
-        >>> from toqito.perms import permute_systems
         >>> from toqito.state_props import is_ppt, is_separable
-        >>> state = permute_systems(
-        ...     orthogonal_singlet(shield_dim=2), [0, 2, 1, 3], dim=[2, 2, 2, 2]
-        ... )
+        >>> state = orthogonal_singlet(shield_dim=2)
         >>> is_density(state)
         True
         >>> is_ppt(state, dim=[4, 4])
@@ -134,4 +132,5 @@ def orthogonal_singlet(*, shield_dim: int) -> np.ndarray:
         v = basis(d, 1, 0, i, i)
         sum3 = sum3 + ketbra(v)
 
-    return (p1 / d**2) * sum1 + (p2 / (2 * d)) * sum2 + (p2 / (2 * d)) * sum3
+    rho = (p1 / d**2) * sum1 + (p2 / (2 * d)) * sum2 + (p2 / (2 * d)) * sum3
+    return permute_systems(rho, [0, 2, 1, 3], dim=[2, 2, d, d])

@@ -59,13 +59,10 @@ The current guard only enforces `n > 3, m >= 3, n >= m`. Check Theorem 6's
 actual hypotheses — the paper may state a constraint we dropped. Pinned as a
 passing doctest on `gen_tiles2` so it is recorded rather than hidden.
 
-### `piani` — C⁴ ⊗ C⁴ ([quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095))
+### `piani` — C⁴ ⊗ C⁴ ([quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095)) — resolved
 
 Commit `984c5d8` removed the `permute_systems(rho, [0, 2, 1, 3])` regrouping
-from both the Python and TypeScript sources, but not from the TS tests.
-**`js/tests/c4OtimesC4/piani.test.ts` is currently red** — two tests still pin
-the permuted values (`applies the [0, 2, 1, 3] qubit permutation` and `has the
-expected diagonal`).
+from both the Python and TypeScript sources.
 
 The evidence favours the removal, and both halves of it are certificates rather
 than heuristics: with the permutation `is_separable` returns `True` having
@@ -74,10 +71,13 @@ provably separable and cannot be the bound entangled Piani state; without it,
 CCNR certifies PPT entanglement. The permutation was destroying the
 entanglement.
 
-Note the old test's own comment though — "the unpermuted mixture is itself PPT,
-so `expectBoundEntangled` cannot catch a missing `permuteSystems`". PPT alone
-never distinguished the two conventions, which is why this went unnoticed; the
-diagonal values are the more robust check. Update or delete those two TS tests.
+`js/tests/c4OtimesC4/piani.test.ts`, which still pinned the old permuted
+values, was removed along with the rest of the old TS test layout in
+`3db7d2d` and superseded by the entrywise parity suite (`dcc4307`,
+[js/tests/parity/cases.ts](../js/tests/parity/cases.ts)), which covers `piani()`
+and `projectorIj` against the current (unpermuted) Python reference and passes.
+The docs site and the JS docstring described the old permuted construction
+until this pass; both have been corrected to match.
 
 ### `chessboard_extremal_PPT` — C³ ⊗ C³ ([quant-ph/9911056](https://arxiv.org/abs/quant-ph/9911056))
 
@@ -128,18 +128,23 @@ guard or documentation of which do:
 Consider documenting the families that work, or renaming to signal these are
 constructors rather than bound-entangled-state factories.
 
-### `orthogonal_singlet`, `badziag_private_singlet` — easy to misuse
+### `orthogonal_singlet`, `badziag_private_singlet` — resolved
 
-Both return the matrix in **ABA'B' ordering**, which must be permuted to AA'BB'
-before an Alice|Bob cut of dimension 2d × 2d means anything:
+Both used to return the matrix in ABA'B' ordering, which had to be permuted to
+AA'BB' before an Alice|Bob cut of dimension 2d × 2d meant anything — until this
+was documented, any caller checking PPT directly on the returned matrix got a
+meaningless answer.
+
+Both factories (Python and TypeScript) now apply
 
 ```python
 permute_systems(rho, [0, 2, 1, 3], dim=[2, 2, d, d])
 ```
 
-Until now this lived only in a test helper, so any caller checking PPT directly
-on the returned matrix got a meaningless answer. Now documented in both
-docstrings — but consider just returning AA'BB' ordering so the trap disappears.
+internally before returning, so the trap is gone: the returned matrix is
+already in AA'BB' order and the Alice|Bob cut can be tested directly on it.
+Docstrings and the docs site were updated to match; the parity suite needed no
+changes since it already calls both factories directly and compares entrywise.
 
 ### `horodecki_2_by_d_generalized` — C² ⊗ C^d ([1203.3711](https://arxiv.org/abs/1203.3711))
 
@@ -158,7 +163,10 @@ not read `random_PPT` as "random bound entangled".
 ## Cross-package
 
 The root README says the TypeScript values are "checked entrywise against the
-Python ones", but Python's `piani` carried the permutation while TypeScript's
-did not, and nothing failed. That parity check appears not to cover `piani` —
-the TS test asserts its own hard-coded diagonal instead. Confirm the cross-check
-covers what it claims to.
+Python ones". At the time this was written there was no such check for
+`piani` — the old TS test asserted its own hard-coded diagonal instead, so
+neither side would have caught the two implementations disagreeing.
+
+Resolved by `dcc4307`: `js/tests/parity/cases.ts` now runs `piani()` and
+`projectorIj` through the same entrywise comparison as every other state, so
+the README's claim now holds for `piani` too.

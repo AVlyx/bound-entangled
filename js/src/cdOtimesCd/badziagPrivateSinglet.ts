@@ -9,14 +9,13 @@
 import { conj, multiply } from 'mathjs';
 import type { Matrix } from 'mathjs';
 import type { Scalar } from '../types.js';
-import { fourier, ket, ketbra } from '../utils/index.js';
+import { fourier, ket, ketbra, permuteSystems } from '../utils/index.js';
 import { fail, sumMatrices } from '../utils/internal.js';
 
 export interface BadziagPrivateSingletOptions {
   /**
    * The shield subsystem dimension d, at least 2. The state lives on
-   * C² ⊗ C² ⊗ C^d ⊗ C^d in ABA'B' ordering, i.e. C^2d ⊗ C^2d across the
-   * Alice|Bob cut once the systems are reordered to AA'BB'.
+   * C² ⊗ C² ⊗ C^d ⊗ C^d, i.e. C^2d ⊗ C^2d across the Alice|Bob cut.
    */
   shieldDim: number;
 }
@@ -31,12 +30,14 @@ function basis(d: number, i: number, j: number, k: number, l: number): Matrix {
  *
  * A PPT singlet built from a shield pair A'B' of local dimension d and a
  * two-qubit pair AB, mixed with weights `p1 = √d / (1 + √d)` and `p2 = 1 - p1`.
- * The state is bound entangled for every `shieldDim >= 2`. The returned matrix
- * is in ABA'B' ordering, so testing the Alice|Bob cut requires permuting the
- * systems to AA'BB' first.
+ * The state is bound entangled for every `shieldDim >= 2`. The construction is
+ * built up in ABA'B' ordering, then permuted to AA'BB' before being returned,
+ * so the Alice = (A, A') | Bob = (B, B') cut can be tested directly on the
+ * result.
  *
  * @param options - see {@link BadziagPrivateSingletOptions}.
- * @returns the (4d²) x (4d²) density matrix of the private singlet.
+ * @returns the (4d²) x (4d²) density matrix of the private singlet, in AA'BB'
+ * ordering.
  */
 export function badziagPrivateSinglet({ shieldDim }: BadziagPrivateSingletOptions): Matrix {
   const d = shieldDim;
@@ -93,10 +94,11 @@ export function badziagPrivateSinglet({ shieldDim }: BadziagPrivateSingletOption
     }
   }
 
-  return sumMatrices([
+  const rho = sumMatrices([
     multiply(p1 / (2 * d ** 2), sumMatrices(diagonal00And11)) as Matrix,
     multiply(p1 / (2 * d * Math.sqrt(d)), sumMatrices(coherence00To11)) as Matrix,
     multiply(p2 / (2 * d), sumMatrices(diagonal01And10)) as Matrix,
     multiply(p2 / (2 * d), sumMatrices(coherence01To10)) as Matrix,
   ]);
+  return permuteSystems(rho, [0, 2, 1, 3], [2, 2, d, d]);
 }

@@ -45,8 +45,9 @@ function Definition() {
         <sub>ij</sub> |ij⟩ directly.
       </p>
       <p className="doc-muted">
-        The returned matrix is in ABA′B′ ordering; testing the physical Alice = (A, A′) | Bob =
-        (B, B′) cut requires permuting the systems to AA′BB′ first.
+        The construction above is naturally written in ABA′B′ ordering; the returned matrix is
+        reordered to AA′BB′ before being handed back, so the physical Alice = (A, A′) | Bob =
+        (B, B′) cut can be tested directly on it.
       </p>
     </DefinitionSection>
   );

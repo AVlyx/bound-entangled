@@ -42,7 +42,7 @@ export function projectorIj(i: PauliIndex, j: PauliIndex): Matrix {
  *
  * Uniform mixture of the six projections P_ij for (i, j) in
  * {(0,2), (1,1), (2,3), (3,1), (3,2), (3,3)}, indecomposable and PPT under the
- * bipartition AA'|BB' after regrouping the four underlying qubits.
+ * 4x4 bipartition.
  *
  * @returns the 16x16 bound entangled density matrix.
  */

@@ -43,8 +43,9 @@ function Definition() {
       </EquationLine>
       <p className="doc-muted">
         ρ = p<sub>1</sub> · (p<sub>1</sub> branch, normalised) + p<sub>2</sub> · (p<sub>2</sub>{" "}
-        branch, normalised). The returned matrix is in ABA′B′ ordering; testing the physical Alice
-        = (A, A′) | Bob = (B, B′) cut requires permuting the systems to AA′BB′ first.
+        branch, normalised). The construction above is naturally written in ABA′B′ ordering; the
+        returned matrix is reordered to AA′BB′ before being handed back, so the physical Alice =
+        (A, A′) | Bob = (B, B′) cut can be tested directly on it.
       </p>
       <p>
         The "private singlet" name follows the source, which frames the construction as a PPT

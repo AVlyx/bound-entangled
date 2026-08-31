@@ -9,14 +9,13 @@
 
 import { multiply } from 'mathjs';
 import type { Matrix } from 'mathjs';
-import { ket, ketbra, tensor } from '../utils/index.js';
+import { ket, ketbra, permuteSystems, tensor } from '../utils/index.js';
 import { fail, sumMatrices } from '../utils/internal.js';
 
 export interface OrthogonalSingletOptions {
   /**
    * The shield subsystem dimension d. Must be 3 or a power of two, so that the
-   * total local dimension 2d is one of 4, 6, 8, 16, ... The state lives on
-   * C² ⊗ C² ⊗ C^d ⊗ C^d in ABA'B' ordering.
+   * total local dimension 2d is one of 4, 6, 8, 16, ...
    */
   shieldDim: number;
 }
@@ -120,11 +119,13 @@ function buildSkVectors(q: number[][][], d: number): Matrix[] {
  *
  * Reverse-engineered from Tóth & Vértesi and presented as ρ_F2 in Phys. Rev.
  * Research 3, 023101 (2021). Bound entangled for every valid `shieldDim`. The
- * returned matrix is in ABA'B' ordering (two-qubit pair AB, shield pair A'B'),
- * so testing the Alice|Bob cut requires permuting the systems to AA'BB' first.
+ * construction is built up in ABA'B' ordering (two-qubit pair AB, shield pair
+ * A'B'), then permuted to AA'BB' before being returned, so the
+ * Alice = (A, A') | Bob = (B, B') cut can be tested directly on the result.
  *
  * @param options - see {@link OrthogonalSingletOptions}.
- * @returns the (4d²) x (4d²) density matrix of the ρ_F2 singlet.
+ * @returns the (4d²) x (4d²) density matrix of the ρ_F2 singlet, in AA'BB'
+ * ordering.
  */
 export function orthogonalSinglet({ shieldDim }: OrthogonalSingletOptions): Matrix {
   const d = shieldDim;
@@ -162,9 +163,10 @@ export function orthogonalSinglet({ shieldDim }: OrthogonalSingletOptions): Matr
     sum3Terms.push(ketbra(basis(d, 1, 0, i, i)));
   }
 
-  return sumMatrices([
+  const rho = sumMatrices([
     multiply(p1 / d ** 2, sumMatrices(sum1Terms)) as Matrix,
     multiply(p2 / (2 * d), sumMatrices(sum2Terms)) as Matrix,
     multiply(p2 / (2 * d), sumMatrices(sum3Terms)) as Matrix,
   ]);
+  return permuteSystems(rho, [0, 2, 1, 3], [2, 2, d, d]);
 }

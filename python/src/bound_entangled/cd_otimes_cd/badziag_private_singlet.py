@@ -2,6 +2,7 @@
 
 from toqito.matrices import fourier
 from toqito.matrix_ops import tensor
+from toqito.perms import permute_systems
 from math import sqrt
 from bound_entangled.utils import ketbra
 import numpy as np
@@ -24,26 +25,23 @@ def badziag_private_singlet(*, shield_dim: int) -> np.ndarray:
 
     A PPT singlet in dimension 2d × 2d built from a shield subsystem of
     dimension d and a two-qubit pair, following Phys. Rev. Research 3, 023101
-    (2021).  The state is bound entangled for every shield_dim >= 2.
+    (2021).  The state is bound entangled for every shield_dim >= 2.  The
+    construction is built up in ABA'B' ordering (two-qubit pair A,B then the
+    shield pair A',B'), then permuted to AA'BB' before being returned, so the
+    Alice = (A, A') | Bob = (B, B') cut of dimension 2d x 2d can be tested
+    directly on the result.
 
     Args:
         shield_dim: shield subsystem dimension d (>= 2).
 
     Returns:
-        np.ndarray: (4d²) × (4d²) density matrix of the bound-entangled state.
+        np.ndarray: (4d²) × (4d²) density matrix of the bound-entangled state,
+        in AA'BB' ordering.
 
     Examples:
-        The matrix is returned in ABA'B' ordering (two-qubit pair A,B then the
-        shield pair A',B').  The physical bipartition is Alice=(A,A') against
-        Bob=(B,B'), so it has to be permuted to AA'BB' before the Alice|Bob cut
-        of dimension 2d x 2d means anything.
-
         >>> from toqito.matrix_props import is_density
-        >>> from toqito.perms import permute_systems
         >>> from toqito.state_props import is_ppt, is_separable
-        >>> state = permute_systems(
-        ...     badziag_private_singlet(shield_dim=2), [0, 2, 1, 3], dim=[2, 2, 2, 2]
-        ... )
+        >>> state = badziag_private_singlet(shield_dim=2)
         >>> is_density(state)
         True
         >>> is_ppt(state, dim=[4, 4])
@@ -115,4 +113,4 @@ def badziag_private_singlet(*, shield_dim: int) -> np.ndarray:
         for j in range(shield_dim)
     ) * (p2 / (2 * shield_dim))
 
-    return ret  # type: ignore
+    return permute_systems(ret, [0, 2, 1, 3], dim=[2, 2, shield_dim, shield_dim])  # type: ignore

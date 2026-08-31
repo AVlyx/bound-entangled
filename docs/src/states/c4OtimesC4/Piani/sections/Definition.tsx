@@ -38,7 +38,7 @@ function Definition() {
         <code>projectorIj(i, j)</code> computes, and is itself part of the construction: the Piani
         state is the uniform mixture of six such projectors,
       </p>
-      <EquationLine>{"\\rho_0 = \\tfrac16 \\sum P_{ij}"}</EquationLine>
+      <EquationLine>{"\\rho = \\tfrac16 \\sum P_{ij}"}</EquationLine>
       <p>over the six pairs</p>
       <div className="scroll-x">
         <table className="doc-table">
@@ -62,19 +62,10 @@ function Definition() {
           </tbody>
         </table>
       </div>
-      <p>
-        Finally, regarding the 16 dimensions as four qubits (the first C⁴ factor split into two
-        qubits, the second — the one the Pauli operators acted on — split into the other two), the
-        Piani state reorders those four qubits with the permutation [0, 2, 1, 3]:
-      </p>
-      <EquationLine>
-        {"\\rho = \\text{permuteSystems}(\\rho_0,\\ [0,2,1,3],\\ [2,2,2,2])"}
-      </EquationLine>
       <p className="equation-caption">
-        Regrouping the qubits this way — described in the source as recombining them into the
-        bipartition AA′|BB′ — is what makes ρ positive under the resulting [4, 4] partial transpose;
-        the unpermuted mixture ρ₀ is already PPT, so the permutation changes which split the state
-        is entangled across, not merely how it is written.
+        This mixture is already positive under the [4, 4] partial transpose — no further
+        rearranging of the underlying qubits is needed — while remaining entangled, which is what
+        makes it bound entangled.
       </p>
     </DefinitionSection>
   );
