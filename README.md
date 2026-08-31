@@ -123,6 +123,21 @@ asserted by the doctests on each factory.
 | [`js/`](js)         | The TypeScript package and its vitest suite.                                                   |
 | [`docs/`](docs)     | The React site behind the documentation link, deployed to GitHub Pages on every push to `main`. |
 
+## Testing
+
+js
+```
+cd js
+npm test
+```
+
+python
+```
+cd python
+pip install -e ".[test]"
+pytest -v
+```
+
 ## License
 
 MIT
