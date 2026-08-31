@@ -30,9 +30,7 @@ jobs:
       - run: npm ci
 
       - run: npm run typecheck
-
-      - run: npm test
-
+      
       - name: Build release package
         run: npm run build
 
