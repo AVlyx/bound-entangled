@@ -114,7 +114,8 @@ def yu_oh(*, full_dim: int, x: float, y: float):
         >>> sep
         False
     """
-    assert is_valid_yu_oh_input(full_dim, x, y)
+    if not is_valid_yu_oh_input(full_dim, x, y):
+        raise ValueError(f"Invalid input for Yu_Oh state (x={x}, y={y})")
     z = sqrt(1 - x**2 - y**2)
     delta = z**2 / (full_dim - 2) - x * y
     R = full_dim * x * y + (full_dim - 1) * (full_dim - 2) * delta + full_dim - 1
