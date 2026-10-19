@@ -44,6 +44,10 @@ the state is NPT, and at λ = 1 it is pure and maximally entangled — so "every
 Decide whether this is a toqito implementation bug or a difference from Breuer's
 own parametrization in the paper, then reinstate with the correct λ range.
 
+Note that `cd_otimes_cd/__init__.py` still does `from toqito.states import
+breuer`, so toqito's version remains importable as
+`bound_entangled.cd_otimes_cd.breuer`. Drop that import until it is reinstated.
+
 ## Possible errors
 
 ### `gen_tiles2` — C^m ⊗ C^n ([quant-ph/9908070](https://arxiv.org/abs/quant-ph/9908070), Thm. 6)
@@ -55,14 +59,16 @@ n = 5 the state is PPT with rank ≤ max(m, n), and PPT + rank ≤ max(dA, dB)
 implies separable (Horodecki et al. 2000, a rigorous criterion). Only `(3, 4)`
 works for m = 3.
 
-The current guard only enforces `n > 3, m >= 3, n >= m`. Check Theorem 6's
-actual hypotheses — the paper may state a constraint we dropped. Pinned as a
-passing doctest on `gen_tiles2` so it is recorded rather than hidden.
+The current guard enforces `n > 3, m >= 3, n >= m`, which is exactly what
+Theorem 6 (Section V B) states — no constraint was dropped. The paper presents
+GenTiles2 as a conjecture and points to its Ref. [20] for the proof, so the
+conflict is with the stated theorem itself; check Ref. [20] before narrowing the
+guard. Pinned as a passing doctest on `gen_tiles2` so it is recorded rather than
+hidden.
 
 ### `piani` — C⁴ ⊗ C⁴ ([quant-ph/0411095](https://arxiv.org/abs/quant-ph/0411095)) — resolved
 
-Commit `984c5d8` removed the `permute_systems(rho, [0, 2, 1, 3])` regrouping
-from both the Python and TypeScript sources.
+Commit `984c5d8` removed the `permute_systems(rho, [0, 2, 1, 3])` regrouping.
 
 The evidence favours the removal, and both halves of it are certificates rather
 than heuristics: with the permutation `is_separable` returns `True` having
@@ -71,32 +77,41 @@ provably separable and cannot be the bound entangled Piani state; without it,
 CCNR certifies PPT entanglement. The permutation was destroying the
 entanglement.
 
-`js/tests/c4OtimesC4/piani.test.ts`, which still pinned the old permuted
-values, was removed along with the rest of the old TS test layout in
-`3db7d2d` and superseded by the entrywise parity suite (`dcc4307`,
-[js/tests/parity/cases.ts](../js/tests/parity/cases.ts)), which covers `piani()`
-and `projectorIj` against the current (unpermuted) Python reference and passes.
-The docs site and the JS docstring described the old permuted construction
-until this pass; both have been corrected to match.
+The unpermuted mixture is Eq. (29) of the paper and Eq. (S.124) of
+[2010.08372](https://arxiv.org/abs/2010.08372), Appendix C5, both of which
+call it bound entangled under the AA'|BB' split without any regrouping.
 
-### `chessboard_extremal_PPT` — C³ ⊗ C³ ([quant-ph/9911056](https://arxiv.org/abs/quant-ph/9911056))
+### `chessboard_extremal_PPT` — C³ ⊗ C³ ([quant-ph/9911056](https://arxiv.org/abs/quant-ph/9911056)) — resolved
 
-The factory passes `s = a*c/n = -1.2`, but the documented default (and toqito's)
-is `s = conj(c)/conj(n) = -2.0`. The override is **load-bearing, not cosmetic**:
-with the documented default the state is NPT. The passed value does give a PPT
-entangled state, so nothing is broken — but confirm `a*c/n` against
-[2010.08372](https://arxiv.org/abs/2010.08372) (Fig. 2 / Fig. 9, p. 25) and say
-in the docstring why it deviates.
+The factory passes `s = a*c/n = -1.2`, while toqito's default is
+`s = conj(c)/conj(n) = -2.0`, which gives an NPT state. `s = ac/n` and
+`t = ad/m` are what Bruß and Peres choose, and what
+[2010.08372](https://arxiv.org/abs/2010.08372) uses in Appendix C2 (p. 25) for
+the extremal state of Fig. 2 / Fig. 9, so the override is the paper's
+construction and toqito's default drops the factor `a`. Both docstrings now say
+so.
+
+Still open: `chessboard()` keeps toqito's default `s = c/n`, which is the
+Bruß–Peres value only when `a = 1`. Consider defaulting to `a*c/n`.
 
 Separately, `chessboard` is a general family, not a bound-entangled-state
 factory: toqito warns some `(s, t)` choices give non-PPT states. Worth saying so.
 
 ## Unfinished
 
-### `symmetric_BE` — C^d ⊗ C^d ([2012.06631](https://arxiv.org/pdf/2012.06631))
+### `symmetric_BE` — C^d ⊗ C^d ([2012.06631](https://arxiv.org/abs/2012.06631))
 
-`python/src/bound_entangled/cd_otimes_cd/symmetric_BE.py` contains only a paper
-link and no code. Either implement it or delete the file.
+The stub `symmetric_BE.py`, which held only a link to C. Marconi, A. Aloy,
+J. Tura, A. Sanpera, "Entangled symmetric states and copositive matrices",
+Quantum 5, 561 (2021), is no longer in the tree. Implement it from that paper or
+drop this entry.
+
+### `magic_simplex` — C^d ⊗ C^d ([2406.13491](https://arxiv.org/abs/2406.13491), Defs. 2.9-2.10)
+
+`src/bound_entangled/cd_otimes_cd/magic_simplex.py` is not exported and does not
+run yet: the accumulator is allocated as `(d, d)` but each Bell projector is
+`(d², d²)`, so every call raises a broadcasting `ValueError`. It has no doctest
+and is left out of the docs until it works.
 
 ## Not bugs, but the tests cannot see what matters
 
@@ -135,7 +150,7 @@ AA'BB' before an Alice|Bob cut of dimension 2d × 2d meant anything — until th
 was documented, any caller checking PPT directly on the returned matrix got a
 meaningless answer.
 
-Both factories (Python and TypeScript) now apply
+Both factories now apply
 
 ```python
 permute_systems(rho, [0, 2, 1, 3], dim=[2, 2, d, d])
@@ -143,8 +158,7 @@ permute_systems(rho, [0, 2, 1, 3], dim=[2, 2, d, d])
 
 internally before returning, so the trap is gone: the returned matrix is
 already in AA'BB' order and the Alice|Bob cut can be tested directly on it.
-Docstrings and the docs site were updated to match; the parity suite needed no
-changes since it already calls both factories directly and compares entrywise.
+Docstrings and the docs site were updated to match.
 
 ### `horodecki_2_by_d_generalized` — C² ⊗ C^d ([1203.3711](https://arxiv.org/abs/1203.3711))
 
@@ -153,20 +167,16 @@ state is **not** bound entangled. Fine, but there is no guard or note; d ≥ 4 i
 the meaningful range. The d = 4 equivalence with toqito's C² ⊗ C⁴ Horodecki
 state (up to an anti-diagonal transpose) is verified and now a doctest.
 
+### `steering_state` — C³ ⊗ C³ ([1405.0262](https://arxiv.org/abs/1405.0262))
+
+The weights of Eqs. (18)-(19) are non-negative only for `m1, m2 >= 0` with
+`m1² + m2² + m1·m2 <= 1`; the docstring used to say `m1² + m2² <= 1`, which lets
+through e.g. `(0.6, 0.6)`, whose result has a negative eigenvalue. The
+docstring is fixed, but there is still no guard.
+
 ### `random_PPT` — C^m ⊗ C^n
 
 In 2 ⊗ 2 every PPT draw is separable, so the name promises more than it
 delivers at small dimensions. The module is called
 `random_not_bound_entangled`, which is consistent — just make sure callers do
 not read `random_PPT` as "random bound entangled".
-
-## Cross-package
-
-The root README says the TypeScript values are "checked entrywise against the
-Python ones". At the time this was written there was no such check for
-`piani` — the old TS test asserted its own hard-coded diagonal instead, so
-neither side would have caught the two implementations disagreeing.
-
-Resolved by `dcc4307`: `js/tests/parity/cases.ts` now runs `piani()` and
-`projectorIj` through the same entrywise comparison as every other state, so
-the README's claim now holds for `piani` too.

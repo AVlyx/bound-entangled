@@ -5,7 +5,8 @@ on:
     branches: ["main"]
     paths:
       - "docs/**"
-      - "js/**"
+      - "src/**"
+      - "zensical.toml"
       - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
 
@@ -20,50 +21,25 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: npm
-          cache-dependency-path: |
-            js/package-lock.json
-            docs/package-lock.json
-
-      # docs depends on the local library via "file:../js", so its dist/ must exist first.
-      - name: Build library
-        working-directory: js
-        run: |
-          npm ci
-          npm run build
-
-      - name: Install docs dependencies
-        working-directory: docs
-        run: npm ci
-
-      - name: Build docs
-        working-directory: docs
-        env:
-          VITE_BASE: /${{ github.event.repository.name }}/
-        run: npm run build
-
-      # BrowserRouter deep links 404 on Pages without a fallback copy.
-      - name: Add SPA fallback
-        run: cp docs/dist/index.html docs/dist/404.html
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/dist
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/configure-pages@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.x
+
+      # mkdocstrings reads the API pages statically from src/, so the package
+      # itself (and toqito) does not need to be installed.
+      - run: pip install zensical mkdocstrings-python
+      - run: zensical build --clean
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - uses: actions/deploy-pages@v5
+        id: deployment

@@ -19,9 +19,6 @@ permissions:
 jobs:
   release-build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: python
     steps:
       - uses: actions/checkout@v4
 
@@ -39,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-dists
-          path: python/dist/
+          path: dist/
 
   pypi-publish:
     runs-on: ubuntu-latest
@@ -66,9 +63,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release-dists
-          path: python/dist/
+          path: dist/
 
       - name: Publish release distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: python/dist/
+          packages-dir: dist/
