@@ -43,10 +43,9 @@ $(x, y)$ must satisfy $x^2 + y^2 \le 1$ and $\delta > 0$, which
   [doi:10.1103/PhysRevA.95.032111](https://doi.org/10.1103/PhysRevA.95.032111)
 """
 
-from toqito.states import max_entangled
 import numpy as np
 from math import sqrt
-from bound_entangled.utils import ketbra
+from bound_entangled.utils import ketbra, max_entangled
 
 
 def psi_ij(d: int, i: int, j: int):
@@ -159,7 +158,7 @@ def yu_oh(*, full_dim: int, x: float, y: float):
     delta = z**2 / (full_dim - 2) - x * y
     R = full_dim * x * y + (full_dim - 1) * (full_dim - 2) * delta + full_dim - 1
 
-    max_ent_ket: np.ndarray = max_entangled(full_dim) * sqrt(full_dim)  # type: ignore
+    max_ent_ket = max_entangled(full_dim) * sqrt(full_dim)
     ret = x * y / R * ketbra(max_ent_ket)
 
     psi_ij_sum = np.zeros((full_dim**2, full_dim**2))

@@ -27,13 +27,8 @@ $$
 
 Bruß and Peres choose $s = ac/n$ and $t = ad/m$, which makes the state invariant
 under partial transposition, so PPT; the range criterion then shows it is
-entangled.
-
-!!! warning "Default `s`"
-
-    `chessboard` wraps `toqito.states.chessboard`, whose default is $s = c/n$.
-    That agrees with Bruß and Peres only when $a = 1$; for other values pass
-    `s=a * c / n` explicitly, or the state is generally not PPT.
+entangled. These are the defaults of `chessboard`. (toqito's `chessboard`
+defaults to $s = c/n$ instead, which agrees only when $a = 1$.)
 
 `chessboard_extremal_PPT` is the member with $m = n = b = -3/5$, $a = 3/5$ and
 $c = -d = 6/5$ (and $s = ac/n$, $t = ad/m$). Imai et al. show it as the
@@ -51,7 +46,6 @@ extremal PPT entangled state of their Figs. 2 and 9 (Appendix C2).
   [doi:10.1103/PhysRevLett.126.150501](https://doi.org/10.1103/PhysRevLett.126.150501)
 """
 
-from toqito.states import chessboard as chessboard_toqito
 from typing import Optional
 import numpy as np
 
@@ -68,10 +62,8 @@ def chessboard(
         d: free real parameter.
         m: free real parameter.
         n: free real parameter.
-        s: defaults to c/n if None (toqito's default). Bruß and Peres take
-            s = a*c/n, which is what makes the state PPT; the two agree only
-            when a = 1.
-        t: defaults to a*d/m if None.
+        s: defaults to a*c/n, the Bruß-Peres choice that makes the state PPT.
+        t: defaults to a*d/m, likewise.
 
     Returns:
         np.ndarray: a chessboard quantum state.
@@ -88,7 +80,18 @@ def chessboard(
         >>> sep
         False
     """
-    return chessboard_toqito([a, b, c, d, m, n], s, t)  # type: ignore
+    if s is None:
+        s = a * c / n
+    if t is None:
+        t = a * d / m
+    vectors = [
+        np.array([m, 0, s, 0, n, 0, 0, 0, 0]),
+        np.array([0, a, 0, b, 0, c, 0, 0, 0]),
+        np.array([np.conj(n), 0, 0, 0, -np.conj(m), 0, t, 0, 0]),
+        np.array([0, np.conj(b), 0, -np.conj(a), 0, 0, 0, d, 0]),
+    ]
+    rho = sum(np.outer(v, v.conj()) for v in vectors)
+    return rho / np.trace(rho)
 
 
 def chessboard_extremal_PPT() -> np.ndarray:
@@ -100,9 +103,9 @@ def chessboard_extremal_PPT() -> np.ndarray:
     randomized measurements", Phys. Rev. Lett. 126, 150501 (2021),
     https://arxiv.org/abs/2010.08372 (Appendix C2, page 25).
 
-    s and t are passed explicitly as s = a*c/n and t = a*d/m, the choice of
-    both Bruß-Peres and Appendix C2. toqito's default s = c/n drops the
-    factor a, and with a = 3/5 it gives an NPT state.
+    s and t take their defaults s = a*c/n and t = a*d/m, the choice of both
+    Bruß-Peres and Appendix C2. (toqito's chessboard defaults to s = c/n,
+    which drops the factor a and with a = 3/5 gives an NPT state.)
 
     Returns:
         np.ndarray: the extremal PPT chessboard state.
@@ -129,6 +132,4 @@ def chessboard_extremal_PPT() -> np.ndarray:
         # c = -d = 6/5
         c=6 / 5,
         d=-6 / 5,
-        s=(3 / 5) * (6 / 5) / (-3 / 5),
-        t=(3 / 5) * (-6 / 5) / (-3 / 5),
     )

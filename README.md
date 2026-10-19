@@ -23,8 +23,10 @@ papers it comes from, plus a bibliography with BibTeX.
 pip install bound-entangled
 ```
 
-Requires Python ≥ 3.11. Depends on [`toqito`](https://toqito.readthedocs.io) and
-NumPy.
+Requires Python ≥ 3.11. The only runtime dependency is NumPy; every state is
+built from the small linear-algebra helpers in `bound_entangled.utils`. To
+classify the states — `is_separable` and the like — use a toolbox such as
+[`toqito`](https://toqito.readthedocs.io), which the test suite depends on.
 
 ## Usage
 
@@ -88,6 +90,7 @@ space it lives in: `c2_otimes_c4` and `c3_otimes_c3`.
 | `badziag_private_singlet`       | Badziąg et al. private-singlet state on C^2d ⊗ C^2d (ρ_F1) | [1309.7992](https://arxiv.org/abs/1309.7992), [2002.12409](https://arxiv.org/abs/2002.12409) |
 | `orthogonal_singlet`            | ρ_F2, the second family of PPT singlets                    | [2002.12409](https://arxiv.org/abs/2002.12409)                                               |
 | `horodecki_2_by_d_generalized`  | The 2×4 Horodecki state generalized to C² ⊗ C^d            | [1203.3711](https://arxiv.org/abs/1203.3711)                                                 |
+| `breuer`                        | Breuer states on C^d ⊗ C^d, even d — bound entangled for 0 < λ ≤ 1/(d+2) | [quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036)                     |
 
 ### `cm_otimes_cn` — C^m ⊗ C^n (parametric constructions)
 
@@ -117,16 +120,24 @@ the six-qubit state.
 
 ### `utils`
 
-| Function        | Description                                                                              |
-| --------------- | ---------------------------------------------------------------------------------------- |
-| `ketbra(a, b?)` | The outer product \|a><b\|, defaulting to \|a><a\|.                                      |
-| `upb(basis)`    | The bound entangled state on the orthogonal complement of an unextendible product basis. |
+| Function                              | Description                                                                              |
+| ------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ketbra(a, b?)`                       | The outer product \|a><b\|, defaulting to \|a><a\|.                                      |
+| `upb(basis)`                          | The bound entangled state on the orthogonal complement of an unextendible product basis. |
+| `tensor(*arrays)`                     | The Kronecker product of the factors, left to right.                                    |
+| `max_entangled(d)`                    | The maximally entangled state of C^d ⊗ C^d, as a column vector.                          |
+| `pauli(i)`, `pauli([i, j, ...])`      | A Pauli matrix (0 = I, 1 = X, 2 = Y, 3 = Z), or a tensor product of them.               |
+| `fourier(d)`                          | The d × d discrete Fourier matrix.                                                       |
+| `permute_systems(mat, perm, dim)`     | Reorder the subsystems of an operator on a multipartite space.                           |
+| `partial_transpose(mat, dim)`, `is_ppt(mat, dim)` | The partial transpose over the second system, and the PPT test.              |
+| `random_density_matrix(d, seed?)`     | A random density matrix from the Hilbert–Schmidt measure.                                |
 
 ## Repository layout
 
 | Path                      | Contents                                                                                                       |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | [`src/`](src)             | The Python package, published to PyPI when a GitHub release is published.                                     |
+| [`tests/`](tests)         | Checks of everything that used to come from toqito — the helpers in `utils` and the reimplemented states — entrywise against toqito. |
 | [`docs/`](docs)           | The [Zensical](https://zensical.org) site behind the documentation link, deployed to GitHub Pages on every push to `main`. |
 | [`includes/`](includes)   | One file per cited paper, with its BibTeX, pulled into the documentation's bibliography.                      |
 | [`TODO.md`](TODO.md)      | Open questions about specific states, and what has been resolved.                                             |
@@ -138,12 +149,14 @@ pip install -e ".[test]"
 pytest
 ```
 
-The suite lives in the docstrings. Every state factory carries an `Examples`
-block asserting that what it returns is a valid density matrix, that it is PPT,
-and how `toqito`'s `is_separable` classifies it — run as doctests by `pytest`,
-so the documented behaviour and the tested behaviour cannot drift apart. A few
-of them fall through to toqito's semidefinite-programming check and take around
-ten seconds each.
+The `test` extra installs `toqito`, which only the tests use. Most of the suite
+lives in the docstrings: every state factory carries an `Examples` block
+asserting that what it returns is a valid density matrix, that it is PPT, and
+how `toqito`'s `is_separable` classifies it — run as doctests by `pytest`, so
+the documented behaviour and the tested behaviour cannot drift apart. A few of
+them fall through to toqito's semidefinite-programming check and take around
+ten seconds each. `tests/` pins the package's own linear algebra, and the states
+it used to take from toqito, entrywise against toqito.
 
 The documentation pages are generated from the docstrings: each page is the
 module docstring of one file under `src/` (the construction, its math and its

@@ -38,6 +38,7 @@ nav = [
     { "Yu–Oh" = "states/cd-cd/yu-oh.md" },
     { "Badziąg private singlet" = "states/cd-cd/badziag-private-singlet.md" },
     { "Orthogonal singlet" = "states/cd-cd/orthogonal-singlet.md" },
+    { "Breuer" = "states/cd-cd/breuer.md" },
   ] },
   { "Cᵐ ⊗ Cⁿ" = [
     { "Grid state" = "states/cm-cn/grid-state.md" },

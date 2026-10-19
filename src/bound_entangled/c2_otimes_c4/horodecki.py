@@ -47,7 +47,6 @@ is that generalization.
   [doi:10.1103/PhysRevA.85.060302](https://doi.org/10.1103/PhysRevA.85.060302)
 """
 
-from toqito.states import horodecki as horodecki_toqito
 import numpy as np
 
 
@@ -81,4 +80,19 @@ def horodecki(a: float) -> np.ndarray:
         >>> sep
         False
     """
-    return horodecki_toqito(a, dim=[2, 4])  # type: ignore
+    if not 0 <= a <= 1:
+        raise ValueError(f"a must lie in [0, 1], got {a}")
+    b = (1 + a) / 2
+    c = np.sqrt(1 - a**2) / 2
+    return np.array(
+        [
+            [a, 0, 0, 0, 0, a, 0, 0],
+            [0, a, 0, 0, 0, 0, a, 0],
+            [0, 0, a, 0, 0, 0, 0, a],
+            [0, 0, 0, a, 0, 0, 0, 0],
+            [0, 0, 0, 0, b, 0, 0, c],
+            [a, 0, 0, 0, 0, a, 0, 0],
+            [0, a, 0, 0, 0, 0, a, 0],
+            [0, 0, a, 0, c, 0, 0, b],
+        ]
+    ) / (7 * a + 1)

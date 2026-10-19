@@ -59,7 +59,6 @@ without destroying it.
   [doi:10.1016/j.physleta.2010.11.069](https://doi.org/10.1016/j.physleta.2010.11.069)
 """
 
-from toqito.states import horodecki as horodecki_toqito
 import numpy as np
 
 
@@ -85,4 +84,20 @@ def horodecki(a: float) -> np.ndarray:
         >>> sep
         False
     """
-    return horodecki_toqito(a, dim=[3, 3])  # type: ignore
+    if not 0 <= a <= 1:
+        raise ValueError(f"a must lie in [0, 1], got {a}")
+    b = (1 + a) / 2
+    c = np.sqrt(1 - a**2) / 2
+    return np.array(
+        [
+            [a, 0, 0, 0, a, 0, 0, 0, a],
+            [0, a, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, a, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, a, 0, 0, 0, 0, 0],
+            [a, 0, 0, 0, a, 0, 0, 0, a],
+            [0, 0, 0, 0, 0, a, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, b, 0, c],
+            [0, 0, 0, 0, 0, 0, 0, a, 0],
+            [a, 0, 0, 0, a, 0, c, 0, b],
+        ]
+    ) / (8 * a + 1)

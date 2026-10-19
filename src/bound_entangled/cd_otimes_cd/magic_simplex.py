@@ -1,5 +1,4 @@
-from toqito.states import basis, max_entangled
-from bound_entangled.utils import ketbra
+from bound_entangled.utils import ketbra, max_entangled
 import numpy as np
 
 

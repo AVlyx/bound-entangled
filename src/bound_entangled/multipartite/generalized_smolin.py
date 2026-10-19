@@ -38,8 +38,8 @@ odd cuts it is NPT.
   [doi:10.1103/PhysRevA.63.032306](https://doi.org/10.1103/PhysRevA.63.032306)
 """
 
-from toqito.matrices import pauli
 import numpy as np
+from bound_entangled.utils import pauli
 
 
 def generalized_smolin(systems: int) -> np.ndarray:

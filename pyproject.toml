@@ -4,36 +4,33 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bound-entangled"
-version = "0.2.2"
+version = "0.3.0"
 description = "Families of bound entangled states for Quantum Information"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]
-authors = [
-    {name = "AVlyx", email = "anton@vancleem.com"}
-]
-dependencies = [
-    "toqito>=1.1.8",
-    "numpy>=2.4.1"
-]
+authors = [{ name = "AVlyx", email = "anton@vancleem.com" }]
+dependencies = ["numpy>=2.4.1"]
 
 [project.urls]
 Homepage = "https://github.com/AVlyx/bound-entangled"
 Documentation = "https://avlyx.github.io/bound-entangled/"
 
 [project.optional-dependencies]
-test = ["pytest"]
+# toqito is only a test dependency: the doctests use its is_separable, and
+# tests/ checks the package's own linear algebra against it entrywise.
+test = ["pytest", "toqito>=1.1.8"]
 docs = ["zensical", "mkdocstrings-python"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
-# The whole suite is doctests: every state factory carries examples asserting it
-# is a valid density matrix, PPT, and entangled. src is also the import path, so
-# the library imports the same way the source does even without the editable
-# install.
-testpaths = ["src"]
+# Most of the suite is doctests: every state factory carries examples asserting
+# it is a valid density matrix, PPT, and entangled. tests/ holds the toqito parity
+# checks. src is also the import path, so the library imports the same way the
+# source does even without the editable install.
+testpaths = ["src", "tests"]
 pythonpath = ["src"]
 addopts = "--import-mode=importlib --doctest-modules"

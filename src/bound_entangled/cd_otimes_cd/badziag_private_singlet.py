@@ -64,11 +64,8 @@ transposition, and bound entangled for every $d \ge 2$.
   [doi:10.1016/j.cpc.2008.03.007](https://doi.org/10.1016/j.cpc.2008.03.007)
 """
 
-from toqito.matrices import fourier
-from toqito.matrix_ops import tensor
-from toqito.perms import permute_systems
 from math import sqrt
-from bound_entangled.utils import ketbra
+from bound_entangled.utils import fourier, ketbra, permute_systems, tensor
 import numpy as np
 
 
@@ -178,4 +175,4 @@ def badziag_private_singlet(*, shield_dim: int) -> np.ndarray:
         for j in range(shield_dim)
     ) * (p2 / (2 * shield_dim))
 
-    return permute_systems(ret, [0, 2, 1, 3], dim=[2, 2, shield_dim, shield_dim])  # type: ignore
+    return permute_systems(ret, [0, 2, 1, 3], dim=[2, 2, shield_dim, shield_dim])

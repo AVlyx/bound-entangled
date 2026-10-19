@@ -70,9 +70,7 @@ $|s_k\rangle = \tfrac{1}{\sqrt d}\sum_{ij} Q^k_{ij}\,|ij\rangle$ (Eq. (G16)).
 
 from math import sqrt, log2
 import numpy as np
-from toqito.matrix_ops import tensor
-from toqito.perms import permute_systems
-from bound_entangled.utils import ketbra
+from bound_entangled.utils import ketbra, permute_systems, tensor
 
 
 def ket_i(d: int, i: int):

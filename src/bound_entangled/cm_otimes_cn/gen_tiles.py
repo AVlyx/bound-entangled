@@ -56,7 +56,6 @@ $$
 
 import numpy as np
 from bound_entangled.utils import upb
-from toqito.states import basis
 
 
 def gen_tiles2_basis(m_n: tuple[int, int]) -> list[np.ndarray]:

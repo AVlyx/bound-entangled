@@ -91,8 +91,8 @@ def phi_b(d: int, b: float) -> np.ndarray:
 def horodecki_2_by_d_generalized(*, second_dim_d: int, b: float) -> np.ndarray:
     """Generalization of the C^2 ⊗ C^4 horodecki state.
 
-    For d = 4 it is equivalent to the C^2 ⊗ C^4 horodecki state from toqito up
-    to an anti-diagonal transpose.
+    For d = 4 it is equivalent to the C^2 ⊗ C^4 Horodecki state
+    (`c2_otimes_c4.horodecki`) up to an anti-diagonal transpose.
 
     Args:
         second_dim_d (int): second dimension d. The full dimension of the system is 2*d
@@ -119,7 +119,7 @@ def horodecki_2_by_d_generalized(*, second_dim_d: int, b: float) -> np.ndarray:
         >>> sep
         False
 
-        At d = 4 the state matches toqito's C^2 (x) C^4 Horodecki state under an
+        At d = 4 the state matches the C^2 (x) C^4 Horodecki state under an
         anti-diagonal transpose:
 
         >>> import numpy as np

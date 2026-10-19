@@ -47,10 +47,10 @@ numerical stack you already use.
 
 ```python
 from bound_entangled.c3_otimes_c3 import horodecki
-from toqito.state_props import is_ppt
+from bound_entangled.utils import is_ppt
 
 rho = horodecki(0.4)
-is_ppt(rho, dim=[3, 3])  # True — yet the state is entangled
+is_ppt(rho, [3, 3])  # True — yet the state is entangled
 ```
 
 States are grouped by the space they live in — `c3_otimes_c3` is

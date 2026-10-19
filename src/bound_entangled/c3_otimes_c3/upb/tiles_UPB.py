@@ -45,8 +45,25 @@ product vector, hence it is entangled.
 """
 
 import numpy as np
-from toqito.states import tile
 from bound_entangled.utils import upb
+
+
+def tiles_basis() -> list[np.ndarray]:
+    """The five product vectors of the "Tiles" UPB on C^3 (x) C^3.
+
+    Returns:
+        list[np.ndarray]: the five normalized product vectors forming the
+        Tiles unextendible product basis, as column vectors.
+    """
+    e0, e1, e2 = np.identity(3)
+    pairs = [
+        (e0, (e0 - e1) / np.sqrt(2)),
+        ((e0 - e1) / np.sqrt(2), e2),
+        (e2, (e1 - e2) / np.sqrt(2)),
+        ((e1 - e2) / np.sqrt(2), e0),
+        ((e0 + e1 + e2) / np.sqrt(3), (e0 + e1 + e2) / np.sqrt(3)),
+    ]
+    return [np.kron(a, b).reshape(-1, 1) for a, b in pairs]
 
 
 def tiles_upb() -> np.ndarray:
@@ -54,7 +71,7 @@ def tiles_upb() -> np.ndarray:
 
     Returns:
         np.ndarray: the bound entangled state on the orthogonal complement of
-        the Tiles unextendible product basis (`toqito.states.tile`).
+        the Tiles unextendible product basis (`tiles_basis`).
 
     Examples:
         >>> from toqito.matrix_props import is_density
@@ -68,4 +85,4 @@ def tiles_upb() -> np.ndarray:
         >>> sep
         False
     """
-    return upb([tile(i) for i in range(5)])
+    return upb(tiles_basis())

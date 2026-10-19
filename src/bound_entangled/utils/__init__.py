@@ -17,6 +17,13 @@ unextendible means no product vector lies in the range of $\rho$, so by the rang
 criterion it is entangled. Every UPB state in the library — Tiles, Pyramid,
 Parametrized, GenTiles1 and GenTiles2 — goes through it.
 
+The rest are the small linear-algebra pieces the constructions need, written
+on plain NumPy so the package does not depend on a quantum-information toolbox:
+`tensor`, `max_entangled`, `pauli`, `fourier`, `permute_systems`, and
+`partial_transpose` with `is_ppt` for the PPT test, plus
+`random_density_matrix` for the random states. The test suite checks each of
+them entrywise against `toqito`.
+
 # References
 
 - Charles H. Bennett, David P. DiVincenzo, Tal Mor, Peter W. Shor, John A.
@@ -27,4 +34,11 @@ Parametrized, GenTiles1 and GenTiles2 — goes through it.
 """
 
 from bound_entangled.utils.ketbra import ketbra
+from bound_entangled.utils.tensor import tensor
+from bound_entangled.utils.max_entangled import max_entangled
+from bound_entangled.utils.pauli import pauli
+from bound_entangled.utils.fourier import fourier
+from bound_entangled.utils.permute_systems import permute_systems
+from bound_entangled.utils.partial_transpose import partial_transpose, is_ppt
+from bound_entangled.utils.random_density_matrix import random_density_matrix
 from bound_entangled.utils.upb import upb

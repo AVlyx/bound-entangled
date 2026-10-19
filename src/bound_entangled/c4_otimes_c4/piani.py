@@ -46,10 +46,8 @@ which is what makes it bound entangled.
   [doi:10.1103/PhysRevLett.126.150501](https://doi.org/10.1103/PhysRevLett.126.150501)
 """
 
-from toqito.matrices import pauli
-from toqito.states import max_entangled
 import numpy as np
-from bound_entangled.utils import ketbra
+from bound_entangled.utils import ketbra, max_entangled, pauli
 
 
 def P_ij(i: int, j: int):
@@ -62,7 +60,7 @@ def P_ij(i: int, j: int):
     Returns:
         np.ndarray: the rank-1 projector P_ij on C^4 (x) C^4.
     """
-    sigma_ij = np.kron(np.identity(4), np.kron(pauli(i), pauli(j)))  # type: ignore
+    sigma_ij = np.kron(np.identity(4), pauli([i, j]))
     ket_ij = sigma_ij @ max_entangled(4)
     return ketbra(ket_ij)
 

@@ -50,6 +50,8 @@ the arXiv listing of its eprint.
 
 --8<-- "refs/toth2008.md"
 
+--8<-- "refs/breuer2006.md"
+
 ## Multipartite
 
 --8<-- "refs/smolin2001.md"

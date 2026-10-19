@@ -2,7 +2,8 @@ r"""Random states on $\mathbb{C}^m \otimes \mathbb{C}^n$, sorted by their partia
 
 Random density matrices for use as comparison points next to the bound
 entangled states, drawn by rejection sampling from
-`toqito.rand.random_density_matrix`:
+[`random_density_matrix`][bound_entangled.utils.random_density_matrix.random_density_matrix]
+(the Hilbert–Schmidt measure):
 
 - `random_NPT` returns a random NPT state — entangled, and distillable, so *not*
   bound entangled;
@@ -13,9 +14,8 @@ entangled states, drawn by rejection sampling from
   boundary, found by bisecting between a PPT and an NPT draw.
 """
 
-from toqito.rand import random_density_matrix
-from toqito.state_props import is_ppt
 import numpy as np
+from bound_entangled.utils import is_ppt, random_density_matrix
 
 
 def random_NPT(m_n: tuple[int, int]) -> np.ndarray:

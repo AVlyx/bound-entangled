@@ -25,28 +25,21 @@ realignment/CCNR, the reduction criterion, a positive-map witness (Choi, Ha-Kye,
 Breuer-Hall), or a failed k-symmetric extension. Every `False` asserted by a
 doctest in this library was checked to cite one of those; none is inconclusive.
 
-## Removed, needs re-deriving before it comes back
+## Resolved
 
-### `breuer` — C⁴ ⊗ C⁴ ([quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036))
+### `breuer` — C^d ⊗ C^d ([quant-ph/0605036](https://arxiv.org/abs/quant-ph/0605036)) — reinstated
 
-Removed from the library. Both our docstring and toqito's claim the state is
-bound entangled "for even local dimension d ≥ 4 and every λ > 0". That is false
-for the construction as toqito implements it: the partial transpose stays
-positive exactly for
+It had been removed because toqito's docstring (and ours) called the state
+bound entangled "for even local dimension d ≥ 4 and every λ > 0", while the
+partial transpose stays positive only for 0 < λ ≤ 1/(d+2).
 
-    0 < λ ≤ 1/(d+2)
-
-(1/6 at d = 4, 1/8 at d = 6, confirmed by bisection on the hand-computed
-partial-transpose spectrum, matching to 10 decimal places). Above the threshold
-the state is NPT, and at λ = 1 it is pure and maximally entangled — so "every
-λ > 0" cannot be right under any reading.
-
-Decide whether this is a toqito implementation bug or a difference from Breuer's
-own parametrization in the paper, then reinstate with the correct λ range.
-
-Note that `cd_otimes_cd/__init__.py` still does `from toqito.states import
-breuer`, so toqito's version remains importable as
-`bound_entangled.cd_otimes_cd.breuer`. Drop that import until it is reinstated.
+Neither an implementation bug nor a different parametrization: the construction
+is Eq. (7) of the paper, ρ(λ) = λP₀ + (1−λ)·2P_S/(d(d+1)), and the paper itself
+proves both halves — entangled for every λ > 0 (its witness gives
+tr{Wρ(λ)} = −λ(d−2)) and PPT exactly for λ ≤ 1/(d+2). Only toqito's docstring
+overstates it. `cd_otimes_cd/breuer.py` reimplements the state, matches toqito's
+entrywise (`tests/test_toqito_parity.py`), and says the correct range; doctests
+pin the PPT threshold at d = 4 and the witness value.
 
 ## Possible errors
 
@@ -88,11 +81,11 @@ The factory passes `s = a*c/n = -1.2`, while toqito's default is
 `t = ad/m` are what Bruß and Peres choose, and what
 [2010.08372](https://arxiv.org/abs/2010.08372) uses in Appendix C2 (p. 25) for
 the extremal state of Fig. 2 / Fig. 9, so the override is the paper's
-construction and toqito's default drops the factor `a`. Both docstrings now say
-so.
+construction and toqito's default drops the factor `a`.
 
-Still open: `chessboard()` keeps toqito's default `s = c/n`, which is the
-Bruß–Peres value only when `a = 1`. Consider defaulting to `a*c/n`.
+Since dropping the toqito dependency, `chessboard()` builds the state itself and
+defaults to `s = a*c/n`, `t = a*d/m`, so `chessboard_extremal_PPT` no longer
+needs to override anything.
 
 Separately, `chessboard` is a general family, not a bound-entangled-state
 factory: toqito warns some `(s, t)` choices give non-PPT states. Worth saying so.
